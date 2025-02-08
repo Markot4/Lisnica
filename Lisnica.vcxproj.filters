@@ -38,10 +38,10 @@
     <ClInclude Include="VrijednosniPapir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dionica.h">
+    <ClInclude Include="Obveznica.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Obveznica.h">
+    <ClInclude Include="Dionica.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
