@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{47aafa30-34a1-4c83-b3c9-1feb1e8e45d4}</ProjectGuid>
-    <RootNamespace>Lisnica</RootNamespace>
+    <ProjectGuid>{37e58fce-fcdd-47b7-90a2-07281813470b}</ProjectGuid>
+    <RootNamespace>App</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -104,7 +104,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,7 +118,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,17 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Dionica.cpp" />
-    <ClCompile Include="Lisnica.cpp" />
-    <ClCompile Include="LisnicaClass.cpp" />
-    <ClCompile Include="Obveznica.cpp" />
-    <ClCompile Include="VrijednosniPapir.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Dionica.h" />
-    <ClInclude Include="LisnicaClass.h" />
-    <ClInclude Include="Obveznica.h" />
-    <ClInclude Include="VrijednosniPapir.h" />
+    <ClCompile Include="App.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
