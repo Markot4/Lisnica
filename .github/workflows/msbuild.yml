@@ -1,0 +1,21 @@
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Build
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        # Add additional options to the MSBuild command line here (like platform or verbosity level).
+        # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
+        run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+
+      - name: Setup VSTest and add to PATH
+        uses: darenm/Setup-VSTest@v1
+
+      - name: Run VSTest
+        run: vstest.console.exe /Platform:x64 /Enablecodecoverage .\x64\Release\test.dll
