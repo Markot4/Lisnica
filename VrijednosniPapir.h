@@ -19,5 +19,7 @@ namespace markot4 {
 		void postaviCijenu(double novaCijena); 
 		double dohvatiCijenu() const;
 		virtual double izracunajVrijednost() = 0;
+		virtual bool isDionica() = 0;
+		virtual bool isObveznica() = 0;
 	};
 }

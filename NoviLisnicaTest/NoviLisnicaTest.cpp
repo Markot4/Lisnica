@@ -38,6 +38,17 @@ namespace LisnicaTest
 			Assert::AreEqual(d.izracunajVrijednost() ,  107 * 12.3);
 		}
 		
+		TEST_METHOD(TestDionicaisDionica)
+		{
+			Dionica d("PL-V-A", 107, 12.3);
+			Assert::AreEqual(d.isDionica(), true);
+		}
+
+		TEST_METHOD(TestDionicaisObveznica)
+		{
+			Dionica d("PL-V-A", 107, 12.3);
+			Assert::AreEqual(d.isObveznica(), false);
+		}
 		TEST_METHOD(TestObveznicaIme)
 		{
 			Obveznica o("PL-A", 94, 5, 12.5);
@@ -67,6 +78,18 @@ namespace LisnicaTest
 		{
 			Obveznica o("PL-A", 94, 5, 12.5);
 			Assert::AreEqual(o.izracunajVrijednost(), 94 * 12.5);
+		}
+
+		TEST_METHOD(TestObveznicaisObveznica)
+		{
+			Obveznica o("PL-V-A", 107, 5, 12.3);
+			Assert::AreEqual(o.isObveznica(), true);
+		}
+
+		TEST_METHOD(TestObveznicaisDionica)
+		{
+			Obveznica o("PL-V-A", 107, 5, 12.3);
+			Assert::AreEqual(o.isDionica(), false);
 		}
 	};
 }

@@ -98,11 +98,8 @@ namespace markot4 {
 		double ukupno = 0.0;
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
-
-			//Dionica* dionica = dynamic_cast<Dionica*>(&vp);
-			Dionica* dionica = static_cast<Dionica*>(vp);
-			if (dionica != nullptr) {
-				ukupno += dionica->izracunajVrijednost();
+			if (vp->isDionica()) {
+				ukupno += vp->izracunajVrijednost();
 			}
 		}
 		return ukupno;
@@ -112,11 +109,8 @@ namespace markot4 {
 		double ukupno = 0.0;
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
-
-			//Obveznica* obveznica = dynamic_cast<Obveznica*>(&vp);
-			Obveznica* obveznica = static_cast<Obveznica*>(vp);
-			if (obveznica != nullptr) {
-				ukupno += obveznica->izracunajVrijednost();
+			if (vp->isObveznica()) {
+				ukupno += vp->izracunajVrijednost();
 			}
 		}
 		return ukupno;

@@ -15,4 +15,12 @@ namespace markot4 {
     double Obveznica::izracunajVrijednost() {
         return cijena * nominalnaCijena;
     }
+
+    bool Obveznica::isObveznica() {
+        return true;
+    }
+
+    bool Obveznica::isDionica() {
+        return false;
+    }
 }

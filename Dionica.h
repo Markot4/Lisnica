@@ -11,5 +11,7 @@ namespace markot4 {
             void postaviCijenu(double novaCijena);
             double dohvatiCijenu() const;
             double izracunajVrijednost() override;
+            bool isDionica() override;
+            bool isObveznica() override;
     };
 }

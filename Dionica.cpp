@@ -16,4 +16,12 @@ namespace markot4 {
     double Dionica::izracunajVrijednost() {
         return cijena * kolicina;
     }
+
+    bool Dionica::isObveznica() {
+        return false;
+    }
+
+    bool Dionica::isDionica() {
+        return true;
+    }
 }
