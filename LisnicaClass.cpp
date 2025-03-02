@@ -8,15 +8,15 @@
 //ovo je samo test za pull request. sve ovdje za sad radi
 namespace markot4 {
 	void LisnicaClass::dodajVrijednosniPapir(VrijednosniPapir *vp){
-		//papiri.push_back(vp);
+		papiri.push_back(vp);
 		return;
 	}
 
 	void LisnicaClass::izbaciVrijednosniPapir(string oznaka) {
 		int ix = -1;
 		for (int i = 0; i < papiri.size();i++) {
-			VrijednosniPapir &vp = papiri[i];
-			if (vp.oznaka == oznaka) {
+			VrijednosniPapir *vp = papiri[i];
+			if (vp->oznaka == oznaka) {
 				ix = i;
 			}
 		}
@@ -28,9 +28,9 @@ namespace markot4 {
 
 	int LisnicaClass::promjenaKolicine(int promjena, string oznaka) {
 		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir& vp = papiri[i];
-			if (vp.oznaka == oznaka) {
-				vp.kolicina += promjena;
+			VrijednosniPapir *vp = papiri[i];
+			if (vp->oznaka == oznaka) {
+				vp->kolicina += promjena;
 			}
 		}
 		return 0;
@@ -39,9 +39,9 @@ namespace markot4 {
 	// promijena cijene vrijednosnim papirima sa oznakom u varijabli "oznaka"
 	void LisnicaClass::promjenaCijene(double cijena, string oznaka) {
 		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir& vp = papiri[i];
-			if (vp.oznaka == oznaka) {
-				vp.cijena = cijena;
+			VrijednosniPapir *vp = papiri[i];
+			if (vp->oznaka == oznaka) {
+				vp->cijena = cijena;
 			}
 		}
 	}
@@ -74,8 +74,8 @@ namespace markot4 {
 
 		// azuriranje cijena svih vrijednosnih papira
 		for (int i = 0; i < papiri.size(); i++) {
-			if (noveCijene.count(papiri[i].oznaka)) {
-				papiri[i].cijena = noveCijene[papiri[i].oznaka];
+			if (noveCijene.count(papiri[i]->oznaka)) {
+				papiri[i]->cijena = noveCijene[papiri[i]->oznaka];
 			}
 		}
 		return 0;
@@ -84,10 +84,10 @@ namespace markot4 {
 	double LisnicaClass::vrijPoVrijPapir(string oznaka) {
 		// provjerimo na koji se papir odnosi oznaka te vratimo kolicinu pomnozenu sa cijenom
 		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir& vp = papiri[i];
-			if (vp.oznaka == oznaka) {
+			VrijednosniPapir *vp = papiri[i];
+			if (vp->oznaka == oznaka) {
 				//todo razlicito za dionicu i za obveznicu
-				return vp.kolicina * vp.cijena;
+				return vp->kolicina * vp->cijena;
 			}
 		}
 		return 0;
@@ -97,10 +97,10 @@ namespace markot4 {
 	double LisnicaClass::sveDionice() {
 		double ukupno = 0.0;
 		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir& vp = papiri[i];
+			VrijednosniPapir *vp = papiri[i];
 
 			//Dionica* dionica = dynamic_cast<Dionica*>(&vp);
-			Dionica* dionica = static_cast<Dionica*>(&vp);
+			Dionica* dionica = static_cast<Dionica*>(vp);
 			if (dionica != nullptr) {
 				ukupno += dionica->izracunajVrijednost();
 			}
@@ -111,10 +111,10 @@ namespace markot4 {
 	double LisnicaClass::sveObveznice() {
 		double ukupno = 0.0;
 		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir& vp = papiri[i];
+			VrijednosniPapir *vp = papiri[i];
 
 			//Obveznica* obveznica = dynamic_cast<Obveznica*>(&vp);
-			Obveznica* obveznica = static_cast<Obveznica*>(&vp);
+			Obveznica* obveznica = static_cast<Obveznica*>(vp);
 			if (obveznica != nullptr) {
 				ukupno += obveznica->izracunajVrijednost();
 			}
@@ -130,9 +130,9 @@ namespace markot4 {
 	void LisnicaClass::sadrzajCijeleLisnice() {
 		cout << "Sadrzaj lisnice:" << endl;
 		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir& vp = papiri[i];
-			cout << "Oznaka: " << vp.oznaka << ", Kolicina: " << vp.kolicina
-				<< ", Cijena: " << vp.cijena << endl;
+			VrijednosniPapir *vp = papiri[i];
+			cout << "Oznaka: " << vp->oznaka << ", Kolicina: " << vp->kolicina
+				<< ", Cijena: " << vp->cijena << endl;
 		}
 	}
 	LisnicaClass::LisnicaClass() {

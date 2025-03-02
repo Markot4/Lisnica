@@ -7,7 +7,7 @@ namespace markot4 {
 	class LisnicaClass
 	{
 	private:
-		vector<VrijednosniPapir> papiri;
+		vector<VrijednosniPapir*> papiri;
 		
 	public:
 		
