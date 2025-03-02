@@ -3,7 +3,7 @@
 namespace markot4 {
 
     Dionica::Dionica(string oznaka) : VrijednosniPapir(oznaka) {}
-    Dionica::Dionica(string oznaka, double cijena) : VrijednosniPapir(oznaka, cijena) {}
+    Dionica::Dionica(string oznaka, int kolicina, double cijena) : VrijednosniPapir(oznaka, kolicina, cijena) {}
 
     void Dionica::postaviCijenu(double novaCijena) {
         VrijednosniPapir::postaviCijenu(novaCijena);
@@ -14,6 +14,6 @@ namespace markot4 {
     }
 
     double Dionica::izracunajVrijednost() {
-        return VrijednosniPapir::izracunajVrijednost();
+        return cijena;
     }
 }

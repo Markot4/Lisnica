@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
         cout << "Nedovoljno argumenata!" << endl;
         return 1;
     }
-
+/*
     LisnicaClass lisnica;
     string naredba = argv[1];
     // Ucitati podatke iz datoteke u lisnicu i na kraju ako je bilo promjena zapisati ih ponovo u datoteku
@@ -27,8 +27,9 @@ int main(int argc, char* argv[]) {
             lisnica.dodajVrijednosniPapir(Dionica(oznaka));
         }
         else if (tip == "obveznica" && argc == 5) {
-            double nominalnaCijena = stod(argv[4]);
-            lisnica.dodajVrijednosniPapir(Obveznica(oznaka, nominalnaCijena));
+            double cijena = stod(argv[4]);
+            double nominalnaCijena = stod(argv[5]);
+            lisnica.dodajVrijednosniPapir(Obveznica(oznaka, cijena, nominalnaCijena));
         }
         else {
             cout << "Neispravan unos za dodavanje!" << endl;
@@ -69,6 +70,6 @@ int main(int argc, char* argv[]) {
     else {
         cout << "Nepoznata naredba!" << endl;
     }
-
+    */
     return 0;
 }

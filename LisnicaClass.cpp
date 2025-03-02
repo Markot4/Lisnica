@@ -7,8 +7,8 @@
 #include <unordered_map>
 //ovo je samo test za pull request. sve ovdje za sad radi
 namespace markot4 {
-	void LisnicaClass::dodajVrijednosniPapir(VrijednosniPapir vp){
-		papiri.push_back(vp);
+	void LisnicaClass::dodajVrijednosniPapir(VrijednosniPapir *vp){
+		//papiri.push_back(vp);
 		return;
 	}
 

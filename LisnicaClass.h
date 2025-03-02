@@ -11,7 +11,7 @@ namespace markot4 {
 		
 	public:
 		
-		void dodajVrijednosniPapir(VrijednosniPapir vp);
+		void dodajVrijednosniPapir(VrijednosniPapir *vp);
 		void izbaciVrijednosniPapir(string oznaka);
 		int promjenaKolicine(int promjena, string oznaka); // vrati novu kolicinu
 		void promjenaCijene(double cijena, string oznaka);

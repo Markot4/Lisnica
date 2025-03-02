@@ -2,7 +2,7 @@
 
 namespace markot4 {
     Obveznica::Obveznica(string oznaka) : VrijednosniPapir(oznaka) {}
-    Obveznica::Obveznica(string oznaka, double cijena) : VrijednosniPapir(oznaka, cijena) {}
+    Obveznica::Obveznica(string oznaka, double cijena, int kolicina, double nominalnaCijena) : VrijednosniPapir(oznaka, kolicina, cijena), nominalnaCijena(nominalnaCijena) {}
 
     void Obveznica::postaviCijenu(double novaCijena) {
         VrijednosniPapir::postaviCijenu(novaCijena);
@@ -13,6 +13,6 @@ namespace markot4 {
     }
 
     double Obveznica::izracunajVrijednost() {
-        return VrijednosniPapir::izracunajVrijednost();
+        return cijena * nominalnaCijena;
     }
 }

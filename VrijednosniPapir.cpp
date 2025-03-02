@@ -16,7 +16,7 @@ namespace markot4 {
 	*/
 
 	VrijednosniPapir::VrijednosniPapir(string oznaka) : oznaka(oznaka), kolicina(0), cijena(0.0) {}
-	VrijednosniPapir::VrijednosniPapir(string oznaka, double cijena) : oznaka(oznaka), kolicina(0), cijena(cijena) {}
+	VrijednosniPapir::VrijednosniPapir(string oznaka, int kolicina, double cijena) : oznaka(oznaka), kolicina(kolicina), cijena(cijena) {}
 
 	void VrijednosniPapir::postaviCijenu(double novaCijena) {
 		this->cijena = novaCijena;
@@ -26,7 +26,4 @@ namespace markot4 {
 		return cijena;
 	}
 
-	double VrijednosniPapir::izracunajVrijednost() {
-		return kolicina * cijena;
-	}
 }

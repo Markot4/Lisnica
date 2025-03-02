@@ -15,7 +15,7 @@ namespace LisnicaTest
 
 		TEST_METHOD(TestDionica)
 		{
-			Dionica d("PL-V-A", 107);
+			Dionica d("PL-V-A", 107, 13.2);
 			Assert::AreEqual(107.0, d.cijena);
 			std::string ocekivano = "PL-V-A";
 			Assert::AreEqual(ocekivano, d.oznaka);
@@ -23,7 +23,7 @@ namespace LisnicaTest
 		
 		TEST_METHOD(TestObveznica)
 		{
-			Obveznica o("PL-A", 94);
+			Obveznica o("PL-A", 94, 5, 12.5);
 			Assert::AreEqual(94.0, o.cijena);
 			std::string ocekivano = "PL-A";
 			Assert::AreEqual(ocekivano, o.oznaka);

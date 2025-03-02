@@ -14,10 +14,10 @@ namespace markot4 {
 		string oznaka;
 
         VrijednosniPapir(string oznaka);
-		VrijednosniPapir(string oznaka, double cijena);
+		VrijednosniPapir(string oznaka, int kolicina, double cijena);
 
 		void postaviCijenu(double novaCijena); 
 		double dohvatiCijenu() const;
-		double izracunajVrijednost();
+		virtual double izracunajVrijednost() = 0;
 	};
 }
