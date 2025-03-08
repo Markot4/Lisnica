@@ -26,4 +26,7 @@ namespace markot4 {
 		return cijena;
 	}
 
+	VrijednosniPapir::~VrijednosniPapir() {
+
+	}
 }

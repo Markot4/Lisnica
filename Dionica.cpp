@@ -24,4 +24,8 @@ namespace markot4 {
     bool Dionica::isDionica() {
         return true;
     }
+
+    Dionica::~Dionica() {
+
+    }
 }

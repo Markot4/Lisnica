@@ -23,4 +23,8 @@ namespace markot4 {
     bool Obveznica::isDionica() {
         return false;
     }
+
+    Obveznica::~Obveznica() {
+
+    }
 }

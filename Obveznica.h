@@ -14,5 +14,6 @@ namespace markot4 {
             double izracunajVrijednost() override;
             bool isDionica() override;
             bool isObveznica() override;
+            ~Obveznica() override;
     };
 }
