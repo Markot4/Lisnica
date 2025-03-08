@@ -98,6 +98,13 @@ namespace LisnicaTest
 			Obveznica o("PL-V-A", 107, 5, 12.3);
 			Assert::AreEqual(o.isDionica(), false);
 		}
+
+		TEST_METHOD(dodajObveznicu)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			double c = 73.18;
+			l->dodajObveznicu("Fatman", c, 100, 53.12);
+		}
 	};
 }
 

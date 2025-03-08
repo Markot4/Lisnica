@@ -143,5 +143,20 @@ namespace markot4 {
 		// vrijednosni papir s tom oznakom ne postoji
 		Dionica *d = new Dionica(oznaka, kolicina, cijena);
 		dodajVrijednosniPapir(d);
+		return true;
 	}
+
+	bool LisnicaClass::dodajObveznicu(string oznaka, double cijena, int kolicina, double nominalnaCijena) {
+		for (int i = 0; i < papiri.size(); i++) {
+			VrijednosniPapir* vp = papiri[i];
+			if (vp->oznaka == oznaka) {
+				return false; //Obveznica vec postoji. Vracamo false
+			}
+		}
+		//vrijednosni papir s tom oznakom ne postoji
+		Obveznica* o = new Obveznica(oznaka, cijena, kolicina, nominalnaCijena);
+		dodajVrijednosniPapir(o);
+		return true;
+	}
+
 }
