@@ -6,13 +6,10 @@ namespace markot4 {
 
         public:
             Dionica(string oznaka);
-            Dionica(string oznaka, int kolicina, double cijena);
+            Dionica(string oznaka, double cijena);
 
             void postaviCijenu(double novaCijena);
             double dohvatiCijenu() const;
-            double izracunajVrijednost() override;
-            bool isDionica() override;
-            bool isObveznica() override;
-            ~Dionica() override;
+            double izracunajVrijednost();
     };
 }

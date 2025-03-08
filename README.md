@@ -21,8 +21,8 @@ Podatci o lisnici trebaju biti pohranjeni u lokalnoj datoteci.
 za dodavanje vrijednosnog papira koristiti ce se jedna od slijedecih naredbi:
 
 ```
-lisnica dodaj dionica PLV-R-A
-lisnica dodaj obveznica RH-MF007 1000.00
+lisnica dodaj dionica PLV-R-A 100
+lisnica dodaj obveznica RH-MF007 100 1000.00
 ```
 
 Pri dodavanju obveznice potrebno je osim imena dionice specificirati i nominalnu

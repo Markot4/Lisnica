@@ -7,11 +7,11 @@ namespace markot4 {
 	class LisnicaClass
 	{
 	private:
-		vector<VrijednosniPapir*> papiri;
+		vector<VrijednosniPapir> papiri;
 		
 	public:
 		
-		void dodajVrijednosniPapir(VrijednosniPapir *vp);
+		void dodajVrijednosniPapir(VrijednosniPapir vp);
 		void izbaciVrijednosniPapir(string oznaka);
 		int promjenaKolicine(int promjena, string oznaka); // vrati novu kolicinu
 		void promjenaCijene(double cijena, string oznaka);
@@ -23,8 +23,6 @@ namespace markot4 {
 		double vrijednostCijeleLisnice();  // vraca ukupnu vrijednost cijele lisnice
 		void sadrzajCijeleLisnice(); // ispisuje sadrzaj cijele lisnice
 		LisnicaClass();
-		bool dodajDionicu(double cijena, int kolicina, string oznaka);
-		bool dodajObveznicu(string oznaka, double cijena, int kolicina, double nominalnaCijena);
 	};
 }
 

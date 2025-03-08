@@ -15,34 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lisnica.cpp">
+    <ClCompile Include="App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LisnicaClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VrijednosniPapir.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Dionica.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Obveznica.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="LisnicaClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VrijednosniPapir.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Obveznica.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Dionica.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
