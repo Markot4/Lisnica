@@ -23,6 +23,7 @@ namespace markot4 {
 		double vrijednostCijeleLisnice();  // vraca ukupnu vrijednost cijele lisnice
 		void sadrzajCijeleLisnice(); // ispisuje sadrzaj cijele lisnice
 		LisnicaClass();
+		bool dodajDionicu(double cijena, int kolicina, string oznaka);
 	};
 }
 

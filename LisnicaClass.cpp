@@ -132,4 +132,16 @@ namespace markot4 {
 	LisnicaClass::LisnicaClass() {
 		// NEDOVRSENO
 	}
+
+	bool LisnicaClass::dodajDionicu(double cijena, int kolicina, string oznaka) {
+		for (int i = 0; i < papiri.size(); i++) {
+			VrijednosniPapir* vp = papiri[i];
+			if (vp->oznaka == oznaka) {
+				return false; //Dionica vec postoji. Vracamo false
+			}
+		}
+		// vrijednosni papir s tom oznakom ne postoji
+		Dionica *d = new Dionica(oznaka, kolicina, cijena);
+		dodajVrijednosniPapir(d);
+	}
 }
