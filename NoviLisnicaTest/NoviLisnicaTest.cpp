@@ -56,6 +56,16 @@ namespace LisnicaTest
 			double c = 73.18;
 			l->dodajDionicu(c, 100, "Fatman");
 		}
+
+		TEST_METHOD(sveDionice)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(14.99, 25, "Wazap");
+			l->dodajDionicu(29.98, 50, "Yo");
+			l->dodajObveznicu("Hoker", 42.56, 91, 70.38);
+			double rez = l->sveDionice();
+			Assert::AreEqual(rez, 1873.75);
+		}
 		TEST_METHOD(TestObveznicaIme)
 		{
 			Obveznica o("PL-A", 94, 5, 12.5);
@@ -84,7 +94,7 @@ namespace LisnicaTest
 		TEST_METHOD(TestObveznicaVrijednost)
 		{
 			Obveznica o("PL-A", 94, 5, 12.5);
-			Assert::AreEqual(o.izracunajVrijednost(), 94 * 12.5);
+			Assert::AreEqual(o.izracunajVrijednost(), 94 * 12.5 * 5 / 100);
 		}
 
 		TEST_METHOD(TestObveznicaisObveznica)
@@ -105,6 +115,25 @@ namespace LisnicaTest
 			double c = 73.18;
 			l->dodajObveznicu("Fatman", c, 100, 53.12);
 		}
+
+		TEST_METHOD(sveObveznice)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajObveznicu("Fatman", 73.18, 100, 53.12);
+			l->dodajObveznicu("Robin", 42.56, 91, 70.38);
+			l->dodajDionicu(19.99, 20, "PoS");
+			double rez = l->sveObveznice();
+			Assert::AreEqual(rez, 6613.110848);
+		}
+		
+		TEST_METHOD(vrijednostObveznice)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajObveznicu("Faku", 20.00, 24, 28.32);
+			double rez = l->sveObveznice();
+			Assert::AreEqual(rez, 135.936,0.001);
+		}
+
 	};
 }
 

@@ -13,7 +13,7 @@ namespace markot4 {
     }
 
     double Obveznica::izracunajVrijednost() {
-        return cijena * nominalnaCijena;
+        return cijena * nominalnaCijena * kolicina / 100;
     }
 
     bool Obveznica::isObveznica() {
