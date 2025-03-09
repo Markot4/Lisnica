@@ -113,7 +113,16 @@ namespace LisnicaTest
 		{
 			LisnicaClass* l = new LisnicaClass();
 			double c = 73.18;
-			l->dodajObveznicu("Fatman", c, 100, 53.12);
+			bool t = l->dodajObveznicu("Fatman", c, 100, 53.12);
+			Assert::AreEqual(t, true);
+		}
+
+		TEST_METHOD(nedodajIstoime)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool e = l->dodajObveznicu("Duplic", 100.00, 10, 100.00);
+			bool t = l->dodajObveznicu("Duplic", 50.00, 20, 50.00);
+			Assert::AreEqual(t, false);
 		}
 
 		TEST_METHOD(sveObveznice)
@@ -133,7 +142,6 @@ namespace LisnicaTest
 			double rez = l->sveObveznice();
 			Assert::AreEqual(rez, 135.936,0.001);
 		}
-
 	};
 }
 
