@@ -13,6 +13,35 @@ namespace LisnicaTest
 	{
 	public:
 
+		TEST_METHOD(izbacivanjeVrijednosnogpapira)
+		{
+			// 1. moram imati lisnicu
+			// 2. mkoram potrpati, vise vrijednosnih papira u tu lisnicu (3,4)
+			// 3. izbacim jedan od tihg vrijednosnih papira
+			// 4. provjerim da li je dobro izbacen taj vrijednosni papir (recimo mogu provjeriti novu vrijednost lisnice)
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(13.00, 24, "Yolo");
+			l->dodajDionicu(26.00, 12, "Imbecil");
+			l->dodajDionicu(39.00, 6, "Ultra");
+			l->izbaciVrijednosniPapir("Ultra");
+			double rez = l->sveDionice();
+			Assert::AreEqual(rez, 624.00);
+
+		}
+
+		TEST_METHOD(promjenaCijene)
+		{
+			//moram imati lisnicu u kojoj ce biti vise vrijednosnih papira. 
+			//moram promijeniti cijenu u jednom od tih vrijednosnih papira i provjeriti
+			//da li je cijena dobro promijenjena
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(14.99, 25, "Wazap");
+			l->dodajDionicu(25.00, 60, "Yo");
+			l->promjenaCijene(20.00, "Wazap");
+			// provjeriti da li je vrijednoist svih dionica u lisnici jednaka 2000
+			double rez = l->sveDionice();
+			Assert::AreEqual(rez, 2000.00);
+		}
 		TEST_METHOD(TestDionicaIme)
 		{
 			Dionica d("PL-V-A", 107, 13.2);
