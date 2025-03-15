@@ -31,6 +31,10 @@ namespace markot4 {
 			VrijednosniPapir *vp = papiri[i];
 			if (vp->oznaka == oznaka) {
 				vp->kolicina += promjena;
+				if (vp->kolicina <= 0) {
+					izbaciVrijednosniPapir(oznaka);
+				}
+				break;
 			}
 		}
 		return 0;

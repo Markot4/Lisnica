@@ -42,6 +42,43 @@ namespace LisnicaTest
 			double rez = l->sveDionice();
 			Assert::AreEqual(rez, 2000.00);
 		}
+
+		TEST_METHOD(promjenaKolicine)
+		{
+			//moram imati lisnicu u kojoj ce biti vise vrijednosnih papira. 
+			//moram promijeniti cijenu u jednom od tih vrijednosnih papira i provjeriti
+			//da li je kolicina dobro promijenjena
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(10.00, 25, "Wazap");
+			l->dodajDionicu(20.00, 60, "Yo");
+			l->promjenaKolicine(15,"Wazap");
+			// provjeriti da li je vrijednoist svih dionica u lisnici jednaka 1600
+			int rez = l->sveDionice();
+			Assert::AreEqual(rez, 1600);
+		}
+
+		TEST_METHOD(smanjenjeKolicine)
+		{
+			//otkad promjenaKolicine povecava broj kolicina dionice, ova test metoda smanjuje
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(12.00, 12, "Ula");
+			l->dodajDionicu(10.00, 10, "Eli");
+			l->promjenaKolicine(-2, "Ula");
+			int rez = l->sveDionice();
+			Assert::AreEqual(rez, 220);
+		}
+
+		TEST_METHOD(smanjenjeKolicine2)
+		{
+			//otkad promjenaKolicine povecava broj kolicina dionice, ova test metoda smanjuje
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(12.00, 12, "Ula");
+			l->dodajDionicu(10.00, 10, "Eli");
+			l->promjenaKolicine(-12, "Eli");
+			int rez = l->sveDionice();
+			Assert::AreEqual(rez, 144);
+		}
+
 		TEST_METHOD(TestDionicaIme)
 		{
 			Dionica d("PL-V-A", 107, 13.2);
