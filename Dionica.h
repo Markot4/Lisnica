@@ -11,6 +11,7 @@ namespace markot4 {
             void postaviCijenu(double novaCijena);
             double dohvatiCijenu() const;
             double izracunajVrijednost() override;
+            void toStream(ostream& to) override;
             bool isDionica() override;
             bool isObveznica() override;
             ~Dionica() override;

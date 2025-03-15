@@ -16,6 +16,10 @@ namespace markot4 {
         return cijena * nominalnaCijena * kolicina / 100;
     }
 
+    void Obveznica::toStream(ostream& to) {
+
+    }
+
     bool Obveznica::isObveznica() {
         return true;
     }

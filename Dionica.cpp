@@ -17,6 +17,10 @@ namespace markot4 {
         return cijena * kolicina;
     }
 
+    void Dionica::toStream(ostream& to) {
+
+    }
+
     bool Dionica::isObveznica() {
         return false;
     }
