@@ -132,6 +132,21 @@ namespace LisnicaTest
 			double rez = l->sveDionice();
 			Assert::AreEqual(rez, 1873.75);
 		}
+
+		TEST_METHOD(vracanjeukupneVrijednostiDionice)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(12.00, 40, "Funky");
+			double rez = l->vrijPoVrijPapir("Funky");
+			Assert::AreEqual(rez, 480.00);
+		}
+
+		TEST_METHOD(vracanjeukupneVrijednostiDionice2)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			double rez = l->vrijPoVrijPapir("Funky");
+			Assert::AreEqual(rez, 0.00);
+		}
 		TEST_METHOD(TestObveznicaIme)
 		{
 			Obveznica o("PL-A", 94, 5, 12.5);
@@ -207,6 +222,22 @@ namespace LisnicaTest
 			l->dodajObveznicu("Faku", 20.00, 24, 28.32);
 			double rez = l->sveObveznice();
 			Assert::AreEqual(rez, 135.936,0.001);
+		}
+
+		TEST_METHOD(vracanjeukupneVrijednostiObveznice)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajObveznicu("Diarrhea", 15.00, 40, 20.00);
+			double rez = l->vrijPoVrijPapir("Diarrhea");
+			Assert::AreEqual(rez, 120.00,0.01);
+		}
+
+		TEST_METHOD(vracanjeukupneVrijednostiObveznice2)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajObveznicu("Fool", 20.00, 40, 30.00);
+			double rez = l->vrijPoVrijPapir("Fool");
+			Assert::AreEqual(rez, 240.00, 0.01);
 		}
 	};
 }
