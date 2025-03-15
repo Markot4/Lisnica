@@ -79,6 +79,14 @@ namespace LisnicaTest
 			Assert::AreEqual(rez, 144);
 		}
 
+		TEST_METHOD(vrijednostCijeleLisnice)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(24.50, 21, "Gog");
+			l->dodajObveznicu("Steam", 12.00, 14, 15.00);
+			double rez = l->vrijednostCijeleLisnice();
+			Assert::AreEqual(rez, 539.7,0.1);
+		}
 		TEST_METHOD(TestDionicaIme)
 		{
 			Dionica d("PL-V-A", 107, 13.2);
