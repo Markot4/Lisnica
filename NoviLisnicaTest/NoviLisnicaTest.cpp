@@ -233,7 +233,16 @@ namespace LisnicaTest
 			double rez = l->sveObveznice();
 			Assert::AreEqual(rez, 6613.110848);
 		}
-		
+		TEST_METHOD(ObveznicatoStream)
+		{
+			Obveznica d("Fatman", 73.18, 100, 53.12);
+			ostringstream out;
+			d.toStream(out);
+			string rez = out.str();
+			string expected = "obveznica Fatman 73.18 100 53.12";
+			Assert::AreEqual(expected, rez);
+		}
+
 		TEST_METHOD(vrijednostObveznice)
 		{
 			LisnicaClass* l = new LisnicaClass();

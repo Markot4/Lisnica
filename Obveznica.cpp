@@ -1,4 +1,5 @@
 #include "Obveznica.h"
+#include <iomanip> 
 
 namespace markot4 {
     Obveznica::Obveznica(string oznaka) : VrijednosniPapir(oznaka) {}
@@ -17,7 +18,7 @@ namespace markot4 {
     }
 
     void Obveznica::toStream(ostream& to) {
-
+        to << "obveznica " << oznaka << " " << fixed << setprecision(2) << cijena << " " << kolicina << " " << fixed << setprecision(2) << nominalnaCijena;
     }
 
     bool Obveznica::isObveznica() {
