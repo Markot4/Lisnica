@@ -112,6 +112,16 @@ namespace LisnicaTest
 			Assert::AreEqual(d.izracunajVrijednost() ,  107 * 12.3);
 		}
 		
+		TEST_METHOD(DionicatoStream) 
+		{
+			Dionica d("Dawg", 95, 13.60);
+			ostringstream out;
+			d.toStream(out);
+			string rez = out.str();
+			string expected = "dionica Dawg 13.60 95";
+			Assert::AreEqual(expected, rez);
+		}
+
 		TEST_METHOD(TestDionicaisDionica)
 		{
 			Dionica d("PL-V-A", 107, 12.3);

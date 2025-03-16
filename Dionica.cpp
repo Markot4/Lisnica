@@ -1,4 +1,5 @@
 #include "Dionica.h"
+#include <iomanip> 
 
 namespace markot4 {
 
@@ -18,7 +19,7 @@ namespace markot4 {
     }
 
     void Dionica::toStream(ostream& to) {
-
+        to << "dionica " << oznaka << " " << fixed << setprecision(2)  << cijena << " " << kolicina;
     }
 
     bool Dionica::isObveznica() {
