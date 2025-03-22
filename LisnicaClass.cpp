@@ -164,4 +164,11 @@ namespace markot4 {
 		return true;
 	}
 
+	void LisnicaClass::toStream(ostream& to) {
+		for (int i = 0; i < papiri.size(); i++) {
+			VrijednosniPapir *vp = papiri[i];
+			vp->toStream(to);
+			to << endl;
+		}
+	}
 }

@@ -87,6 +87,47 @@ namespace LisnicaTest
 			double rez = l->vrijednostCijeleLisnice();
 			Assert::AreEqual(rez, 539.7,0.1);
 		}
+
+		/*TEST_METHOD(sadrzajCijeleLisnice)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(15.50, 14, "Hobit");
+			string rez = l->sadrzajCijeleLisnice();
+			string ocekivano = "Oznaka Hobit Kolicina 14 Cijena 15.50";
+			Assert::AreEqual(ocekivano, rez);
+		}*/
+
+		TEST_METHOD(LeesnicatoStrum)
+		{
+			//trebam stream u kojem cu pisati
+			//trebam lisnicu
+			//u lisnicu moram barem staviti jednu dionicu i jednu obveznicu
+			//pozvati toStream na lisnici
+			//provjeriti da li su se dionica i obveznica dobro ispisali
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(19.50, 25, "Veku");
+			l->dodajObveznicu("Gogeta", 20.00, 30, 21.00);
+			ostringstream out;
+			l->toStream(out);
+			string rez = out.str();
+			string expected = "dionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n";
+			Assert::AreEqual(expected, rez);
+		}
+
+		TEST_METHOD(LeesnicatoStrum2)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			l->dodajDionicu(15.00, 30, "Fallout");
+			l->dodajDionicu(17.50, 35, "Stalker");
+			l->dodajObveznicu("Condemned", 20.00, 40, 21.00);
+			l->dodajObveznicu("Hitman", 22.50, 45, 22.00);
+			ostringstream out;
+			l->toStream(out);
+			string rez = out.str();
+			string expected = "dionica Fallout 15.00 30\ndionica Stalker 17.50 35\nobveznica Condemned 20.00 40 21.00\nobveznica Hitman 22.50 45 22.00\n";
+			Assert::AreEqual(expected, rez);
+		}
+
 		TEST_METHOD(TestDionicaIme)
 		{
 			Dionica d("PL-V-A", 107, 13.2);
