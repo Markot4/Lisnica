@@ -15,6 +15,7 @@ namespace markot4 {
 		papira se radi (obveznica ili dionica)
 	*/
 
+	VrijednosniPapir::VrijednosniPapir() : oznaka(""), kolicina(0), cijena(0.0) {}
 	VrijednosniPapir::VrijednosniPapir(string oznaka) : oznaka(oznaka), kolicina(0), cijena(0.0) {}
 	VrijednosniPapir::VrijednosniPapir(string oznaka, int kolicina, double cijena) : oznaka(oznaka), kolicina(kolicina), cijena(cijena) {}
 

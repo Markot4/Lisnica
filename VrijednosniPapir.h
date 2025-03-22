@@ -13,6 +13,7 @@ namespace markot4 {
 		int kolicina;
 		string oznaka;
 
+		VrijednosniPapir();
         VrijednosniPapir(string oznaka);
 		VrijednosniPapir(string oznaka, int kolicina, double cijena);
 

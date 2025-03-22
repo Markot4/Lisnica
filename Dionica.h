@@ -7,6 +7,7 @@ namespace markot4 {
         public:
             Dionica(string oznaka);
             Dionica(string oznaka, int kolicina, double cijena);
+            Dionica(istream& from);
 
             void postaviCijenu(double novaCijena);
             double dohvatiCijenu() const;

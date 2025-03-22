@@ -5,6 +5,11 @@ namespace markot4 {
 
     Dionica::Dionica(string oznaka) : VrijednosniPapir(oznaka) {}
     Dionica::Dionica(string oznaka, int kolicina, double cijena) : VrijednosniPapir(oznaka, kolicina, cijena) {}
+    Dionica::Dionica(istream& from) {
+        string line;
+        from >> oznaka >> cijena >> kolicina;
+        getline(from, line);
+    }
 
     void Dionica::postaviCijenu(double novaCijena) {
         VrijednosniPapir::postaviCijenu(novaCijena);
