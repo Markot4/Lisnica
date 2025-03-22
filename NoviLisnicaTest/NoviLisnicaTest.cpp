@@ -216,6 +216,28 @@ namespace LisnicaTest
 			double rez = l->vrijPoVrijPapir("Funky");
 			Assert::AreEqual(rez, 0.00);
 		}
+
+		TEST_METHOD(DionicaToFromStream)
+		{
+			// napravi dionicu
+			// spremi dionicu u stream
+			// iz tog streama procitaj novu dionicu
+			// usporedi da li su podaci u pocetnoj i novoj dionici isti (oznaka, kolicina, cijena)
+
+			Dionica d("Stup", 20, 15.20);
+			ostringstream out;
+			d.toStream(out);
+			string rez = out.str();
+			istringstream in = istringstream(rez);
+			string vrsta;
+			in >> vrsta;
+			string vrstaDionica = "dionica";
+			Assert::AreEqual(vrsta, vrstaDionica);
+			Dionica nova(in);
+			Assert::AreEqual(d.oznaka, nova.oznaka);
+			Assert::AreEqual(d.kolicina, nova.kolicina);
+			Assert::AreEqual(d.cijena, nova.cijena);
+		}
 		TEST_METHOD(TestObveznicaIme)
 		{
 			Obveznica o("PL-A", 94, 5, 12.5);
