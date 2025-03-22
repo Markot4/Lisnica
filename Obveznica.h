@@ -8,6 +8,8 @@ namespace markot4 {
             double nominalnaCijena;
             Obveznica(string oznaka);
             Obveznica(string oznaka, double cijena, int kolicina, double nominalnaCijena);
+            Obveznica(istream& from);
+
             void toStream(ostream& to) override;
             void postaviCijenu(double novaCijena);
             double dohvatiCijenu() const;

@@ -4,7 +4,11 @@
 namespace markot4 {
     Obveznica::Obveznica(string oznaka) : VrijednosniPapir(oznaka) {}
     Obveznica::Obveznica(string oznaka, double cijena, int kolicina, double nominalnaCijena) : VrijednosniPapir(oznaka, kolicina, cijena), nominalnaCijena(nominalnaCijena) {}
-
+    Obveznica::Obveznica(istream& from) {
+        string line;
+        from >> oznaka >> cijena >> kolicina >> nominalnaCijena;
+        getline(from, line);
+    }
     void Obveznica::postaviCijenu(double novaCijena) {
         VrijednosniPapir::postaviCijenu(novaCijena);
     }

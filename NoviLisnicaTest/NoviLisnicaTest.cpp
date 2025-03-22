@@ -317,6 +317,37 @@ namespace LisnicaTest
 			double rez = l->vrijPoVrijPapir("Fool");
 			Assert::AreEqual(rez, 240.00, 0.01);
 		}
+
+		TEST_METHOD(ObveznicaFromStream) {
+			istringstream stream = istringstream("Binch 15.20 20 16.00");
+			Obveznica o(stream);
+			Assert::AreEqual(o.nominalnaCijena, 16.00);
+			Assert::AreEqual(o.kolicina, 20);
+			Assert::AreEqual(o.cijena, 15.20);
+			string expected = "Binch";
+			Assert::AreEqual(o.oznaka, expected);
+		}
+
+		TEST_METHOD(ObveznicaToFromStream) {
+			// napravi obveznicu
+			// spremi obveznicu u stream
+			// iz tog streama procitaj novu obveznicu
+			// usporedi da li su podaci u pocetnoj i novoj obveznici isti (oznaka, cijena, kolicina, nominala)
+			Obveznica o("World", 12.00, 24, 17.00);
+			ostringstream out;
+			o.toStream(out);
+			string rez = out.str();
+			istringstream in = istringstream(rez);
+			string vrsta;
+			in >> vrsta;
+			string vrstaObveznica = "obveznica";
+			Assert::AreEqual(vrsta, vrstaObveznica);
+			Obveznica nova(in);
+			Assert::AreEqual(o.oznaka, nova.oznaka);
+			Assert::AreEqual(o.kolicina, nova.kolicina);
+			Assert::AreEqual(o.cijena, nova.cijena);
+			Assert::AreEqual(o.nominalnaCijena, nova.nominalnaCijena);
+		}
 	};
 }
 
