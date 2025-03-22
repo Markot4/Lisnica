@@ -2,7 +2,7 @@
 #include <iomanip> 
 
 namespace markot4 {
-    Obveznica::Obveznica(string oznaka) : VrijednosniPapir(oznaka) {}
+    Obveznica::Obveznica(string oznaka) : VrijednosniPapir(oznaka), nominalnaCijena(100){}
     Obveznica::Obveznica(string oznaka, double cijena, int kolicina, double nominalnaCijena) : VrijednosniPapir(oznaka, kolicina, cijena), nominalnaCijena(nominalnaCijena) {}
     Obveznica::Obveznica(istream& from) {
         string line;

@@ -53,8 +53,8 @@ namespace LisnicaTest
 			l->dodajDionicu(20.00, 60, "Yo");
 			l->promjenaKolicine(15,"Wazap");
 			// provjeriti da li je vrijednoist svih dionica u lisnici jednaka 1600
-			int rez = l->sveDionice();
-			Assert::AreEqual(rez, 1600);
+			double rez = l->sveDionice();
+			Assert::AreEqual(rez, 1600.0);
 		}
 
 		TEST_METHOD(smanjenjeKolicine)
@@ -64,8 +64,8 @@ namespace LisnicaTest
 			l->dodajDionicu(12.00, 12, "Ula");
 			l->dodajDionicu(10.00, 10, "Eli");
 			l->promjenaKolicine(-2, "Ula");
-			int rez = l->sveDionice();
-			Assert::AreEqual(rez, 220);
+			double rez = l->sveDionice();
+			Assert::AreEqual(rez, 220.0);
 		}
 
 		TEST_METHOD(smanjenjeKolicine2)
@@ -75,8 +75,8 @@ namespace LisnicaTest
 			l->dodajDionicu(12.00, 12, "Ula");
 			l->dodajDionicu(10.00, 10, "Eli");
 			l->promjenaKolicine(-12, "Eli");
-			int rez = l->sveDionice();
-			Assert::AreEqual(rez, 144);
+			double rez = l->sveDionice();
+			Assert::AreEqual(rez, 144.0);
 		}
 
 		TEST_METHOD(vrijednostCijeleLisnice)
