@@ -30,6 +30,9 @@
     <ClCompile Include="Obveznica.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LisnicaCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LisnicaClass.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dionica.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LisnicaCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
