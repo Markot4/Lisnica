@@ -162,6 +162,8 @@ namespace LisnicaTest
 			istringstream in = istringstream("2\ndionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n");
 			LisnicaClass* lisnica = new LisnicaClass(in);
 			Assert::AreEqual(lisnica -> sveDionice(), 487.5);
+			Assert::AreEqual(lisnica -> sveObveznice(), 126.0);
+			Assert::AreEqual(lisnica -> vrijednostCijeleLisnice(), 613.5);
 		}
 		TEST_METHOD(TestDionicaIme)
 		{
