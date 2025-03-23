@@ -110,7 +110,7 @@ namespace LisnicaTest
 			ostringstream out;
 			l->toStream(out);
 			string rez = out.str();
-			string expected = "dionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n";
+			string expected = "2\ndionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n";
 			Assert::AreEqual(expected, rez);
 		}
 
@@ -124,7 +124,7 @@ namespace LisnicaTest
 			ostringstream out;
 			l->toStream(out);
 			string rez = out.str();
-			string expected = "dionica Fallout 15.00 30\ndionica Stalker 17.50 35\nobveznica Condemned 20.00 40 21.00\nobveznica Hitman 22.50 45 22.00\n";
+			string expected = "4\ndionica Fallout 15.00 30\ndionica Stalker 17.50 35\nobveznica Condemned 20.00 40 21.00\nobveznica Hitman 22.50 45 22.00\n";
 			Assert::AreEqual(expected, rez);
 		}
 
@@ -156,7 +156,13 @@ namespace LisnicaTest
 			Assert::AreEqual(vp->kolicina, 75);
 			Assert::AreEqual(((Obveznica *)vp)->nominalnaCijena, 20.00);
 		}
-
+		
+		TEST_METHOD(LisnicaFromStream)
+		{
+			istringstream in = istringstream("2\ndionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n");
+			LisnicaClass* lisnica = new LisnicaClass(in);
+			Assert::AreEqual(lisnica -> sveDionice(), 487.5);
+		}
 		TEST_METHOD(TestDionicaIme)
 		{
 			Dionica d("PL-V-A", 107, 13.2);

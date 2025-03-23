@@ -101,6 +101,7 @@ namespace markot4 {
 	// izracun vrijednosti svih dionica u listi papira
 	double LisnicaClass::sveDionice() {
 		double ukupno = 0.0;
+
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
 			if (vp->isDionica()) {
@@ -165,16 +166,23 @@ namespace markot4 {
 	}
 
 	void LisnicaClass::toStream(ostream& to) {
-		for (int i = 0; i < papiri.size(); i++) {
+		int kulike = papiri.size();
+		to << kulike << endl;
+		for (int i = 0; i < kulike; i++) {
 			VrijednosniPapir *vp = papiri[i];
 			vp->toStream(to);
 			to << endl;
 		}
 	}
 
-	LisnicaClass::LisnicaClass(istream& from) {
-		while (true) {
-
+	LisnicaClass::LisnicaClass(istream& from) : papiri() {
+		int kulike;
+		string line;
+		from >> kulike;
+		getline(from, line);
+		for (int i=0; i< kulike; i++) {
+			VrijednosniPapir* vp = VrijednosniPapir::fromStream(from);
+			dodajVrijednosniPapir(vp);
 		}
 	}
 }
