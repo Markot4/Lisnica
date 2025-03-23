@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "CppUnitTest.h"
 #include "..\Dionica.h"
 #include "..\Obveznica.h"
@@ -126,6 +126,35 @@ namespace LisnicaTest
 			string rez = out.str();
 			string expected = "dionica Fallout 15.00 30\ndionica Stalker 17.50 35\nobveznica Condemned 20.00 40 21.00\nobveznica Hitman 22.50 45 22.00\n";
 			Assert::AreEqual(expected, rez);
+		}
+
+		TEST_METHOD(VrijednosniPapirFromStream)
+		{
+			//trebam varijablu tipa pointer na vrijednosnipapir
+			//trebam pozvati staticku metodu fromStream na klasi VrijednosniPapir sa podacima za dionicu
+			//nakon toga provjeriti da je VrijednosniPapir dobro kreiran
+			istringstream in = istringstream("dionica Dawg 13.60 95");
+			VrijednosniPapir* vp = VrijednosniPapir::fromStream(in);
+			Assert::IsTrue(vp->isDionica());
+			Assert::IsFalse(vp->isObveznica());
+			Assert::AreEqual(vp->oznaka, string("Dawg"));
+			Assert::AreEqual(vp->cijena, 13.60);
+			Assert::AreEqual(vp->kolicina, 95);
+		}
+
+		TEST_METHOD(VrijednosniPapirFromStream2)
+		{
+			//trebam varijablu tipa pointer na vrijednosnipapir
+			//trebam pozvati staticku metodu fromStream na klasi VrijednosniPapir sa podacima za obveznicu
+			//nakon toga provjeriti da je VrijednosniPapir dobro kreiran
+			istringstream in = istringstream("obveznica Birdy 15.00 75 20.00");
+			VrijednosniPapir* vp = VrijednosniPapir::fromStream(in);
+			Assert::IsTrue(vp->isObveznica());
+			Assert::IsFalse(vp->isDionica());
+			Assert::AreEqual(vp->oznaka, string("Birdy"));
+			Assert::AreEqual(vp->cijena, 15.00);
+			Assert::AreEqual(vp->kolicina, 75);
+			Assert::AreEqual(((Obveznica *)vp)->nominalnaCijena, 20.00);
 		}
 
 		TEST_METHOD(TestDionicaIme)

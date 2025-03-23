@@ -17,6 +17,8 @@ namespace markot4 {
         VrijednosniPapir(string oznaka);
 		VrijednosniPapir(string oznaka, int kolicina, double cijena);
 
+		static VrijednosniPapir* fromStream(istream& from);
+
 		void postaviCijenu(double novaCijena); 
 		double dohvatiCijenu() const;
 		virtual double izracunajVrijednost() = 0;

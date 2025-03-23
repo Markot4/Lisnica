@@ -171,4 +171,10 @@ namespace markot4 {
 			to << endl;
 		}
 	}
+
+	LisnicaClass::LisnicaClass(istream& from) {
+		while (true) {
+
+		}
+	}
 }
