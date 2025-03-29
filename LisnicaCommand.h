@@ -7,11 +7,13 @@ namespace markot4{
 	private:
 		int argc;
 		vector<string> argv;
-		LisnicaClass* lisnica;
 
 
 	public:
-		LisnicaCommand(int argc, char* argv[]);
+		LisnicaClass* lisnica;
+
+		LisnicaCommand(int argc, const char* argv[], LisnicaClass* lisnica);
+		//LisnicaCommand(int argc, LisnicaClass *lisnica);
 		void process();
 
 	};

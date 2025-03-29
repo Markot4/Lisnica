@@ -162,6 +162,7 @@
   <ItemGroup>
     <ClCompile Include="..\Dionica.cpp" />
     <ClCompile Include="..\LisnicaClass.cpp" />
+    <ClCompile Include="..\LisnicaCommand.cpp" />
     <ClCompile Include="..\Obveznica.cpp" />
     <ClCompile Include="..\VrijednosniPapir.cpp" />
     <ClCompile Include="NoviLisnicaTest.cpp" />

@@ -3,6 +3,7 @@
 #include "..\Dionica.h"
 #include "..\Obveznica.h"
 #include "..\LisnicaClass.h"
+#include "..\LisnicaCommand.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace markot4;
@@ -165,6 +166,7 @@ namespace LisnicaTest
 			Assert::AreEqual(lisnica -> sveObveznice(), 126.0);
 			Assert::AreEqual(lisnica -> vrijednostCijeleLisnice(), 613.5);
 		}
+
 		TEST_METHOD(TestDionicaIme)
 		{
 			Dionica d("PL-V-A", 107, 13.2);
@@ -406,6 +408,14 @@ namespace LisnicaTest
 			Assert::AreEqual(o.kolicina, nova.kolicina);
 			Assert::AreEqual(o.cijena, nova.cijena);
 			Assert::AreEqual(o.nominalnaCijena, nova.nominalnaCijena);
+		}
+
+		TEST_METHOD(lisnicaCommandConstructor) 
+		{
+			const char* argv[] = { "program_name", "arg1", "arg2", "arg3" };
+			LisnicaClass* l = new LisnicaClass();
+			LisnicaCommand lc(  4 , argv , l);
+			//LisnicaCommand lc(4, l);
 		}
 	};
 }
