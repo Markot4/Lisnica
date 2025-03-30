@@ -27,11 +27,17 @@ namespace markot4 {
             if (tip == "dionica" && argc == 6) {
                 int kolicina = stoi(this->argv[4]);
                 double cijena = stod(this->argv[5]);
-                this->lisnica->dodajDionicu(cijena, kolicina, oznaka);
+                bool uspio = this->lisnica->dodajDionicu(cijena, kolicina, oznaka);
+                if (!uspio) {
+                    throw invalid_argument("Dionica vec postoji");
+                }
             }
             else if (tip == "obveznica" && argc == 7) {
                 double nominala = stod(this->argv[6]);
-                this->lisnica->dodajObveznicu(oznaka, cijena, kolicina, nominala);
+                bool uspio = this->lisnica->dodajObveznicu(oznaka, cijena, kolicina, nominala);
+                if (!uspio) {
+                    throw invalid_argument("Obveznica vec postoji");
+                }
             }
             else {
                 throw invalid_argument("Neispravan unos za dodavanje!");

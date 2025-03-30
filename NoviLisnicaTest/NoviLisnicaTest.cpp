@@ -531,6 +531,33 @@ namespace LisnicaTest
 			} catch(...){}
 		}
 
+		TEST_METHOD(PostojeciPapir)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool o = l->dodajObveznicu("Ninjer", 42.00, 36, 24.00);
+			const char* argv[] = { "Lisnica", "dodaj", "obveznica", "Ninjer", "42.00", "36", "24.00"};
+			try
+			{
+				LisnicaCommand lc(7, argv, l);
+				lc.process();
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			}
+			catch (...){}
+		}
+
+		TEST_METHOD(PostojeciPapir2)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool d = l->dodajDionicu(24.00, 12, "Binch");
+			const char* argv[] = {"Lisnica", "dodaj", "obveznica", "Ninjer", "24.00", "12"};
+			try
+			{
+				LisnicaCommand lc(6, argv, l);
+				lc.process();
+				Assert::Fail(L"Expeceted an exception but none was thrown.");
+			}
+			catch(...){}
+		}
 	};
 }
 
