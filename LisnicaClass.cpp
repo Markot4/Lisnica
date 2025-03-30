@@ -34,11 +34,12 @@ namespace markot4 {
 				vp->kolicina += promjena;
 				if (vp->kolicina <= 0) {
 					izbaciVrijednosniPapir(oznaka);
+					return 0;
 				}
-				break;
+				return vp->kolicina;
 			}
 		}
-		return 0;
+		throw invalid_argument("Ne postoji vrijednosni papir");
 	}
 
 	// promijena cijene vrijednosnim papirima sa oznakom u varijabli "oznaka"

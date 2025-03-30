@@ -558,6 +558,45 @@ namespace LisnicaTest
 			}
 			catch(...){}
 		}
+
+		TEST_METHOD(lisnicaClassPromjenaKolicine)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool d = l->dodajDionicu(24.00, 12, "Binch");
+			const char* argv[] = {"lisnica", "kolicina", "Binch", "20"};
+			LisnicaCommand lc(4, argv, l);
+			lc.process();
+			double vrijednost = l->vrijednostCijeleLisnice();
+			Assert::AreEqual(vrijednost, 768.00, 0.01);
+		}
+
+		TEST_METHOD(lisnicaClassPromjenaKolicine2)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool d = l->dodajDionicu(24.00, 12, "Binch");
+			const char* argv[] = { "lisnica", "kolicina", "Banch", "20" };
+			try
+			{
+				LisnicaCommand lc(4, argv, l);
+				lc.process();
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			}
+			catch(...){}
+		}
+
+		TEST_METHOD(lisnicaClassPromjenaKolicine3)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool d = l->dodajDionicu(24.00, 12, "Binch");
+			const char* argv[] = { "lisnica", "kolicina", "Binch", "20", "12"};
+			try
+			{
+				LisnicaCommand lc(5, argv, l);
+				lc.process();
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			}
+			catch (...) {}
+		}
 	};
 }
 
