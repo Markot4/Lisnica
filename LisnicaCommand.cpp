@@ -36,7 +36,17 @@ namespace markot4 {
             else {
                 throw invalid_argument("Neispravan unos za dodavanje!");
             }
+            return;
+        }
+        
+        if (naredba == "izbaci" && argc == 3) {
+            bool uspio = this->lisnica->izbaciVrijednosniPapir(argv[2]);
+            if (!uspio) {
+                throw invalid_argument("");
+            }
+            return;
         }
 
+        throw invalid_argument("Neispravana komanda!");
 	}
 }

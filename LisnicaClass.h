@@ -12,7 +12,7 @@ namespace markot4 {
 	public:
 		
 		void dodajVrijednosniPapir(VrijednosniPapir *vp);
-		void izbaciVrijednosniPapir(string oznaka);
+		bool izbaciVrijednosniPapir(string oznaka);
 		int promjenaKolicine(int promjena, string oznaka); // vrati novu kolicinu
 		void promjenaCijene(double cijena, string oznaka);
 		int promjenaCijene(string paragraf); // parametar paragraf predstavlja ime datoteke iz koje se citaju cijene

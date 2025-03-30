@@ -52,7 +52,7 @@ namespace LisnicaTest
 			LisnicaClass* l = new LisnicaClass();
 			l->dodajDionicu(10.00, 25, "Wazap");
 			l->dodajDionicu(20.00, 60, "Yo");
-			l->promjenaKolicine(15,"Wazap");
+			l->promjenaKolicine(15, "Wazap");
 			// provjeriti da li je vrijednoist svih dionica u lisnici jednaka 1600
 			double rez = l->sveDionice();
 			Assert::AreEqual(rez, 1600.0);
@@ -86,7 +86,7 @@ namespace LisnicaTest
 			l->dodajDionicu(24.50, 21, "Gog");
 			l->dodajObveznicu("Steam", 12.00, 14, 15.00);
 			double rez = l->vrijednostCijeleLisnice();
-			Assert::AreEqual(rez, 539.7,0.1);
+			Assert::AreEqual(rez, 539.7, 0.1);
 		}
 
 		/*TEST_METHOD(sadrzajCijeleLisnice)
@@ -155,16 +155,16 @@ namespace LisnicaTest
 			Assert::AreEqual(vp->oznaka, string("Birdy"));
 			Assert::AreEqual(vp->cijena, 15.00);
 			Assert::AreEqual(vp->kolicina, 75);
-			Assert::AreEqual(((Obveznica *)vp)->nominalnaCijena, 20.00);
+			Assert::AreEqual(((Obveznica*)vp)->nominalnaCijena, 20.00);
 		}
-		
+
 		TEST_METHOD(LisnicaFromStream)
 		{
 			istringstream in = istringstream("2\ndionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n");
 			LisnicaClass* lisnica = new LisnicaClass(in);
-			Assert::AreEqual(lisnica -> sveDionice(), 487.5);
-			Assert::AreEqual(lisnica -> sveObveznice(), 126.0);
-			Assert::AreEqual(lisnica -> vrijednostCijeleLisnice(), 613.5);
+			Assert::AreEqual(lisnica->sveDionice(), 487.5);
+			Assert::AreEqual(lisnica->sveObveznice(), 126.0);
+			Assert::AreEqual(lisnica->vrijednostCijeleLisnice(), 613.5);
 		}
 
 		TEST_METHOD(TestDionicaIme)
@@ -189,10 +189,10 @@ namespace LisnicaTest
 		TEST_METHOD(TestDionicaVrijednost)
 		{
 			Dionica d("PL-V-A", 107, 12.3);
-			Assert::AreEqual(d.izracunajVrijednost() ,  107 * 12.3);
+			Assert::AreEqual(d.izracunajVrijednost(), 107 * 12.3);
 		}
-		
-		TEST_METHOD(DionicatoStream) 
+
+		TEST_METHOD(DionicatoStream)
 		{
 			Dionica d("Dawg", 95, 13.60);
 			ostringstream out;
@@ -289,7 +289,7 @@ namespace LisnicaTest
 			Obveznica o("PL-A", 94.2, 5, 12.5);
 			Assert::AreEqual(94.2, o.cijena);
 		}
-		
+
 		TEST_METHOD(TestObveznicaKolicina)
 		{
 			Obveznica o("PL-A", 94, 5, 12.5);
@@ -360,7 +360,7 @@ namespace LisnicaTest
 			LisnicaClass* l = new LisnicaClass();
 			l->dodajObveznicu("Faku", 20.00, 24, 28.32);
 			double rez = l->sveObveznice();
-			Assert::AreEqual(rez, 135.936,0.001);
+			Assert::AreEqual(rez, 135.936, 0.001);
 		}
 
 		TEST_METHOD(vracanjeukupneVrijednostiObveznice)
@@ -368,7 +368,7 @@ namespace LisnicaTest
 			LisnicaClass* l = new LisnicaClass();
 			l->dodajObveznicu("Diarrhea", 15.00, 40, 20.00);
 			double rez = l->vrijPoVrijPapir("Diarrhea");
-			Assert::AreEqual(rez, 120.00,0.01);
+			Assert::AreEqual(rez, 120.00, 0.01);
 		}
 
 		TEST_METHOD(vracanjeukupneVrijednostiObveznice2)
@@ -410,11 +410,11 @@ namespace LisnicaTest
 			Assert::AreEqual(o.nominalnaCijena, nova.nominalnaCijena);
 		}
 
-		TEST_METHOD(lisnicaCommandConstructor) 
+		TEST_METHOD(lisnicaCommandConstructor)
 		{
 			const char* argv[] = { "program_name", "arg1", "arg2", "arg3" };
 			LisnicaClass* l = new LisnicaClass();
-			LisnicaCommand lc(  4 , argv , l);
+			LisnicaCommand lc(4, argv, l);
 		}
 
 		TEST_METHOD(lisnicaCommanddodajDionica)
@@ -422,7 +422,7 @@ namespace LisnicaTest
 			// treba mi lisnica, i lisnica command
 			// trebam testirati komandu: lisnica dodaj dionica RIMAC 100 16.92
 			LisnicaClass* l = new LisnicaClass();
-			const char* argv[] = {"Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92"};
+			const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92" };
 			LisnicaCommand lc(6, argv, l);
 			lc.process();
 			double vrijednost = l->vrijednostCijeleLisnice();
@@ -439,7 +439,7 @@ namespace LisnicaTest
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
-			catch(...){}
+			catch (...) {}
 		}
 
 		TEST_METHOD(lisnicaCommanddodajDionica3)
@@ -447,7 +447,7 @@ namespace LisnicaTest
 			// testiranje pogresnog broja parametara
 			try {
 				LisnicaClass* l = new LisnicaClass();
-				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92", "siljispiljis"};
+				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92", "siljispiljis" };
 				LisnicaCommand lc(7, argv, l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
@@ -472,7 +472,7 @@ namespace LisnicaTest
 		TEST_METHOD(lisnicaCommanddodajObveznica)
 		{
 			LisnicaClass* l = new LisnicaClass();
-			const char* argv[] = {"Lisnica", "dodaj", "obveznica", "PLIVA", "40", "57.00", "45.21"};
+			const char* argv[] = { "Lisnica", "dodaj", "obveznica", "PLIVA", "40", "57.00", "45.21" };
 			LisnicaCommand lc(7, argv, l);
 			lc.process();
 			double vrijednost = l->vrijednostCijeleLisnice();
@@ -490,6 +490,47 @@ namespace LisnicaTest
 			}
 			catch (...) {}
 		}
+
+		TEST_METHOD(komandaizbacivanjeVrijednosnogpapira)
+		{
+			// napraviti lisnicu, dodati dva vrijednsna papira
+			// napraviti lisnica command s argv za brisanje
+			// provjeriti da li je vp izbacen - vrijednost lisnice vise ga ne smije ukljucivati
+			LisnicaClass* l = new LisnicaClass();
+			bool o = l->dodajObveznicu("Thin", 20.00, 24, 19.00);
+			bool d = l->dodajDionicu(42.00, 60, "Muscular");
+			const char* argv[] = { "Lisnica", "izbaci", "Thin" };
+			LisnicaCommand lc(3, argv, l);
+			lc.process();
+			double vrijednost = l->vrijednostCijeleLisnice();
+			Assert::AreEqual(vrijednost, 2520.00, 0.01);
+		}
+
+		TEST_METHOD(TestKomandaIzbacivanjeVPKrivibrojargumenata)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			const char* argv[] = { "lisnica", "dodaj" };
+			try
+			{
+				LisnicaCommand lc(2, argv, l);
+				lc.process();
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			}
+			catch (...) {}
+		}
+
+		TEST_METHOD(BrisiDionicukojenema)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			const char* argv[] = {"lisnica", "izbaci", "Brap"};
+			try 
+			{
+				LisnicaCommand lc(3, argv, l);
+				lc.process();
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			} catch(...){}
+		}
+
 	};
 }
 

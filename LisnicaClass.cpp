@@ -12,7 +12,7 @@ namespace markot4 {
 		return;
 	}
 
-	void LisnicaClass::izbaciVrijednosniPapir(string oznaka) {
+	bool LisnicaClass::izbaciVrijednosniPapir(string oznaka) {
 		int ix = -1;
 		for (int i = 0; i < papiri.size();i++) {
 			VrijednosniPapir *vp = papiri[i];
@@ -22,8 +22,9 @@ namespace markot4 {
 		}
 		if (ix >= 0) {
 			papiri.erase(papiri.begin() + ix);
+			return true;
 		}
-		return;
+		return false;
 	}
 
 	int LisnicaClass::promjenaKolicine(int promjena, string oznaka) {
