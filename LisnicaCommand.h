@@ -13,7 +13,6 @@ namespace markot4{
 		LisnicaClass* lisnica;
 
 		LisnicaCommand(int argc, const char* argv[], LisnicaClass* lisnica);
-		//LisnicaCommand(int argc, LisnicaClass *lisnica);
 		void process();
 
 	};

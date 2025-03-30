@@ -415,7 +415,80 @@ namespace LisnicaTest
 			const char* argv[] = { "program_name", "arg1", "arg2", "arg3" };
 			LisnicaClass* l = new LisnicaClass();
 			LisnicaCommand lc(  4 , argv , l);
-			//LisnicaCommand lc(4, l);
+		}
+
+		TEST_METHOD(lisnicaCommanddodajDionica)
+		{
+			// treba mi lisnica, i lisnica command
+			// trebam testirati komandu: lisnica dodaj dionica RIMAC 100 16.92
+			LisnicaClass* l = new LisnicaClass();
+			const char* argv[] = {"Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92"};
+			LisnicaCommand lc(6, argv, l);
+			lc.process();
+			double vrijednost = l->vrijednostCijeleLisnice();
+			Assert::AreEqual(vrijednost, 1692.00, 0.01);
+		}
+
+		TEST_METHOD(lisnicaCommanddodajDionica2)
+		{
+			// testiranje pogresnog broja parametara
+			try {
+				LisnicaClass* l = new LisnicaClass();
+				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92" };
+				LisnicaCommand lc(5, argv, l);
+				lc.process();
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			}
+			catch(...){}
+		}
+
+		TEST_METHOD(lisnicaCommanddodajDionica3)
+		{
+			// testiranje pogresnog broja parametara
+			try {
+				LisnicaClass* l = new LisnicaClass();
+				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92", "siljispiljis"};
+				LisnicaCommand lc(7, argv, l);
+				lc.process();
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			}
+			catch (...) {}
+		}
+
+		TEST_METHOD(lisnicaCommanddodajDionica4)
+		{
+			// treba mi lisnica, i lisnica command
+			// trebam testirati komandu: lisnica dodaj dionica RIMAC 100 16.92
+			try {
+				LisnicaClass* l = new LisnicaClass();
+				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "Bitch", "16.92", "siljispiljis" };
+				LisnicaCommand lc(7, argv, l);
+				lc.process();
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			}
+			catch (...) {}
+		}
+
+		TEST_METHOD(lisnicaCommanddodajObveznica)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			const char* argv[] = {"Lisnica", "dodaj", "obveznica", "PLIVA", "40", "57.00", "45.21"};
+			LisnicaCommand lc(7, argv, l);
+			lc.process();
+			double vrijednost = l->vrijednostCijeleLisnice();
+			Assert::AreEqual(vrijednost, 1030.788, 0.001);
+		}
+
+		TEST_METHOD(lisnicaCommanddodajObveznica2)
+		{
+			try {
+				LisnicaClass* l = new LisnicaClass();
+				const char* argv[] = { "Lisnica", "dodaj", "obveznica", "PLIVA", "40", "57.00", "45.21" };
+				LisnicaCommand lc(6, argv, l);
+				lc.process();
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			}
+			catch (...) {}
 		}
 	};
 }
