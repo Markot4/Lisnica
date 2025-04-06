@@ -39,7 +39,7 @@ namespace markot4 {
 				return vp->kolicina;
 			}
 		}
-		throw invalid_argument("Ne postoji vrijednosni papir");
+		throw invalid_argument("Ne postoji vrijednosni papir"); //relativno
 	}
 
 	// promijena cijene vrijednosnim papirima sa oznakom u varijabli "oznaka"
@@ -48,8 +48,10 @@ namespace markot4 {
 			VrijednosniPapir *vp = papiri[i];
 			if (vp->oznaka == oznaka) {
 				vp->cijena = cijena;
+				return;
 			}
 		}
+		throw invalid_argument("Ne postoji vrijednosni papir");
 	}
 
 	// promijena cijena svih vrijednosnih papira

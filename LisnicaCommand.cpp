@@ -60,6 +60,14 @@ namespace markot4 {
             return;
         }
 
+        if (naredba == "cijena" && argc == 4) {
+            string oznaka = this->argv[2];
+            double novaCijena = stod(this->argv[3]);
+            this->lisnica->promjenaCijene(novaCijena, oznaka);
+            return;
+        }
+
+
 
         throw invalid_argument("Neispravana komanda!");
 	}
