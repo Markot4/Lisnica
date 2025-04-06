@@ -26,6 +26,18 @@ namespace markot4 {
         return;
     }
 
+    void LisnicaCommand::vrijednostDionicaToStream(ostream& to) {
+        double vrijednost = this->lisnica->sveDionice();
+
+        ostringstream oss;
+        oss << std::fixed << std::setprecision(2) << vrijednost;
+        string formatirana_vrijednost = oss.str();
+
+        //Ukupna vrijednost svih dionica u lisnici je 15.372,16 Eur
+        to << "Ukupna vrijednost svih dionica u lisnici je " << formatirana_vrijednost << " " << "Eur";
+        return;
+    }
+
 	void LisnicaCommand::process() {
         argc = this->argc;
         string naredba = this->argv[1];
@@ -86,6 +98,11 @@ namespace markot4 {
         if (naredba == "vrijednost" && argc == 3) {
             this->vrijednostPapiraToStream(cout);
             return;
+        }
+
+        if (naredba == "vrijednost" && argc == 3 && string(argv[2]) == "dionice") {
+            this->vrijednostDionicaToStream(cout);
+            //cout << "Ukupna vrijednost svih dionica je " << lisnica.sveDionice() << " EUR" << endl;
         }
 
         throw invalid_argument("Neispravana komanda!");

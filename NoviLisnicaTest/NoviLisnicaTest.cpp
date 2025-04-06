@@ -648,7 +648,21 @@ namespace LisnicaTest
 			string rez = out.str();
 			Assert::AreEqual(rez, string("Vrijednost PLIVA je 500.00 Eur"));
 		}
-
+		
+		TEST_METHOD(IspisUkupneVrijednostiDionica)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool d1 = l->dodajDionicu(10.00, 10, "Warcraft 4");
+			bool d2 = l->dodajDionicu(20.00, 15, "Gran Turismo 8");
+			bool o1 = l->dodajObveznicu("Meridianus", 10.00, 15, 12.00);
+			const char* argv[] = { "lisnica", "vrijednost", "dionice"};
+			LisnicaCommand lc(3, argv, l);
+			ostringstream out;
+			lc.vrijednostDionicaToStream(out);
+			string rez = out.str();
+			Assert::AreEqual(rez, string("Ukupna vrijednost svih dionica u lisnici je 400.00 Eur"));
+			
+		}
 	};
 }
 
