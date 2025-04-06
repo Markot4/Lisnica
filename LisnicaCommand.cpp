@@ -1,5 +1,7 @@
 #include "LisnicaCommand.h"
 #include <stdexcept>
+#include <sstream>
+#include <iomanip>
 
 namespace markot4 {
 	LisnicaCommand::LisnicaCommand(int argc, const char* argv[], LisnicaClass* lisnica) {
@@ -9,6 +11,20 @@ namespace markot4 {
 			this->argv.push_back(std::string(argv[i]));  // Convert char* to std::string and add to vector
 		}
 	}
+
+
+    void LisnicaCommand::vrijednostPapiraToStream(ostream& to) {
+        string oznaka = this->argv[2];
+        double vrijednost = this->lisnica->vrijPoVrijPapir(oznaka);
+
+        ostringstream oss;
+        oss << std::fixed << std::setprecision(2) << vrijednost; // Format into the string stream
+        string formatirana_vrijednost = oss.str();
+
+        // Vrijednost PLV-R-A je 1520,73 Eur
+        to << "Vrijednost " << oznaka << " "<< "je " << formatirana_vrijednost << " " << "Eur";
+        return;
+    }
 
 	void LisnicaCommand::process() {
         argc = this->argc;
@@ -67,7 +83,10 @@ namespace markot4 {
             return;
         }
 
-
+        if (naredba == "vrijednost" && argc == 3) {
+            this->vrijednostPapiraToStream(cout);
+            return;
+        }
 
         throw invalid_argument("Neispravana komanda!");
 	}

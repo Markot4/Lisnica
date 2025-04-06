@@ -637,6 +637,18 @@ namespace LisnicaTest
 			catch (...) {}
 		}
 
+		TEST_METHOD(ispisVrijednostiPapira)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool o = l->dodajDionicu(20.00, 25, "PLIVA");
+			const char* argv[] = { "lisnica", "vrijednost", "PLIVA"};
+			LisnicaCommand lc(3, argv, l);
+			ostringstream out;
+			lc.vrijednostPapiraToStream(out);
+			string rez = out.str();
+			Assert::AreEqual(rez, string("Vrijednost PLIVA je 500.00 Eur"));
+		}
+
 	};
 }
 

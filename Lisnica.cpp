@@ -48,8 +48,7 @@ int main(int argc, char* argv[]) {
         double novaCijena = stod(argv[3]);
         lisnica.promjenaCijene(novaCijena, oznaka);
     }
-    else if (naredba == "cijena" && argc == 4 && string(argv[2]) == "--datoteka") {
-        lisnica.promjenaCijene(argv[3]);
+    else if (naredba == "cijena" && argc == 4 && string(argv[2]) == "--datoteka") { //ima vise posla
     }
     else if (naredba == "vrijednost" && argc == 3) {
         string oznaka = argv[2];

@@ -15,6 +15,7 @@ namespace markot4{
 		LisnicaCommand(int argc, const char* argv[], LisnicaClass* lisnica);
 		void process();
 
+		void vrijednostPapiraToStream(ostream& to);
 	};
 }
 
