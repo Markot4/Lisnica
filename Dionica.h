@@ -15,6 +15,7 @@ namespace markot4 {
             void toStream(ostream& to) override;
             bool isDionica() override;
             bool isObveznica() override;
+            void ispisToStream(ostream& to) override;
             ~Dionica() override;
     };
 }

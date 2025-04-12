@@ -25,6 +25,7 @@ namespace markot4 {
 		virtual bool isDionica() = 0;
 		virtual bool isObveznica() = 0;
 		virtual void toStream(ostream &to) = 0;
+		virtual void ispisToStream(ostream& to) = 0;
 		virtual ~VrijednosniPapir();
 	};
 }

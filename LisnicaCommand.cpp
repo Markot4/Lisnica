@@ -58,6 +58,13 @@ namespace markot4 {
         return;
     }
 
+    void LisnicaCommand::papiriToStream(ostream& to) {
+        if (argc != 2) {
+            throw invalid_argument("Arguement za sadrzaj je krivo napisan.");
+        }
+        this->lisnica->ispisToStream(to);
+    }
+
 	void LisnicaCommand::process() {
         argc = this->argc;
         string naredba = this->argv[1];
@@ -115,17 +122,24 @@ namespace markot4 {
             return;
         }
 
-        if (naredba == "vrijednost" && argc == 3) {
+        if (naredba == "vrijednost" && argc == 2) {
             this->vrijednostPapiraToStream(cout);
             return;
         }
 
         if (naredba == "vrijednost" && argc == 3 && string(argv[2]) == "dionice") {
             this->vrijednostDionicaToStream(cout);
+            return;
             //cout << "Ukupna vrijednost svih dionica je " << lisnica.sveDionice() << " EUR" << endl;
         }
         if (naredba == "vrijednost" && argc == 3 && string(argv[2]) == "obveznice") {
             //cout << "Ukupna vrijednost svih obveznica je " << lisnica.sveObveznice() << " EUR" << endl;
+            this->vrijednostObveznicaToStream(cout);
+        }
+
+        if (naredba == "sadrzaj" && argc == 2) {
+            this->papiriToStream(cout);
+            return;
         }
 
         throw invalid_argument("Neispravana komanda!");

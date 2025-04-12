@@ -16,6 +16,7 @@ namespace markot4 {
             double izracunajVrijednost() override;
             bool isDionica() override;
             bool isObveznica() override;
+            void ispisToStream(ostream& to) override;
             ~Obveznica() override;
     };
 }

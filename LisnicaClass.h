@@ -27,6 +27,7 @@ namespace markot4 {
 		bool dodajDionicu(double cijena, int kolicina, string oznaka);
 		bool dodajObveznicu(string oznaka, double cijena, int kolicina, double nominalnaCijena);
 		void toStream(ostream& to);
+		void ispisToStream(ostream& to);
 
 	};
 }

@@ -711,6 +711,21 @@ namespace LisnicaTest
 			}
 			catch (...) {}
 		}
+
+		TEST_METHOD(papiriToStream)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool o1 = l->dodajObveznicu("Wanky", 15.00, 10, 14.00);
+			bool o2 = l->dodajObveznicu("KilE", 12.00, 11, 13.00);
+			bool d1 = l->dodajDionicu(5.00, 1, "PaySt");
+			bool d2 = l->dodajDionicu(6.00, 2, "ThrOg");
+			const char* argv[] = { "lisnica", "sadrzaj"};
+			LisnicaCommand lc(2, argv, l);
+			ostringstream out;
+			lc.papiriToStream(out);
+			string rez = out.str();
+			Assert::AreEqual(rez, string("Sadrzaj lisnice\nWanky 15.00 10 14.00\nKilE 12.00 11 13.00\nPaySt 5.00 1\nThrOg 6.00 2\n"));
+		}
 	};
 
 }

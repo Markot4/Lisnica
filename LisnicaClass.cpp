@@ -179,6 +179,16 @@ namespace markot4 {
 		}
 	}
 
+	void LisnicaClass::ispisToStream(ostream& to) {
+		int kulike = papiri.size();
+		to << "Sadrzaj lisnice" << endl;
+		for (int i = 0; i < kulike; i++) {
+			VrijednosniPapir* vp = papiri[i];
+			vp->ispisToStream(to);
+			to << endl;
+		}
+	}
+
 	LisnicaClass::LisnicaClass(istream& from) : papiri() {
 		int kulike;
 		string line;
