@@ -695,6 +695,22 @@ namespace LisnicaTest
 			Assert::AreEqual(rez, string("Ukupna vrijednost svih obveznica u lisnici je 49.92 Eur"));
 
 		}
+
+		TEST_METHOD(IspisUkupneVrijednostiObveznica2)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool o1 = l->dodajObveznicu("Meridianus", 10.00, 15, 12.00);
+			bool o2 = l->dodajObveznicu("2000 Miles", 12.00, 19, 14.00);
+			bool d1 = l->dodajDionicu(0.00, 10, "Warcraft 4");
+			const char* argv[] = { "lisnica", "vrijednost", "obveznice", "16.00"};
+			try {
+				LisnicaCommand lc(4, argv, l);
+				ostringstream out;
+				lc.vrijednostObveznicaToStream(out);
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			}
+			catch (...) {}
+		}
 	};
 
 }

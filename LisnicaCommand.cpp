@@ -43,6 +43,10 @@ namespace markot4 {
     }
 
     void LisnicaCommand::vrijednostObveznicaToStream(ostream& to) {
+        argc = this->argc;
+        if (argc != 3) {
+            throw invalid_argument("Argument za vrijednost obveznice je krivo napisan.");
+        }
         double vrijednost = this->lisnica->sveObveznice();
 
         ostringstream oss;
