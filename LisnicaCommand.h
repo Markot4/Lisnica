@@ -17,6 +17,7 @@ namespace markot4{
 
 		void vrijednostPapiraToStream(ostream& to);
 		void vrijednostDionicaToStream(ostream& to);
+		void vrijednostObveznicaToStream(ostream& to);
 	};
 }
 

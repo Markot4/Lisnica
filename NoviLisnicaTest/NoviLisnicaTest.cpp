@@ -663,6 +663,39 @@ namespace LisnicaTest
 			Assert::AreEqual(rez, string("Ukupna vrijednost svih dionica u lisnici je 400.00 Eur"));
 			
 		}
+
+		TEST_METHOD(IspisUkupneVrijednostiDionica2)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool d1 = l->dodajDionicu(0.00, 10, "Warcraft 4");
+			bool d2 = l->dodajDionicu(0.00, 15, "Gran Turismo 8");
+			bool o1 = l->dodajObveznicu("Meridianus", 10.00, 15, 12.00);
+			const char* argv[] = { "lisnica", "vrijednost", "dionice", "15.00"};
+			try
+			{
+				LisnicaCommand lc(4, argv, l);
+				ostringstream out;
+				lc.vrijednostDionicaToStream(out);
+				Assert::Fail(L"Expected an exception but none was thrown.");
+			}
+			catch (...) {}
+		}
+
+		TEST_METHOD(IspisUkupneVrijednostiObveznica)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool o1 = l->dodajObveznicu("Meridianus", 10.00, 15, 12.00);
+			bool o2 = l->dodajObveznicu("2000 Miles", 12.00, 19, 14.00);
+			bool d1 = l->dodajDionicu(0.00, 10, "Warcraft 4");
+			const char* argv[] = { "lisnica", "vrijednost", "obveznice" };
+			LisnicaCommand lc(3, argv, l);
+			ostringstream out;
+			lc.vrijednostObveznicaToStream(out);
+			string rez = out.str();
+			Assert::AreEqual(rez, string("Ukupna vrijednost svih obveznica u lisnici je 49.92 Eur"));
+
+		}
 	};
+
 }
 
