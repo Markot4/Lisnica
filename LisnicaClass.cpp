@@ -54,41 +54,6 @@ namespace markot4 {
 		throw invalid_argument("Ne postoji vrijednosni papir");
 	}
 
-	// promijena cijena svih vrijednosnih papira
-	int LisnicaClass::promjenaCijene(string paragraf) {
-		// pokusaj otvaranja datoteke zadane argumentom
-		std::ifstream file(paragraf);
-		if (!file.is_open()) {
-			std::cerr << "Ne mogu otvoriti datoteku: " << paragraf << std::endl;
-			return -1;
-		}
-
-		std::string line;
-		std::unordered_map<std::string, double> noveCijene;
-
-		// ucitavamo nove cijene iz datoteke
-		while (std::getline(file, line)) {
-			std::stringstream ss(line);
-			std::string oznaka;
-			double cijena;
-
-			// cita prvi dio linije do zareza i sprema ga u "oznaka"
-			// pokusava ucitati cijenu iz preostalog dijela linije
-			if (std::getline(ss, oznaka, ',') && ss >> cijena) {
-				noveCijene[oznaka] = cijena;
-			}
-		}
-		file.close();
-
-		// azuriranje cijena svih vrijednosnih papira
-		for (int i = 0; i < papiri.size(); i++) {
-			if (noveCijene.count(papiri[i]->oznaka)) {
-				papiri[i]->cijena = noveCijene[papiri[i]->oznaka];
-			}
-		}
-		return 0;
-	}
-
 	double LisnicaClass::vrijPoVrijPapir(string oznaka) {
 		// provjerimo na koji se papir odnosi oznaka te vratimo kolicinu pomnozenu sa cijenom
 		for (int i = 0; i < papiri.size(); i++) {
@@ -186,6 +151,20 @@ namespace markot4 {
 			VrijednosniPapir* vp = papiri[i];
 			vp->ispisToStream(to);
 			to << endl;
+		}
+	}
+
+	void LisnicaClass::promjenaCijene(istream& from) {
+		string line;
+		while (getline(from, line)) {
+			if (line.length() > 0) {
+				istringstream line_stream(line);
+				string oznaka;
+				double novaCijena;
+				line_stream >> oznaka;
+				line_stream >> novaCijena;
+				this->promjenaCijene(novaCijena, oznaka);
+			}
 		}
 	}
 

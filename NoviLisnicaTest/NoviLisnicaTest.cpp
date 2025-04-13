@@ -652,6 +652,25 @@ namespace LisnicaTest
 			Assert::AreEqual(rez, string("Ukupna vrijednost lisnice je 811.46 Eur"));
 		}
 
+		TEST_METHOD(PromjenaCijeneStream)
+		{
+			// napraviti lisnicu s nekoliko vrijednosnih papira
+			// napraviti stream sa promjenama cijena nekolilo papira
+			// na lisnici pozvati promjena cijene
+			// provjeriti da se vrijednost lisnice odgovarajuce promjenila 
+			LisnicaClass* l = new LisnicaClass();
+			bool d1 = l->dodajDionicu(10.00, 15, "Nirva");
+			bool d2 = l->dodajDionicu(20.00, 30, "Sanantana");
+			bool o1 = l->dodajObveznicu("LirnBiz", 25.00, 10, 12.00);
+			bool o2 = l->dodajObveznicu("KompKit", 22.00, 11, 13.00);
+			string promjene = "Sanantana 21.00\nKompKit 23.00\n";
+			istringstream promjeneStream(promjene);
+			l->promjenaCijene(promjeneStream);
+			double vrijednost = l->vrijednostCijeleLisnice();
+			Assert::AreEqual(vrijednost, 842.89);
+
+		}
+
 		TEST_METHOD(ispisVrijednostiPapira)
 		{
 			LisnicaClass* l = new LisnicaClass();
