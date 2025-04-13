@@ -1,6 +1,7 @@
 #include "LisnicaCommand.h"
 #include <stdexcept>
 #include <sstream>
+#include <fstream>
 #include <iomanip>
 
 namespace markot4 {
@@ -78,6 +79,25 @@ namespace markot4 {
         to << "Ukupna vrijednost lisnice je " << formatirana_vrijednost << " " << "Eur";
     }
 
+    void LisnicaCommand::promjenaCijena(string imeDatoteke) {
+        if (argc != 4) {
+            throw invalid_argument("Argument za promjenu cijene je krivo napisan.");
+        }
+        ifstream from(imeDatoteke);
+        if (!from.is_open()) { 
+            throw invalid_argument("Ne mogu citati iz datoteke");
+        }
+        this->lisnica->promjenaCijene(from);
+    }
+
+
+    void LisnicaCommand::promjenaCijena(istream& from) {
+        if (argc != 4) {
+            throw invalid_argument("Argument za promjenu cijene je krivo napisan.");
+        }
+        this->lisnica->promjenaCijene(from);
+    }
+
 	void LisnicaCommand::process() {
         argc = this->argc;
         string naredba = this->argv[1];
@@ -130,6 +150,10 @@ namespace markot4 {
 
         if (naredba == "cijena" && argc == 4) {
             string oznaka = this->argv[2];
+            if (oznaka == string("--datoteka")) {
+                this->promjenaCijena(this->argv[3]);
+                return;
+            }
             double novaCijena = stod(this->argv[3]);
             this->lisnica->promjenaCijene(novaCijena, oznaka);
             return;
