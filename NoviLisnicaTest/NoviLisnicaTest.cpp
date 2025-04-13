@@ -637,6 +637,21 @@ namespace LisnicaTest
 			catch (...) {}
 		}
 
+		TEST_METHOD(IspisVrijednostiCijeleLisnice)
+		{
+			LisnicaClass* l = new LisnicaClass();
+			bool d1 = l->dodajDionicu(10.00, 15, "Nirva");
+			bool d2 = l->dodajDionicu(20.00, 30, "Sanantana");
+			bool o1 = l->dodajObveznicu("LirnBiz", 25.00, 10, 12.00);
+			bool o2 = l->dodajObveznicu("KompKit", 22.00, 11, 13.00);
+			const char* argv[] = {"lisnica", "vrijednost"};
+			LisnicaCommand lc(2, argv, l);
+			ostringstream out;
+			lc.vrijednostLisniceToStream(out);
+			string rez = out.str();
+			Assert::AreEqual(rez, string("Ukupna vrijednost lisnice je 811.46 Eur"));
+		}
+
 		TEST_METHOD(ispisVrijednostiPapira)
 		{
 			LisnicaClass* l = new LisnicaClass();

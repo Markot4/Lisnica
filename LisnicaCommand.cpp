@@ -65,6 +65,19 @@ namespace markot4 {
         this->lisnica->ispisToStream(to);
     }
 
+    void LisnicaCommand::vrijednostLisniceToStream(ostream& to) {
+        if (argc != 2) {
+            throw invalid_argument("Arguement za lisnicu je krivo napisan.");
+        }
+        double vrijednost = this->lisnica->vrijednostCijeleLisnice();
+
+        ostringstream oss;
+        oss << std::fixed << std::setprecision(2) << vrijednost;
+        string formatirana_vrijednost = oss.str();
+
+        to << "Ukupna vrijednost lisnice je " << formatirana_vrijednost << " " << "Eur";
+    }
+
 	void LisnicaCommand::process() {
         argc = this->argc;
         string naredba = this->argv[1];
@@ -122,12 +135,7 @@ namespace markot4 {
             return;
         }
 
-        if (naredba == "vrijednost" && argc == 2) {
-            this->vrijednostPapiraToStream(cout);
-            return;
-        }
-
-        if (naredba == "vrijednost" && argc == 3 && string(argv[2]) == "dionice") {
+         if (naredba == "vrijednost" && argc == 3 && string(argv[2]) == "dionice") {
             this->vrijednostDionicaToStream(cout);
             return;
             //cout << "Ukupna vrijednost svih dionica je " << lisnica.sveDionice() << " EUR" << endl;
@@ -135,6 +143,17 @@ namespace markot4 {
         if (naredba == "vrijednost" && argc == 3 && string(argv[2]) == "obveznice") {
             //cout << "Ukupna vrijednost svih obveznica je " << lisnica.sveObveznice() << " EUR" << endl;
             this->vrijednostObveznicaToStream(cout);
+            return;
+        }
+
+        if (naredba == "vrijednost" && argc == 3) {
+            this->vrijednostPapiraToStream(cout);
+            return;
+        }
+
+        if (naredba == "vrijednost" && argc == 2) {
+            this->vrijednostLisniceToStream(cout);
+            return;
         }
 
         if (naredba == "sadrzaj" && argc == 2) {
