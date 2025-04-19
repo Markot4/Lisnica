@@ -5,16 +5,46 @@
 #include "LisnicaClass.h"
 #include "Dionica.h"
 #include "Obveznica.h"
+#include "LisnicaCommand.h"
 #include <string>
+#include "fstream"
 
 
 using namespace markot4;
 using namespace std;
 
-int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        cout << "Nedovoljno argumenata!" << endl;
-        return 1;
+int main(int argc, const char* argv[]) {
+
+    string filename = "lisnica.dat";
+    try {
+        LisnicaClass* l;
+        try {
+            ifstream inputFile(filename);
+            if (inputFile.is_open()) {
+                l = new LisnicaClass(inputFile);
+            }
+            else {
+                cout << "lisnica.dat nije pronadjena, biti ce stvorena" << endl;
+                l = new LisnicaClass();
+            }
+            inputFile.close();
+        } catch (...) {
+            cerr << "Greska pri ucitavanju lisnice" << endl;
+            return -1;
+        }
+
+        LisnicaCommand command(argc, argv, l);
+        command.process();
+        
+        ofstream outputFile(filename);
+        l->toStream(outputFile);
+        outputFile.close();
+
+        return 0;
+    }
+    catch (const exception& e){
+        cerr << e.what() << endl;
+        return -1;
     }
 /*
     LisnicaClass lisnica;
