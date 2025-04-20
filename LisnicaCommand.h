@@ -22,6 +22,7 @@ namespace markot4{
 		void vrijednostLisniceToStream(ostream& to);
 		void promjenaCijena(istream& from);
 		void promjenaCijena(string imeDatoteke);
+
 	};
 }
 

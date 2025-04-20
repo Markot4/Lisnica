@@ -13,7 +13,6 @@ namespace markot4 {
 		}
 	}
 
-
     void LisnicaCommand::vrijednostPapiraToStream(ostream& to) {
         string oznaka = this->argv[2];
         double vrijednost = this->lisnica->vrijPoVrijPapir(oznaka);

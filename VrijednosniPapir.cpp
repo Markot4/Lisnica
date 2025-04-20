@@ -44,4 +44,6 @@ namespace markot4 {
 	VrijednosniPapir::~VrijednosniPapir() {
 
 	}
+
+
 }

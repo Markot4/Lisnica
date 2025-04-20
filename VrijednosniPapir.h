@@ -17,6 +17,11 @@ namespace markot4 {
         VrijednosniPapir(string oznaka);
 		VrijednosniPapir(string oznaka, int kolicina, double cijena);
 
+		VrijednosniPapir(const VrijednosniPapir&) = delete;
+		VrijednosniPapir& operator=(const VrijednosniPapir&) = delete;
+		VrijednosniPapir(VrijednosniPapir&&) = delete;
+		VrijednosniPapir& operator=(VrijednosniPapir&&) = delete;
+
 		static VrijednosniPapir* fromStream(istream& from);
 
 		void postaviCijenu(double novaCijena); 

@@ -184,4 +184,11 @@ namespace markot4 {
 			dodajVrijednosniPapir(vp);
 		}
 	}
+
+	LisnicaClass::~LisnicaClass() {
+		for (size_t i=0; i < this->papiri.size(); i++) {
+			delete this->papiri[i];
+		}
+	}
+
 }

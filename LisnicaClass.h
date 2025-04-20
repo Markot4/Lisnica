@@ -28,6 +28,9 @@ namespace markot4 {
 		void toStream(ostream& to);
 		void ispisToStream(ostream& to);
 
+		~LisnicaClass();
+
+
 	};
 }
 
