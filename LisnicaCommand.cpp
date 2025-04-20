@@ -87,7 +87,8 @@ namespace markot4 {
         if (!from.is_open()) { 
             throw invalid_argument("Ne mogu citati iz datoteke");
         }
-        this->lisnica->promjenaCijene(from);
+        int kulike = this->lisnica->promjenaCijene(from);
+        cout << "Promijenjena cijena " << kulike << " vrijednosnih papira" << endl;
     }
 
 
@@ -155,6 +156,7 @@ namespace markot4 {
         if (naredba == "cijena" && argc == 4) {
             string oznaka = this->argv[2];
             if (oznaka == string("--datoteka")) {
+                cout << "Citanje cijena iz datoteke: " << this->argv[3] << endl;
                 this->promjenaCijena(this->argv[3]);
                 return;
             }

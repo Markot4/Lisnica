@@ -154,8 +154,9 @@ namespace markot4 {
 		}
 	}
 
-	void LisnicaClass::promjenaCijene(istream& from) {
+	int LisnicaClass::promjenaCijene(istream& from) {
 		string line;
+		int promijenjeno = 0;
 		while (getline(from, line)) {
 			if (line.length() > 0) {
 				istringstream line_stream(line);
@@ -163,9 +164,14 @@ namespace markot4 {
 				double novaCijena;
 				line_stream >> oznaka;
 				line_stream >> novaCijena;
-				this->promjenaCijene(novaCijena, oznaka);
+				try {
+					this->promjenaCijene(novaCijena, oznaka);
+					promijenjeno++;
+				}
+				catch (...) {}
 			}
 		}
+		return promijenjeno;
 	}
 
 	LisnicaClass::LisnicaClass(istream& from) : papiri() {

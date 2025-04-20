@@ -15,7 +15,7 @@ namespace markot4 {
 		bool izbaciVrijednosniPapir(string oznaka);
 		int promjenaKolicine(int promjena, string oznaka); // vrati novu kolicinu
 		void promjenaCijene(double cijena, string oznaka);
-		void promjenaCijene(istream& from); // ucitava nove cijene iz streama
+		int promjenaCijene(istream& from); // ucitava nove cijene iz streama
 		double vrijPoVrijPapir(string oznaka); // vraca ukupnu vrijednost nekog papira u lisnici
 		double sveDionice(); // vraca ukupnu vrijednost svih dionica u lisnici
 		double sveObveznice(); // vraca ukupnu vrijednost svih obveznica u lisnici

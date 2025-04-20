@@ -54,8 +54,8 @@ treca oduzima 17 od postojece kolicine.
 za promjenu cijene nekog vrijednosnog papira treba jedna od slijedećih naredbi:
 
 ```
-lisnica cijena PLV-R-A 120,34
-lisnica cijena RH-MF007 97,81
+lisnica cijena PLV-R-A 120.34
+lisnica cijena RH-MF007 97.81
 ```
 
 cijena za dionice se izrazava u eurima, na dvije decimale
@@ -66,7 +66,7 @@ cijena za obveznice se izrazava u postotku od nominalne vrijednosti na dvije dec
 za promjenu cijene svih vrijednosnih papira koristit će se ova naredba:
 
 ```
-lisnica cijena --datoteka <imedatoteke.csv>
+lisnica cijena --datoteka <imedatoteke.txt>
 ```
 
 cijene ce biti ucitane iz datoteke cije je ime specificirano, te ce se promijeniti cijene
@@ -78,7 +78,7 @@ za izracun vrijednosti pojedinog vrijednosnog papira koristit će se ova naredba
 
 ```
 lisnica vrijednost PLV-R-A
-Vrijednost PLV-R-A je 1520,73 Eur
+Vrijednost PLV-R-A je 1520.73 Eur
 ```
 
 ## Izracun vrijednosti svih dionica u lisnici
@@ -87,7 +87,7 @@ za izracun vrijednosti svih dionica u lisnici koristit ćemo ovu naredbu:
 
 ```
 lisnica vrijednost dionice
-Ukupna vrijednost svih dionica u lisnici je 15.372,16 Eur
+Ukupna vrijednost svih dionica u lisnici je 15372.16 Eur
 ```
 
 ## Izracun vrijednosti svih obveznica u lisnici
@@ -96,7 +96,7 @@ za izracun vrijednosti svih obveznica u lisnici koristit ćemo ovu naredbu:
 
 ```
 lisnica vrijednost obveznice
-Ukupna vrijednost svih obveznica je 19.294,56 Eur
+Ukupna vrijednost svih obveznica je 19294.56 Eur
 ```
 
 ## Izracun vrijednosti cijele lisnice
@@ -105,7 +105,7 @@ za izracun vrijednosti cijele lisnice koristit ćemo ovu naredbu:
 
 ```
 lisnica vrijednost
-Ukupna vrijednost lisnice je 34.666,72 Eur
+Ukupna vrijednost lisnice je 34666.72 Eur
 ```
 
 ## Ispis sadržaja cijele lisnice
