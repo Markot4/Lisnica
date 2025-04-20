@@ -27,10 +27,10 @@ namespace markot4 {
 		if (vrsta == "dionica") {
 			return new Dionica(from);
 		}
-		if (vrsta == "obveznica") {
-			return new Obveznica(from);
+		if (vrsta != "obveznica") {
+			throw invalid_argument("Nepostojeca vrsta vrijednosnog papira");
 		}
-
+		return new Obveznica(from);
 	}
 
 	void VrijednosniPapir::postaviCijenu(double novaCijena) {

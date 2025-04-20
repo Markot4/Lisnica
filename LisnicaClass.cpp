@@ -135,7 +135,7 @@ namespace markot4 {
 	}
 
 	void LisnicaClass::toStream(ostream& to) {
-		int kulike = papiri.size();
+		size_t kulike = papiri.size();
 		to << kulike << endl;
 		for (int i = 0; i < kulike; i++) {
 			VrijednosniPapir *vp = papiri[i];
@@ -145,7 +145,7 @@ namespace markot4 {
 	}
 
 	void LisnicaClass::ispisToStream(ostream& to) {
-		int kulike = papiri.size();
+		size_t kulike = papiri.size();
 		to << "Sadrzaj lisnice" << endl;
 		for (int i = 0; i < kulike; i++) {
 			VrijednosniPapir* vp = papiri[i];
