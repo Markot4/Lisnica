@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include "VrijednosniPapir.h"
 #include "Dionica.h"
 #include "Obveznica.h"
@@ -28,7 +28,7 @@ namespace markot4 {
 			return new Dionica(from);
 		}
 		if (vrsta != "obveznica") {
-			throw invalid_argument("Nepostojeca vrsta vrijednosnog papira");
+			throw invalid_argument("Nepostojeća vrsta vrijednosnog papira");
 		}
 		return new Obveznica(from);
 	}

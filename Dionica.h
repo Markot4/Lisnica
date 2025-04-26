@@ -1,4 +1,4 @@
-#include "VrijednosniPapir.h"
+﻿#include "VrijednosniPapir.h"
 
 namespace markot4 {
 

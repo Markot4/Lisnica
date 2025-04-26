@@ -19,7 +19,7 @@ int main(int argc, const char* argv[]) {
 
     if (!SetConsoleOutputCP(CP_UTF8)) {
         std::cerr << "Error setting console output code page: " << GetLastError() << std::endl;
-        // return 1; // Optional: exit if setting fails, though output might still partially work
+        // return 1; // Opcionalno: exit ako postavka neuspije, ionak output mozda dalje parcionalno radi
     }
 
     string filename = "lisnica.dat";
@@ -27,7 +27,7 @@ int main(int argc, const char* argv[]) {
         try {
             ifstream inputFile(filename);
             if (!inputFile.is_open()) {
-                cout << "lisnica.dat nije pronadjena, biti ce stvorena" << endl;
+                cout << "lisnica.dat nije pronađena, biti će stvorena" << endl;
                 LisnicaClass l;
                 ofstream outputFile(filename);
                 l.toStream(outputFile);
@@ -55,7 +55,7 @@ int main(int argc, const char* argv[]) {
             l.toStream(outputFile);
             outputFile.close();
         } catch (...) {
-            cerr << "Greska pri spremanju lisnice" << endl;
+            cerr << "Greška pri spremanju lisnice" << endl;
             return -1;
         }
     }

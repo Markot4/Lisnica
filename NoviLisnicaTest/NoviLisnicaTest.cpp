@@ -17,15 +17,15 @@ namespace LisnicaTest
 		TEST_METHOD(izbacivanjeVrijednosnogpapira)
 		{
 			// 1. moram imati lisnicu
-			// 2. mkoram potrpati, vise vrijednosnih papira u tu lisnicu (3,4)
+			// 2. moram potrpati, vise vrijednosnih papira u tu lisnicu (3,4)
 			// 3. izbacim jedan od tihg vrijednosnih papira
 			// 4. provjerim da li je dobro izbacen taj vrijednosni papir (recimo mogu provjeriti novu vrijednost lisnice)
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(13.00, 24, "Yolo");
-			l->dodajDionicu(26.00, 12, "Imbecil");
-			l->dodajDionicu(39.00, 6, "Ultra");
-			l->izbaciVrijednosniPapir("Ultra");
-			double rez = l->sveDionice();
+			LisnicaClass l;
+			l.dodajDionicu(13.00, 24, "Yolo");
+			l.dodajDionicu(26.00, 12, "Imbecil");
+			l.dodajDionicu(39.00, 6, "Ultra");
+			l.izbaciVrijednosniPapir("Ultra");
+			double rez = l.sveDionice();
 			Assert::AreEqual(rez, 624.00);
 
 		}
@@ -35,12 +35,12 @@ namespace LisnicaTest
 			//moram imati lisnicu u kojoj ce biti vise vrijednosnih papira. 
 			//moram promijeniti cijenu u jednom od tih vrijednosnih papira i provjeriti
 			//da li je cijena dobro promijenjena
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(14.99, 25, "Wazap");
-			l->dodajDionicu(25.00, 60, "Yo");
-			l->promjenaCijene(20.00, "Wazap");
+			LisnicaClass l;
+			l.dodajDionicu(14.99, 25, "Wazap");
+			l.dodajDionicu(25.00, 60, "Yo");
+			l.promjenaCijene(20.00, "Wazap");
 			// provjeriti da li je vrijednoist svih dionica u lisnici jednaka 2000
-			double rez = l->sveDionice();
+			double rez = l.sveDionice();
 			Assert::AreEqual(rez, 2000.00);
 		}
 
@@ -49,43 +49,43 @@ namespace LisnicaTest
 			//moram imati lisnicu u kojoj ce biti vise vrijednosnih papira. 
 			//moram promijeniti cijenu u jednom od tih vrijednosnih papira i provjeriti
 			//da li je kolicina dobro promijenjena
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(10.00, 25, "Wazap");
-			l->dodajDionicu(20.00, 60, "Yo");
-			l->promjenaKolicine(15, "Wazap");
+			LisnicaClass l;
+			l.dodajDionicu(10.00, 25, "Wazap");
+			l.dodajDionicu(20.00, 60, "Yo");
+			l.promjenaKolicine(15, "Wazap");
 			// provjeriti da li je vrijednoist svih dionica u lisnici jednaka 1600
-			double rez = l->sveDionice();
+			double rez = l.sveDionice();
 			Assert::AreEqual(rez, 1600.0);
 		}
 
 		TEST_METHOD(smanjenjeKolicine)
 		{
 			//otkad promjenaKolicine povecava broj kolicina dionice, ova test metoda smanjuje
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(12.00, 12, "Ula");
-			l->dodajDionicu(10.00, 10, "Eli");
-			l->promjenaKolicine(-2, "Ula");
-			double rez = l->sveDionice();
+			LisnicaClass l;
+			l.dodajDionicu(12.00, 12, "Ula");
+			l.dodajDionicu(10.00, 10, "Eli");
+			l.promjenaKolicine(-2, "Ula");
+			double rez = l.sveDionice();
 			Assert::AreEqual(rez, 220.0);
 		}
 
 		TEST_METHOD(smanjenjeKolicine2)
 		{
 			//otkad promjenaKolicine povecava broj kolicina dionice, ova test metoda smanjuje
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(12.00, 12, "Ula");
-			l->dodajDionicu(10.00, 10, "Eli");
-			l->promjenaKolicine(-12, "Eli");
-			double rez = l->sveDionice();
+			LisnicaClass l;
+			l.dodajDionicu(12.00, 12, "Ula");
+			l.dodajDionicu(10.00, 10, "Eli");
+			l.promjenaKolicine(-12, "Eli");
+			double rez = l.sveDionice();
 			Assert::AreEqual(rez, 144.0);
 		}
 
 		TEST_METHOD(vrijednostCijeleLisnice)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(24.50, 21, "Gog");
-			l->dodajObveznicu("Steam", 12.00, 14, 15.00);
-			double rez = l->vrijednostCijeleLisnice();
+			LisnicaClass l;
+			l.dodajDionicu(24.50, 21, "Gog");
+			l.dodajObveznicu("Steam", 12.00, 14, 15.00);
+			double rez = l.vrijednostCijeleLisnice();
 			Assert::AreEqual(rez, 539.7, 0.1);
 		}
 
@@ -105,11 +105,11 @@ namespace LisnicaTest
 			//u lisnicu moram barem staviti jednu dionicu i jednu obveznicu
 			//pozvati toStream na lisnici
 			//provjeriti da li su se dionica i obveznica dobro ispisali
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(19.50, 25, "Veku");
-			l->dodajObveznicu("Gogeta", 20.00, 30, 21.00);
+			LisnicaClass l;
+			l.dodajDionicu(19.50, 25, "Veku");
+			l.dodajObveznicu("Gogeta", 20.00, 30, 21.00);
 			ostringstream out;
-			l->toStream(out);
+			l.toStream(out);
 			string rez = out.str();
 			string expected = "2\ndionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n";
 			Assert::AreEqual(expected, rez);
@@ -117,13 +117,13 @@ namespace LisnicaTest
 
 		TEST_METHOD(LeesnicatoStrum2)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(15.00, 30, "Fallout");
-			l->dodajDionicu(17.50, 35, "Stalker");
-			l->dodajObveznicu("Condemned", 20.00, 40, 21.00);
-			l->dodajObveznicu("Hitman", 22.50, 45, 22.00);
+			LisnicaClass l;
+			l.dodajDionicu(15.00, 30, "Fallout");
+			l.dodajDionicu(17.50, 35, "Stalker");
+			l.dodajObveznicu("Condemned", 20.00, 40, 21.00);
+			l.dodajObveznicu("Hitman", 22.50, 45, 22.00);
 			ostringstream out;
-			l->toStream(out);
+			l.toStream(out);
 			string rez = out.str();
 			string expected = "4\ndionica Fallout 15.00 30\ndionica Stalker 17.50 35\nobveznica Condemned 20.00 40 21.00\nobveznica Hitman 22.50 45 22.00\n";
 			Assert::AreEqual(expected, rez);
@@ -226,33 +226,33 @@ namespace LisnicaTest
 
 		TEST_METHOD(dodajDionicu)
 		{
-			LisnicaClass* l = new LisnicaClass();
+			LisnicaClass l;
 			double c = 73.18;
-			l->dodajDionicu(c, 100, "Fatman");
+			l.dodajDionicu(c, 100, "Fatman");
 		}
 
 		TEST_METHOD(sveDionice)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(14.99, 25, "Wazap");
-			l->dodajDionicu(29.98, 50, "Yo");
-			l->dodajObveznicu("Hoker", 42.56, 91, 70.38);
-			double rez = l->sveDionice();
+			LisnicaClass l;
+			l.dodajDionicu(14.99, 25, "Wazap");
+			l.dodajDionicu(29.98, 50, "Yo");
+			l.dodajObveznicu("Hoker", 42.56, 91, 70.38);
+			double rez = l.sveDionice();
 			Assert::AreEqual(rez, 1873.75);
 		}
 
 		TEST_METHOD(vracanjeukupneVrijednostiDionice)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(12.00, 40, "Funky");
-			double rez = l->vrijPoVrijPapir("Funky");
+			LisnicaClass l;
+			l.dodajDionicu(12.00, 40, "Funky");
+			double rez = l.vrijPoVrijPapir("Funky");
 			Assert::AreEqual(rez, 480.00);
 		}
 
 		TEST_METHOD(vracanjeukupneVrijednostiDionice2)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			double rez = l->vrijPoVrijPapir("Funky");
+			LisnicaClass l;
+			double rez = l.vrijPoVrijPapir("Funky");
 			Assert::AreEqual(rez, 0.00);
 		}
 
@@ -322,27 +322,27 @@ namespace LisnicaTest
 
 		TEST_METHOD(dodajObveznicu)
 		{
-			LisnicaClass* l = new LisnicaClass();
+			LisnicaClass l;
 			double c = 73.18;
-			bool t = l->dodajObveznicu("Fatman", c, 100, 53.12);
+			bool t = l.dodajObveznicu("Fatman", c, 100, 53.12);
 			Assert::AreEqual(t, true);
 		}
 
 		TEST_METHOD(nedodajIstoime)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool e = l->dodajObveznicu("Duplic", 100.00, 10, 100.00);
-			bool t = l->dodajObveznicu("Duplic", 50.00, 20, 50.00);
+			LisnicaClass l;
+			bool e = l.dodajObveznicu("Duplic", 100.00, 10, 100.00);
+			bool t = l.dodajObveznicu("Duplic", 50.00, 20, 50.00);
 			Assert::AreEqual(t, false);
 		}
 
 		TEST_METHOD(sveObveznice)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajObveznicu("Fatman", 73.18, 100, 53.12);
-			l->dodajObveznicu("Robin", 42.56, 91, 70.38);
-			l->dodajDionicu(19.99, 20, "PoS");
-			double rez = l->sveObveznice();
+			LisnicaClass l;
+			l.dodajObveznicu("Fatman", 73.18, 100, 53.12);
+			l.dodajObveznicu("Robin", 42.56, 91, 70.38);
+			l.dodajDionicu(19.99, 20, "PoS");
+			double rez = l.sveObveznice();
 			Assert::AreEqual(rez, 6613.110848);
 		}
 		TEST_METHOD(ObveznicatoStream)
@@ -357,25 +357,25 @@ namespace LisnicaTest
 
 		TEST_METHOD(vrijednostObveznice)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajObveznicu("Faku", 20.00, 24, 28.32);
-			double rez = l->sveObveznice();
+			LisnicaClass l;
+			l.dodajObveznicu("Faku", 20.00, 24, 28.32);
+			double rez = l.sveObveznice();
 			Assert::AreEqual(rez, 135.936, 0.001);
 		}
 
 		TEST_METHOD(vracanjeukupneVrijednostiObveznice)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajObveznicu("Diarrhea", 15.00, 40, 20.00);
-			double rez = l->vrijPoVrijPapir("Diarrhea");
+			LisnicaClass l;
+			l.dodajObveznicu("Diarrhea", 15.00, 40, 20.00);
+			double rez = l.vrijPoVrijPapir("Diarrhea");
 			Assert::AreEqual(rez, 120.00, 0.01);
 		}
 
 		TEST_METHOD(vracanjeukupneVrijednostiObveznice2)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajObveznicu("Fool", 20.00, 40, 30.00);
-			double rez = l->vrijPoVrijPapir("Fool");
+			LisnicaClass l;
+			l.dodajObveznicu("Fool", 20.00, 40, 30.00);
+			double rez = l.vrijPoVrijPapir("Fool");
 			Assert::AreEqual(rez, 240.00, 0.01);
 		}
 

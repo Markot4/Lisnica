@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "VrijednosniPapir.h"
 
 namespace markot4 {
