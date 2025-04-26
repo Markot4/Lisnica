@@ -9,7 +9,7 @@ namespace markot4 {
 		this->lisnica = lisnica;
 		this->argc = argc;
 		for (int i = 0; i < argc; ++i) {
-			this->argv.push_back(std::string(argv[i]));  // Convert char* to std::string and add to vector
+			this->argv.push_back(std::string(argv[i]));  // Pretvoara char* u std::string i dodajte u vektor
 		}
 	}
 
@@ -18,7 +18,7 @@ namespace markot4 {
         double vrijednost = this->lisnica->vrijPoVrijPapir(oznaka);
 
         ostringstream oss;
-        oss << std::fixed << std::setprecision(2) << vrijednost; // Format into the string stream
+        oss << std::fixed << std::setprecision(2) << vrijednost; // Formatira into the string stream
         string formatirana_vrijednost = oss.str();
 
         // Vrijednost PLV-R-A je 1520,73 Eur

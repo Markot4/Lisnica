@@ -5,8 +5,8 @@ using namespace std;
 
 namespace markot4 {
 
-	// vrijednosi papir moze biti dionica ili obveznica
-	// vrijednosti papir je roditeljska klasa tim dviju klasama
+	// vrijednosni papir moze biti dionica ili obveznica
+	// vrijednosni papir je roditeljska klasa tim dviju klasama
 	class VrijednosniPapir {
 	public:
 		double cijena; 
