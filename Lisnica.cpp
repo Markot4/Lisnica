@@ -24,30 +24,40 @@ int main(int argc, const char* argv[]) {
 
     string filename = "lisnica.dat";
     try {
-        LisnicaClass* l;
         try {
             ifstream inputFile(filename);
-            if (inputFile.is_open()) {
-                l = new LisnicaClass(inputFile);
-            }
-            else {
+            if (!inputFile.is_open()) {
                 cout << "lisnica.dat nije pronadjena, biti ce stvorena" << endl;
-                l = new LisnicaClass();
+                LisnicaClass l;
+                ofstream outputFile(filename);
+                l.toStream(outputFile);
+                outputFile.close();
             }
-            inputFile.close();
-        } catch (...) {
-            cerr << "Greska pri ucitavanju lisnice" << endl;
-            return -1;
+        }
+        catch (...) {
+            cerr << "Greška pri stvaranju lisnica.dat datoteke";
+            return - 1;
         }
 
-        LisnicaCommand command(argc, argv, l);
-        command.process();
+        ifstream inputFile(filename);
+        if (! inputFile.is_open()) {
+            cerr << "Greška pri otvaranju lisnica.dat datoteke";
+            return - 1;
+        }
+        LisnicaClass l(inputFile);
+        inputFile.close();
         
-        ofstream outputFile(filename);
-        l->toStream(outputFile);
-        outputFile.close();
+        LisnicaCommand command(argc, argv, &l);
+        command.process();
 
-        return 0;
+        try {
+            ofstream outputFile(filename);
+            l.toStream(outputFile);
+            outputFile.close();
+        } catch (...) {
+            cerr << "Greska pri spremanju lisnice" << endl;
+            return -1;
+        }
     }
     catch (const exception& e){
         cerr << e.what() << endl;
