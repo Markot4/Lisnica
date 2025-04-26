@@ -1,5 +1,7 @@
-// Lisnica.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// Lisnica.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+
+#include <windows.h>
 
 #include <iostream>
 #include "LisnicaClass.h"
@@ -14,6 +16,11 @@ using namespace markot4;
 using namespace std;
 
 int main(int argc, const char* argv[]) {
+
+    if (!SetConsoleOutputCP(CP_UTF8)) {
+        std::cerr << "Error setting console output code page: " << GetLastError() << std::endl;
+        // return 1; // Optional: exit if setting fails, though output might still partially work
+    }
 
     string filename = "lisnica.dat";
     try {

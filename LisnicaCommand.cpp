@@ -1,4 +1,4 @@
-#include "LisnicaCommand.h"
+﻿#include "LisnicaCommand.h"
 #include <stdexcept>
 #include <sstream>
 #include <fstream>
@@ -190,6 +190,6 @@ namespace markot4 {
             return;
         }
 
-        throw invalid_argument("Neispravana komanda!");
+        throw invalid_argument("Neispravna komanda!");
 	}
 }
