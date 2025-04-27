@@ -413,19 +413,19 @@ namespace LisnicaTest
 		TEST_METHOD(lisnicaCommandConstructor)
 		{
 			const char* argv[] = { "program_name", "arg1", "arg2", "arg3" };
-			LisnicaClass* l = new LisnicaClass();
-			LisnicaCommand lc(4, argv, l);
+			LisnicaClass l;
+			LisnicaCommand lc(4, argv, &l);
 		}
 
 		TEST_METHOD(lisnicaCommanddodajDionica)
 		{
 			// treba mi lisnica, i lisnica command
 			// trebam testirati komandu: lisnica dodaj dionica RIMAC 100 16.92
-			LisnicaClass* l = new LisnicaClass();
+			LisnicaClass l;
 			const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92" };
-			LisnicaCommand lc(6, argv, l);
+			LisnicaCommand lc(6, argv, &l);
 			lc.process();
-			double vrijednost = l->vrijednostCijeleLisnice();
+			double vrijednost = l.vrijednostCijeleLisnice();
 			Assert::AreEqual(vrijednost, 1692.00, 0.01);
 		}
 
@@ -433,9 +433,9 @@ namespace LisnicaTest
 		{
 			// testiranje pogresnog broja parametara
 			try {
-				LisnicaClass* l = new LisnicaClass();
+				LisnicaClass l;
 				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92" };
-				LisnicaCommand lc(5, argv, l);
+				LisnicaCommand lc(5, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
@@ -446,9 +446,9 @@ namespace LisnicaTest
 		{
 			// testiranje pogresnog broja parametara
 			try {
-				LisnicaClass* l = new LisnicaClass();
+				LisnicaClass l;
 				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92", "siljispiljis" };
-				LisnicaCommand lc(7, argv, l);
+				LisnicaCommand lc(7, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
@@ -460,9 +460,9 @@ namespace LisnicaTest
 			// treba mi lisnica, i lisnica command
 			// trebam testirati komandu: lisnica dodaj dionica RIMAC 100 16.92
 			try {
-				LisnicaClass* l = new LisnicaClass();
+				LisnicaClass l;
 				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "Bitch", "16.92", "siljispiljis" };
-				LisnicaCommand lc(7, argv, l);
+				LisnicaCommand lc(7, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
@@ -471,20 +471,20 @@ namespace LisnicaTest
 
 		TEST_METHOD(lisnicaCommanddodajObveznica)
 		{
-			LisnicaClass* l = new LisnicaClass();
+			LisnicaClass l;
 			const char* argv[] = { "Lisnica", "dodaj", "obveznica", "PLIVA", "40", "57.00", "45.21" };
-			LisnicaCommand lc(7, argv, l);
+			LisnicaCommand lc(7, argv, &l);
 			lc.process();
-			double vrijednost = l->vrijednostCijeleLisnice();
+			double vrijednost = l.vrijednostCijeleLisnice();
 			Assert::AreEqual(vrijednost, 1030.788, 0.001);
 		}
 
 		TEST_METHOD(lisnicaCommanddodajObveznica2)
 		{
 			try {
-				LisnicaClass* l = new LisnicaClass();
+				LisnicaClass l;
 				const char* argv[] = { "Lisnica", "dodaj", "obveznica", "PLIVA", "40", "57.00", "45.21" };
-				LisnicaCommand lc(6, argv, l);
+				LisnicaCommand lc(6, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
@@ -496,23 +496,23 @@ namespace LisnicaTest
 			// napraviti lisnicu, dodati dva vrijednsna papira
 			// napraviti lisnica command s argv za brisanje
 			// provjeriti da li je vp izbacen - vrijednost lisnice vise ga ne smije ukljucivati
-			LisnicaClass* l = new LisnicaClass();
-			bool o = l->dodajObveznicu("Thin", 20.00, 24, 19.00);
-			bool d = l->dodajDionicu(42.00, 60, "Muscular");
+			LisnicaClass l;
+			bool o = l.dodajObveznicu("Thin", 20.00, 24, 19.00);
+			bool d = l.dodajDionicu(42.00, 60, "Muscular");
 			const char* argv[] = { "Lisnica", "izbaci", "Thin" };
-			LisnicaCommand lc(3, argv, l);
+			LisnicaCommand lc(3, argv, &l);
 			lc.process();
-			double vrijednost = l->vrijednostCijeleLisnice();
+			double vrijednost = l.vrijednostCijeleLisnice();
 			Assert::AreEqual(vrijednost, 2520.00, 0.01);
 		}
 
 		TEST_METHOD(TestKomandaIzbacivanjeVPKrivibrojargumenata)
 		{
-			LisnicaClass* l = new LisnicaClass();
+			LisnicaClass l;
 			const char* argv[] = { "lisnica", "dodaj" };
 			try
 			{
-				LisnicaCommand lc(2, argv, l);
+				LisnicaCommand lc(2, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
@@ -521,11 +521,11 @@ namespace LisnicaTest
 
 		TEST_METHOD(BrisiDionicukojenema)
 		{
-			LisnicaClass* l = new LisnicaClass();
+			LisnicaClass l;
 			const char* argv[] = {"lisnica", "izbaci", "Brap"};
 			try 
 			{
-				LisnicaCommand lc(3, argv, l);
+				LisnicaCommand lc(3, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			} catch(...){}
@@ -533,12 +533,12 @@ namespace LisnicaTest
 
 		TEST_METHOD(PostojeciPapir)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool o = l->dodajObveznicu("Ninjer", 42.00, 36, 24.00);
+			LisnicaClass l;
+			bool o = l.dodajObveznicu("Ninjer", 42.00, 36, 24.00);
 			const char* argv[] = { "Lisnica", "dodaj", "obveznica", "Ninjer", "42.00", "36", "24.00"};
 			try
 			{
-				LisnicaCommand lc(7, argv, l);
+				LisnicaCommand lc(7, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
@@ -547,12 +547,12 @@ namespace LisnicaTest
 
 		TEST_METHOD(PostojeciPapir2)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool d = l->dodajDionicu(24.00, 12, "Binch");
+			LisnicaClass l;
+			bool d = l.dodajDionicu(24.00, 12, "Binch");
 			const char* argv[] = {"Lisnica", "dodaj", "obveznica", "Ninjer", "24.00", "12"};
 			try
 			{
-				LisnicaCommand lc(6, argv, l);
+				LisnicaCommand lc(6, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expeceted an exception but none was thrown.");
 			}
@@ -561,23 +561,23 @@ namespace LisnicaTest
 
 		TEST_METHOD(lisnicaClassPromjenaKolicine)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool d = l->dodajDionicu(24.00, 12, "Binch");
+			LisnicaClass l;
+			bool d = l.dodajDionicu(24.00, 12, "Binch");
 			const char* argv[] = {"lisnica", "kolicina", "Binch", "20"};
-			LisnicaCommand lc(4, argv, l);
+			LisnicaCommand lc(4, argv, &l);
 			lc.process();
-			double vrijednost = l->vrijednostCijeleLisnice();
+			double vrijednost = l.vrijednostCijeleLisnice();
 			Assert::AreEqual(vrijednost, 768.00, 0.01);
 		}
 
 		TEST_METHOD(lisnicaClassPromjenaKolicine2)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool d = l->dodajDionicu(24.00, 12, "Binch");
+			LisnicaClass l;
+			bool d = l.dodajDionicu(24.00, 12, "Binch");
 			const char* argv[] = { "lisnica", "kolicina", "Banch", "20" };
 			try
 			{
-				LisnicaCommand lc(4, argv, l);
+				LisnicaCommand lc(4, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
@@ -586,12 +586,12 @@ namespace LisnicaTest
 
 		TEST_METHOD(lisnicaClassPromjenaKolicine3)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool d = l->dodajDionicu(24.00, 12, "Binch");
+			LisnicaClass l;
+			bool d = l.dodajDionicu(24.00, 12, "Binch");
 			const char* argv[] = { "lisnica", "kolicina", "Binch", "20", "12"};
 			try
 			{
-				LisnicaCommand lc(5, argv, l);
+				LisnicaCommand lc(5, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
@@ -600,23 +600,23 @@ namespace LisnicaTest
 
 		TEST_METHOD(lisnicaClassPromjenaCijene)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool o = l->dodajObveznicu("Wroom", 50.00, 20, 24.00);
+			LisnicaClass l;
+			bool o = l.dodajObveznicu("Wroom", 50.00, 20, 24.00);
 			const char* argv[] = { "lisnica", "cijena", "Wroom", "20.00"};
-			LisnicaCommand lc(4, argv, l);
+			LisnicaCommand lc(4, argv, &l);
 			lc.process();
-			double vrijednost = l->vrijednostCijeleLisnice();
+			double vrijednost = l.vrijednostCijeleLisnice();
 			Assert::AreEqual(vrijednost, 96.00, 0.01);
 		}
 
 		TEST_METHOD(lisnicaClassPromjenaCijene2)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool o = l->dodajObveznicu("Wroom", 50.00, 20, 24.00);
+			LisnicaClass l;
+			bool o = l.dodajObveznicu("Wroom", 50.00, 20, 24.00);
 			const char* argv[] = { "lisnica", "cijena", "Broom", "20.00" };
 			try
 			{
-				LisnicaCommand lc(4, argv, l);
+				LisnicaCommand lc(4, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
@@ -625,12 +625,12 @@ namespace LisnicaTest
 
 		TEST_METHOD(lisnicaClassPromjenaCijene3)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool o = l->dodajObveznicu("Wroom", 50.00, 20, 24.00);
+			LisnicaClass l;
+			bool o = l.dodajObveznicu("Wroom", 50.00, 20, 24.00);
 			const char* argv[] = { "lisnica", "cijena", "Broom", "20.00", "30.00"};
 			try
 			{
-				LisnicaCommand lc(5, argv, l);
+				LisnicaCommand lc(5, argv, &l);
 				lc.process();
 				Assert::Fail(L"Expected an exception but none was thrown.");
 			}
@@ -639,13 +639,13 @@ namespace LisnicaTest
 
 		TEST_METHOD(IspisVrijednostiCijeleLisnice)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool d1 = l->dodajDionicu(10.00, 15, "Nirva");
-			bool d2 = l->dodajDionicu(20.00, 30, "Sanantana");
-			bool o1 = l->dodajObveznicu("LirnBiz", 25.00, 10, 12.00);
-			bool o2 = l->dodajObveznicu("KompKit", 22.00, 11, 13.00);
+			LisnicaClass l;
+			bool d1 = l.dodajDionicu(10.00, 15, "Nirva");
+			bool d2 = l.dodajDionicu(20.00, 30, "Sanantana");
+			bool o1 = l.dodajObveznicu("LirnBiz", 25.00, 10, 12.00);
+			bool o2 = l.dodajObveznicu("KompKit", 22.00, 11, 13.00);
 			const char* argv[] = {"lisnica", "vrijednost"};
-			LisnicaCommand lc(2, argv, l);
+			LisnicaCommand lc(2, argv, &l);
 			ostringstream out;
 			lc.vrijednostLisniceToStream(out);
 			string rez = out.str();
@@ -658,25 +658,25 @@ namespace LisnicaTest
 			// napraviti stream sa promjenama cijena nekolilo papira
 			// na lisnici pozvati promjena cijene
 			// provjeriti da se vrijednost lisnice odgovarajuce promjenila 
-			LisnicaClass* l = new LisnicaClass();
-			bool d1 = l->dodajDionicu(10.00, 15, "Nirva");
-			bool d2 = l->dodajDionicu(20.00, 30, "Sanantana");
-			bool o1 = l->dodajObveznicu("LirnBiz", 25.00, 10, 12.00);
-			bool o2 = l->dodajObveznicu("KompKit", 22.00, 11, 13.00);
+			LisnicaClass l;
+			bool d1 = l.dodajDionicu(10.00, 15, "Nirva");
+			bool d2 = l.dodajDionicu(20.00, 30, "Sanantana");
+			bool o1 = l.dodajObveznicu("LirnBiz", 25.00, 10, 12.00);
+			bool o2 = l.dodajObveznicu("KompKit", 22.00, 11, 13.00);
 			string promjene = "Sanantana 21.00\nKompKit 23.00\n";
 			istringstream promjeneStream(promjene);
-			l->promjenaCijene(promjeneStream);
-			double vrijednost = l->vrijednostCijeleLisnice();
+			l.promjenaCijene(promjeneStream);
+			double vrijednost = l.vrijednostCijeleLisnice();
 			Assert::AreEqual(vrijednost, 842.89);
 
 		}
 
 		TEST_METHOD(ispisVrijednostiPapira)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool o = l->dodajDionicu(20.00, 25, "PLIVA");
+			LisnicaClass l;
+			bool o = l.dodajDionicu(20.00, 25, "PLIVA");
 			const char* argv[] = { "lisnica", "vrijednost", "PLIVA"};
-			LisnicaCommand lc(3, argv, l);
+			LisnicaCommand lc(3, argv, &l);
 			ostringstream out;
 			lc.vrijednostPapiraToStream(out);
 			string rez = out.str();
@@ -685,12 +685,12 @@ namespace LisnicaTest
 		
 		TEST_METHOD(IspisUkupneVrijednostiDionica)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool d1 = l->dodajDionicu(10.00, 10, "Warcraft 4");
-			bool d2 = l->dodajDionicu(20.00, 15, "Gran Turismo 8");
-			bool o1 = l->dodajObveznicu("Meridianus", 10.00, 15, 12.00);
+			LisnicaClass l;
+			bool d1 = l.dodajDionicu(10.00, 10, "Warcraft 4");
+			bool d2 = l.dodajDionicu(20.00, 15, "Gran Turismo 8");
+			bool o1 = l.dodajObveznicu("Meridianus", 10.00, 15, 12.00);
 			const char* argv[] = { "lisnica", "vrijednost", "dionice"};
-			LisnicaCommand lc(3, argv, l);
+			LisnicaCommand lc(3, argv, &l);
 			ostringstream out;
 			lc.vrijednostDionicaToStream(out);
 			string rez = out.str();
@@ -700,14 +700,14 @@ namespace LisnicaTest
 
 		TEST_METHOD(IspisUkupneVrijednostiDionica2)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool d1 = l->dodajDionicu(0.00, 10, "Warcraft 4");
-			bool d2 = l->dodajDionicu(0.00, 15, "Gran Turismo 8");
-			bool o1 = l->dodajObveznicu("Meridianus", 10.00, 15, 12.00);
+			LisnicaClass l;
+			bool d1 = l.dodajDionicu(0.00, 10, "Warcraft 4");
+			bool d2 = l.dodajDionicu(0.00, 15, "Gran Turismo 8");
+			bool o1 = l.dodajObveznicu("Meridianus", 10.00, 15, 12.00);
 			const char* argv[] = { "lisnica", "vrijednost", "dionice", "15.00"};
 			try
 			{
-				LisnicaCommand lc(4, argv, l);
+				LisnicaCommand lc(4, argv, &l);
 				ostringstream out;
 				lc.vrijednostDionicaToStream(out);
 				Assert::Fail(L"Expected an exception but none was thrown.");
@@ -717,12 +717,12 @@ namespace LisnicaTest
 
 		TEST_METHOD(IspisUkupneVrijednostiObveznica)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool o1 = l->dodajObveznicu("Meridianus", 10.00, 15, 12.00);
-			bool o2 = l->dodajObveznicu("2000 Miles", 12.00, 19, 14.00);
-			bool d1 = l->dodajDionicu(0.00, 10, "Warcraft 4");
+			LisnicaClass l;
+			bool o1 = l.dodajObveznicu("Meridianus", 10.00, 15, 12.00);
+			bool o2 = l.dodajObveznicu("2000 Miles", 12.00, 19, 14.00);
+			bool d1 = l.dodajDionicu(0.00, 10, "Warcraft 4");
 			const char* argv[] = { "lisnica", "vrijednost", "obveznice" };
-			LisnicaCommand lc(3, argv, l);
+			LisnicaCommand lc(3, argv, &l);
 			ostringstream out;
 			lc.vrijednostObveznicaToStream(out);
 			string rez = out.str();
@@ -732,13 +732,13 @@ namespace LisnicaTest
 
 		TEST_METHOD(IspisUkupneVrijednostiObveznica2)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool o1 = l->dodajObveznicu("Meridianus", 10.00, 15, 12.00);
-			bool o2 = l->dodajObveznicu("2000 Miles", 12.00, 19, 14.00);
-			bool d1 = l->dodajDionicu(0.00, 10, "Warcraft 4");
+			LisnicaClass l;
+			bool o1 = l.dodajObveznicu("Meridianus", 10.00, 15, 12.00);
+			bool o2 = l.dodajObveznicu("2000 Miles", 12.00, 19, 14.00);
+			bool d1 = l.dodajDionicu(0.00, 10, "Warcraft 4");
 			const char* argv[] = { "lisnica", "vrijednost", "obveznice", "16.00"};
 			try {
-				LisnicaCommand lc(4, argv, l);
+				LisnicaCommand lc(4, argv, &l);
 				ostringstream out;
 				lc.vrijednostObveznicaToStream(out);
 				Assert::Fail(L"Expected an exception but none was thrown.");
@@ -748,13 +748,13 @@ namespace LisnicaTest
 
 		TEST_METHOD(papiriToStream)
 		{
-			LisnicaClass* l = new LisnicaClass();
-			bool o1 = l->dodajObveznicu("Wanky", 15.00, 10, 14.00);
-			bool o2 = l->dodajObveznicu("KilE", 12.00, 11, 13.00);
-			bool d1 = l->dodajDionicu(5.00, 1, "PaySt");
-			bool d2 = l->dodajDionicu(6.00, 2, "ThrOg");
+			LisnicaClass l;
+			bool o1 = l.dodajObveznicu("Wanky", 15.00, 10, 14.00);
+			bool o2 = l.dodajObveznicu("KilE", 12.00, 11, 13.00);
+			bool d1 = l.dodajDionicu(5.00, 1, "PaySt");
+			bool d2 = l.dodajDionicu(6.00, 2, "ThrOg");
 			const char* argv[] = { "lisnica", "sadrzaj"};
-			LisnicaCommand lc(2, argv, l);
+			LisnicaCommand lc(2, argv, &l);
 			ostringstream out;
 			lc.papiriToStream(out);
 			string rez = out.str();
