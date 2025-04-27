@@ -2,7 +2,6 @@
 #include <iostream>
 #include "VrijednosniPapir.h"
 #include <vector>
-using namespace std;
 namespace markot4 {
 	class LisnicaClass
 	{

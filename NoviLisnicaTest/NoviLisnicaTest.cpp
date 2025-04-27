@@ -432,41 +432,37 @@ namespace LisnicaTest
 		TEST_METHOD(lisnicaCommanddodajDionica2)
 		{
 			// testiranje pogresnog broja parametara
-			try {
-				LisnicaClass l;
-				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92" };
-				LisnicaCommand lc(5, argv, &l);
+			LisnicaClass l;
+			const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92" };
+			LisnicaCommand lc(5, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...) {}
+			});
 		}
 
 		TEST_METHOD(lisnicaCommanddodajDionica3)
 		{
-			// testiranje pogresnog broja parametara
-			try {
-				LisnicaClass l;
-				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92", "siljispiljis" };
-				LisnicaCommand lc(7, argv, &l);
+		// testiranje pogresnog broja parametara
+			LisnicaClass l;
+			const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92", "siljispiljis" };
+			LisnicaCommand lc(7, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...) {}
+			});
 		}
 
 		TEST_METHOD(lisnicaCommanddodajDionica4)
 		{
 			// treba mi lisnica, i lisnica command
 			// trebam testirati komandu: lisnica dodaj dionica RIMAC 100 16.92
-			try {
-				LisnicaClass l;
-				const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "Bitch", "16.92", "siljispiljis" };
-				LisnicaCommand lc(7, argv, &l);
+
+			LisnicaClass l;
+			const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "Bitch", "16.92", "siljispiljis" };
+			LisnicaCommand lc(7, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...) {}
+			});
+
 		}
 
 		TEST_METHOD(lisnicaCommanddodajObveznica)
@@ -481,14 +477,13 @@ namespace LisnicaTest
 
 		TEST_METHOD(lisnicaCommanddodajObveznica2)
 		{
-			try {
-				LisnicaClass l;
-				const char* argv[] = { "Lisnica", "dodaj", "obveznica", "PLIVA", "40", "57.00", "45.21" };
-				LisnicaCommand lc(6, argv, &l);
+			LisnicaClass l;
+			const char* argv[] = { "Lisnica", "dodaj", "obveznica", "PLIVA", "40", "57.00", "45.21" };
+			LisnicaCommand lc(6, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...) {}
+			});
+
 		}
 
 		TEST_METHOD(komandaizbacivanjeVrijednosnogpapira)
@@ -510,25 +505,21 @@ namespace LisnicaTest
 		{
 			LisnicaClass l;
 			const char* argv[] = { "lisnica", "dodaj" };
-			try
-			{
-				LisnicaCommand lc(2, argv, &l);
+			LisnicaCommand lc(2, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...) {}
+			});
+
 		}
 
 		TEST_METHOD(BrisiDionicukojenema)
 		{
 			LisnicaClass l;
 			const char* argv[] = {"lisnica", "izbaci", "Brap"};
-			try 
-			{
-				LisnicaCommand lc(3, argv, &l);
+			LisnicaCommand lc(3, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			} catch(...){}
+			});
 		}
 
 		TEST_METHOD(PostojeciPapir)
@@ -536,13 +527,10 @@ namespace LisnicaTest
 			LisnicaClass l;
 			bool o = l.dodajObveznicu("Ninjer", 42.00, 36, 24.00);
 			const char* argv[] = { "Lisnica", "dodaj", "obveznica", "Ninjer", "42.00", "36", "24.00"};
-			try
-			{
-				LisnicaCommand lc(7, argv, &l);
+			LisnicaCommand lc(7, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...){}
+			});
 		}
 
 		TEST_METHOD(PostojeciPapir2)
@@ -550,13 +538,10 @@ namespace LisnicaTest
 			LisnicaClass l;
 			bool d = l.dodajDionicu(24.00, 12, "Binch");
 			const char* argv[] = {"Lisnica", "dodaj", "obveznica", "Ninjer", "24.00", "12"};
-			try
-			{
-				LisnicaCommand lc(6, argv, &l);
+			LisnicaCommand lc(6, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expeceted an exception but none was thrown.");
-			}
-			catch(...){}
+			});
 		}
 
 		TEST_METHOD(lisnicaClassPromjenaKolicine)
@@ -575,13 +560,10 @@ namespace LisnicaTest
 			LisnicaClass l;
 			bool d = l.dodajDionicu(24.00, 12, "Binch");
 			const char* argv[] = { "lisnica", "kolicina", "Banch", "20" };
-			try
-			{
-				LisnicaCommand lc(4, argv, &l);
+			LisnicaCommand lc(4, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch(...){}
+			});
 		}
 
 		TEST_METHOD(lisnicaClassPromjenaKolicine3)
@@ -589,13 +571,10 @@ namespace LisnicaTest
 			LisnicaClass l;
 			bool d = l.dodajDionicu(24.00, 12, "Binch");
 			const char* argv[] = { "lisnica", "kolicina", "Binch", "20", "12"};
-			try
-			{
-				LisnicaCommand lc(5, argv, &l);
+			LisnicaCommand lc(5, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...) {}
+			});
 		}
 
 		TEST_METHOD(lisnicaClassPromjenaCijene)
@@ -614,13 +593,10 @@ namespace LisnicaTest
 			LisnicaClass l;
 			bool o = l.dodajObveznicu("Wroom", 50.00, 20, 24.00);
 			const char* argv[] = { "lisnica", "cijena", "Broom", "20.00" };
-			try
-			{
-				LisnicaCommand lc(4, argv, &l);
+			LisnicaCommand lc(4, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...){}
+			});
 		}
 
 		TEST_METHOD(lisnicaClassPromjenaCijene3)
@@ -628,13 +604,10 @@ namespace LisnicaTest
 			LisnicaClass l;
 			bool o = l.dodajObveznicu("Wroom", 50.00, 20, 24.00);
 			const char* argv[] = { "lisnica", "cijena", "Broom", "20.00", "30.00"};
-			try
-			{
-				LisnicaCommand lc(5, argv, &l);
+			LisnicaCommand lc(5, argv, &l);
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...) {}
+			});
 		}
 
 		TEST_METHOD(IspisVrijednostiCijeleLisnice)
@@ -705,14 +678,11 @@ namespace LisnicaTest
 			bool d2 = l.dodajDionicu(0.00, 15, "Gran Turismo 8");
 			bool o1 = l.dodajObveznicu("Meridianus", 10.00, 15, 12.00);
 			const char* argv[] = { "lisnica", "vrijednost", "dionice", "15.00"};
-			try
-			{
-				LisnicaCommand lc(4, argv, &l);
-				ostringstream out;
+			LisnicaCommand lc(4, argv, &l);
+			ostringstream out;
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.vrijednostDionicaToStream(out);
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...) {}
+			});
 		}
 
 		TEST_METHOD(IspisUkupneVrijednostiObveznica)
@@ -737,13 +707,12 @@ namespace LisnicaTest
 			bool o2 = l.dodajObveznicu("2000 Miles", 12.00, 19, 14.00);
 			bool d1 = l.dodajDionicu(0.00, 10, "Warcraft 4");
 			const char* argv[] = { "lisnica", "vrijednost", "obveznice", "16.00"};
-			try {
-				LisnicaCommand lc(4, argv, &l);
-				ostringstream out;
+			LisnicaCommand lc(4, argv, &l);
+			ostringstream out;
+			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.vrijednostObveznicaToStream(out);
-				Assert::Fail(L"Expected an exception but none was thrown.");
-			}
-			catch (...) {}
+			});
+			
 		}
 
 		TEST_METHOD(papiriToStream)
