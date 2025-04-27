@@ -18,17 +18,17 @@ namespace markot4 {
 	*/
 
 	VrijednosniPapir::VrijednosniPapir() : oznaka(""), kolicina(0), cijena(0.0) {}
-	VrijednosniPapir::VrijednosniPapir(string oznaka) : oznaka(oznaka), kolicina(0), cijena(0.0) {}
-	VrijednosniPapir::VrijednosniPapir(string oznaka, int kolicina, double cijena) : oznaka(oznaka), kolicina(kolicina), cijena(cijena) {}
+	VrijednosniPapir::VrijednosniPapir(std::string oznaka) : oznaka(oznaka), kolicina(0), cijena(0.0) {}
+	VrijednosniPapir::VrijednosniPapir(std::string oznaka, int kolicina, double cijena) : oznaka(oznaka), kolicina(kolicina), cijena(cijena) {}
 
-	VrijednosniPapir* VrijednosniPapir::fromStream(istream& from) {
-		string vrsta;
+	VrijednosniPapir* VrijednosniPapir::fromStream(std::istream& from) {
+		std::string vrsta;
 		from >> vrsta;
 		if (vrsta == "dionica") {
 			return new Dionica(from);
 		}
 		if (vrsta != "obveznica") {
-			throw invalid_argument("Nepostojeća vrsta vrijednosnog papira");
+			throw std::invalid_argument("Nepostojeća vrsta vrijednosnog papira");
 		}
 		return new Obveznica(from);
 	}

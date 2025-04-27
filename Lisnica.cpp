@@ -21,26 +21,26 @@ int main(int argc, const char* argv[]) {
         // return 1; // Opcionalno: exit ako postavka neuspije, ionak output mozda dalje parcionalno radi
     }
 
-    string filename = "lisnica.dat";
+    std::string filename = "lisnica.dat";
     try {
         try {
-            ifstream inputFile(filename);
+            std::ifstream inputFile(filename);
             if (!inputFile.is_open()) {
-                cout << "lisnica.dat nije pronađena, biti će stvorena" << endl;
+                std::cout << "lisnica.dat nije pronađena, biti će stvorena" << std::endl;
                 LisnicaClass l;
-                ofstream outputFile(filename);
+                std::ofstream outputFile(filename);
                 l.toStream(outputFile);
                 outputFile.close();
             }
         }
         catch (...) {
-            cerr << "Greška pri stvaranju lisnica.dat datoteke";
+            std::cerr << "Greška pri stvaranju lisnica.dat datoteke";
             return - 1;
         }
 
-        ifstream inputFile(filename);
+        std::ifstream inputFile(filename);
         if (! inputFile.is_open()) {
-            cerr << "Greška pri otvaranju lisnica.dat datoteke";
+            std::cerr << "Greška pri otvaranju lisnica.dat datoteke";
             return - 1;
         }
         LisnicaClass l(inputFile);
@@ -50,16 +50,16 @@ int main(int argc, const char* argv[]) {
         command.process();
 
         try {
-            ofstream outputFile(filename);
+            std::ofstream outputFile(filename);
             l.toStream(outputFile);
             outputFile.close();
         } catch (...) {
-            cerr << "Greška pri spremanju lisnice" << endl;
+            std::cerr << "Greška pri spremanju lisnice" << std::endl;
             return -1;
         }
     }
-    catch (const exception& e){
-        cerr << e.what() << endl;
+    catch (const std::exception& e){
+        std::cerr << e.what() << std::endl;
         return -1;
     }
     return 0;

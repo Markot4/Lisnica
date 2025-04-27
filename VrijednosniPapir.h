@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <iostream>
 #include <string>
-using namespace std;
+//using namespace std;
 
 namespace markot4 {
 
@@ -11,26 +11,26 @@ namespace markot4 {
 	public:
 		double cijena; 
 		int kolicina;
-		string oznaka;
+		std::string oznaka;
 
 		VrijednosniPapir();
-        VrijednosniPapir(string oznaka);
-		VrijednosniPapir(string oznaka, int kolicina, double cijena);
+		VrijednosniPapir(std::string oznaka);
+		VrijednosniPapir(std::string oznaka, int kolicina, double cijena);
 
 		VrijednosniPapir(const VrijednosniPapir&) = delete;
 		VrijednosniPapir& operator=(const VrijednosniPapir&) = delete;
 		VrijednosniPapir(VrijednosniPapir&&) = delete;
 		VrijednosniPapir& operator=(VrijednosniPapir&&) = delete;
 
-		static VrijednosniPapir* fromStream(istream& from);
+		static VrijednosniPapir* fromStream(std::istream& from);
 
 		void postaviCijenu(double novaCijena); 
 		double dohvatiCijenu() const;
 		virtual double izracunajVrijednost() = 0;
 		virtual bool isDionica() = 0;
 		virtual bool isObveznica() = 0;
-		virtual void toStream(ostream &to) = 0;
-		virtual void ispisToStream(ostream& to) = 0;
+		virtual void toStream(std::ostream &to) = 0;
+		virtual void ispisToStream(std::ostream& to) = 0;
 		virtual ~VrijednosniPapir();
 	};
 }

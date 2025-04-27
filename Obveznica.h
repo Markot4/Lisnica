@@ -6,17 +6,17 @@ namespace markot4 {
         
         public:
             double nominalnaCijena;
-            Obveznica(string oznaka);
-            Obveznica(string oznaka, double cijena, int kolicina, double nominalnaCijena);
-            Obveznica(istream& from);
+            Obveznica(std::string oznaka);
+            Obveznica(std::string oznaka, double cijena, int kolicina, double nominalnaCijena);
+            Obveznica(std::istream& from);
 
-            void toStream(ostream& to) override;
+            void toStream(std::ostream& to) override;
             void postaviCijenu(double novaCijena);
             double dohvatiCijenu() const;
             double izracunajVrijednost() override;
             bool isDionica() override;
             bool isObveznica() override;
-            void ispisToStream(ostream& to) override;
+            void ispisToStream(std::ostream& to) override;
             ~Obveznica() override;
     };
 }

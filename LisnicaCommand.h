@@ -6,7 +6,7 @@ namespace markot4{
 	{
 	private:
 		int argc;
-		vector<string> argv;
+		std::vector<std::string> argv;
 
 
 	public:
@@ -15,13 +15,13 @@ namespace markot4{
 		LisnicaCommand(int argc, const char* argv[], LisnicaClass* lisnica);
 		void process();
 
-		void vrijednostPapiraToStream(ostream& to);
-		void vrijednostDionicaToStream(ostream& to);
-		void vrijednostObveznicaToStream(ostream& to);
-		void papiriToStream(ostream& to);
-		void vrijednostLisniceToStream(ostream& to);
-		void promjenaCijena(istream& from);
-		void promjenaCijena(string imeDatoteke);
+		void vrijednostPapiraToStream(std::ostream& to);
+		void vrijednostDionicaToStream(std::ostream& to);
+		void vrijednostObveznicaToStream(std::ostream& to);
+		void papiriToStream(std::ostream& to);
+		void vrijednostLisniceToStream(std::ostream& to);
+		void promjenaCijena(std::istream& from);
+		void promjenaCijena(std::string imeDatoteke);
 
 	};
 }

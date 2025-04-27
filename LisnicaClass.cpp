@@ -12,7 +12,7 @@ namespace markot4 {
 		return;
 	}
 
-	bool LisnicaClass::izbaciVrijednosniPapir(string oznaka) {
+	bool LisnicaClass::izbaciVrijednosniPapir(std::string oznaka) {
 		int ix = -1;
 		for (int i = 0; i < papiri.size();i++) {
 			VrijednosniPapir *vp = papiri[i];
@@ -27,7 +27,7 @@ namespace markot4 {
 		return false;
 	}
 
-	int LisnicaClass::promjenaKolicine(int promjena, string oznaka) {
+	int LisnicaClass::promjenaKolicine(int promjena, std::string oznaka) {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
 			if (vp->oznaka == oznaka) {
@@ -39,11 +39,11 @@ namespace markot4 {
 				return vp->kolicina;
 			}
 		}
-		throw invalid_argument("Ne postoji vrijednosni papir"); //relativno
+		throw std::invalid_argument("Ne postoji vrijednosni papir"); //relativno
 	}
 
 	// promijena cijene vrijednosnim papirima sa oznakom u varijabli "oznaka"
-	void LisnicaClass::promjenaCijene(double cijena, string oznaka) {
+	void LisnicaClass::promjenaCijene(double cijena, std::string oznaka) {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
 			if (vp->oznaka == oznaka) {
@@ -51,10 +51,10 @@ namespace markot4 {
 				return;
 			}
 		}
-		throw invalid_argument("Ne postoji vrijednosni papir");
+		throw std::invalid_argument("Ne postoji vrijednosni papir");
 	}
 
-	double LisnicaClass::vrijPoVrijPapir(string oznaka) {
+	double LisnicaClass::vrijPoVrijPapir(std::string oznaka) {
 		// provjerimo na koji se papir odnosi oznaka te vratimo kolicinu pomnozenu sa cijenom
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
@@ -97,18 +97,18 @@ namespace markot4 {
 	}
 
 	void LisnicaClass::sadrzajCijeleLisnice() {
-		cout << "Sadrzaj lisnice:" << endl;
+		std::cout << "Sadrzaj lisnice:" << std::endl;
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
-			cout << "Oznaka: " << vp->oznaka << ", Kolicina: " << vp->kolicina
-				<< ", Cijena: " << vp->cijena << endl;
+			std::cout << "Oznaka: " << vp->oznaka << ", Kolicina: " << vp->kolicina
+				<< ", Cijena: " << vp->cijena << std::endl;
 		}
 	}
 	LisnicaClass::LisnicaClass() {
 		// NEDOVRSENO
 	}
 
-	bool LisnicaClass::dodajDionicu(double cijena, int kolicina, string oznaka) {
+	bool LisnicaClass::dodajDionicu(double cijena, int kolicina, std::string oznaka) {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir* vp = papiri[i];
 			if (vp->oznaka == oznaka) {
@@ -121,7 +121,7 @@ namespace markot4 {
 		return true;
 	}
 
-	bool LisnicaClass::dodajObveznicu(string oznaka, double cijena, int kolicina, double nominalnaCijena) {
+	bool LisnicaClass::dodajObveznicu(std::string oznaka, double cijena, int kolicina, double nominalnaCijena) {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir* vp = papiri[i];
 			if (vp->oznaka == oznaka) {
@@ -134,33 +134,33 @@ namespace markot4 {
 		return true;
 	}
 
-	void LisnicaClass::toStream(ostream& to) {
+	void LisnicaClass::toStream(std::ostream& to) {
 		size_t kulike = papiri.size();
-		to << kulike << endl;
+		to << kulike << std::endl;
 		for (int i = 0; i < kulike; i++) {
 			VrijednosniPapir *vp = papiri[i];
 			vp->toStream(to);
-			to << endl;
+			to << std::endl;
 		}
 	}
 
-	void LisnicaClass::ispisToStream(ostream& to) {
+	void LisnicaClass::ispisToStream(std::ostream& to) {
 		size_t kulike = papiri.size();
-		to << "Sadrzaj lisnice" << endl;
+		to << "Sadrzaj lisnice" << std::endl;
 		for (int i = 0; i < kulike; i++) {
 			VrijednosniPapir* vp = papiri[i];
 			vp->ispisToStream(to);
-			to << endl;
+			to << std::endl;
 		}
 	}
 
-	int LisnicaClass::promjenaCijene(istream& from) {
-		string line;
+	int LisnicaClass::promjenaCijene(std::istream& from) {
+		std::string line;
 		int promijenjeno = 0;
 		while (getline(from, line)) {
 			if (line.length() > 0) {
-				istringstream line_stream(line);
-				string oznaka;
+				std::istringstream line_stream(line);
+				std::string oznaka;
 				double novaCijena;
 				line_stream >> oznaka;
 				line_stream >> novaCijena;
@@ -174,9 +174,9 @@ namespace markot4 {
 		return promijenjeno;
 	}
 
-	LisnicaClass::LisnicaClass(istream& from) : papiri() {
+	LisnicaClass::LisnicaClass(std::istream& from) : papiri() {
 		int kulike;
-		string line;
+		std::string line;
 		from >> kulike;
 		getline(from, line);
 		for (int i=0; i< kulike; i++) {

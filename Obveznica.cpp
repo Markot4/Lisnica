@@ -3,10 +3,10 @@
 #include <iomanip> 
 
 namespace markot4 {
-    Obveznica::Obveznica(string oznaka) : VrijednosniPapir(oznaka), nominalnaCijena(100){}
-    Obveznica::Obveznica(string oznaka, double cijena, int kolicina, double nominalnaCijena) : VrijednosniPapir(oznaka, kolicina, cijena), nominalnaCijena(nominalnaCijena) {}
-    Obveznica::Obveznica(istream& from) {
-        string line;
+    Obveznica::Obveznica(std::string oznaka) : VrijednosniPapir(oznaka), nominalnaCijena(100){}
+    Obveznica::Obveznica(std::string oznaka, double cijena, int kolicina, double nominalnaCijena) : VrijednosniPapir(oznaka, kolicina, cijena), nominalnaCijena(nominalnaCijena) {}
+    Obveznica::Obveznica(std::istream& from) {
+        std::string line;
         from >> oznaka >> cijena >> kolicina >> nominalnaCijena;
         getline(from, line);
     }
@@ -22,15 +22,15 @@ namespace markot4 {
         return cijena * nominalnaCijena * kolicina / 100;
     }
 
-    void Obveznica::toStream(ostream& to) {
+    void Obveznica::toStream(std::ostream& to) {
 
-        ostringstream oss;
+        std::ostringstream oss;
         oss << std::fixed << std::setprecision(2) << cijena;
-        string formatirana_cijena = oss.str();
+        std::string formatirana_cijena = oss.str();
 
-        ostringstream nominala_stream;
+        std::ostringstream nominala_stream;
         nominala_stream << std::fixed << std::setprecision(2) << nominalnaCijena;
-        string formatirana_nominala = nominala_stream.str();
+        std::string formatirana_nominala = nominala_stream.str();
 
         to << "obveznica " << oznaka << " " << formatirana_cijena << " " << kolicina << " " << formatirana_nominala;
     }
@@ -42,14 +42,14 @@ namespace markot4 {
     bool Obveznica::isDionica() {
         return false;
     }
-    void Obveznica::ispisToStream(ostream& to) {
-        ostringstream oss;
+    void Obveznica::ispisToStream(std::ostream& to) {
+        std::ostringstream oss;
         oss << std::fixed << std::setprecision(2) << cijena;
-        string formatirana_cijena = oss.str();
+        std::string formatirana_cijena = oss.str();
 
-        ostringstream nominala_stream;
+        std::ostringstream nominala_stream;
         nominala_stream << std::fixed << std::setprecision(2) << nominalnaCijena;
-        string formatirana_nominala = nominala_stream.str();
+        std::string formatirana_nominala = nominala_stream.str();
 
         to << oznaka << " " << formatirana_cijena << " " << kolicina << " " << formatirana_nominala;
     }

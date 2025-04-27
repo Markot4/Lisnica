@@ -108,10 +108,10 @@ namespace LisnicaTest
 			LisnicaClass l;
 			l.dodajDionicu(19.50, 25, "Veku");
 			l.dodajObveznicu("Gogeta", 20.00, 30, 21.00);
-			ostringstream out;
+			std::ostringstream out;
 			l.toStream(out);
-			string rez = out.str();
-			string expected = "2\ndionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n";
+			std::string rez = out.str();
+			std::string expected = "2\ndionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n";
 			Assert::AreEqual(expected, rez);
 		}
 
@@ -122,10 +122,10 @@ namespace LisnicaTest
 			l.dodajDionicu(17.50, 35, "Stalker");
 			l.dodajObveznicu("Condemned", 20.00, 40, 21.00);
 			l.dodajObveznicu("Hitman", 22.50, 45, 22.00);
-			ostringstream out;
+			std::ostringstream out;
 			l.toStream(out);
-			string rez = out.str();
-			string expected = "4\ndionica Fallout 15.00 30\ndionica Stalker 17.50 35\nobveznica Condemned 20.00 40 21.00\nobveznica Hitman 22.50 45 22.00\n";
+			std::string rez = out.str();
+			std::string expected = "4\ndionica Fallout 15.00 30\ndionica Stalker 17.50 35\nobveznica Condemned 20.00 40 21.00\nobveznica Hitman 22.50 45 22.00\n";
 			Assert::AreEqual(expected, rez);
 		}
 
@@ -134,11 +134,11 @@ namespace LisnicaTest
 			//trebam varijablu tipa pointer na vrijednosnipapir
 			//trebam pozvati staticku metodu fromStream na klasi VrijednosniPapir sa podacima za dionicu
 			//nakon toga provjeriti da je VrijednosniPapir dobro kreiran
-			istringstream in = istringstream("dionica Dawg 13.60 95");
+			std::istringstream in = std::istringstream("dionica Dawg 13.60 95");
 			VrijednosniPapir* vp = VrijednosniPapir::fromStream(in);
 			Assert::IsTrue(vp->isDionica());
 			Assert::IsFalse(vp->isObveznica());
-			Assert::AreEqual(vp->oznaka, string("Dawg"));
+			Assert::AreEqual(vp->oznaka, std::string("Dawg"));
 			Assert::AreEqual(vp->cijena, 13.60);
 			Assert::AreEqual(vp->kolicina, 95);
 		}
@@ -148,11 +148,11 @@ namespace LisnicaTest
 			//trebam varijablu tipa pointer na vrijednosnipapir
 			//trebam pozvati staticku metodu fromStream na klasi VrijednosniPapir sa podacima za obveznicu
 			//nakon toga provjeriti da je VrijednosniPapir dobro kreiran
-			istringstream in = istringstream("obveznica Birdy 15.00 75 20.00");
+			std::istringstream in = std::istringstream("obveznica Birdy 15.00 75 20.00");
 			VrijednosniPapir* vp = VrijednosniPapir::fromStream(in);
 			Assert::IsTrue(vp->isObveznica());
 			Assert::IsFalse(vp->isDionica());
-			Assert::AreEqual(vp->oznaka, string("Birdy"));
+			Assert::AreEqual(vp->oznaka, std::string("Birdy"));
 			Assert::AreEqual(vp->cijena, 15.00);
 			Assert::AreEqual(vp->kolicina, 75);
 			Assert::AreEqual(((Obveznica*)vp)->nominalnaCijena, 20.00);
@@ -160,7 +160,7 @@ namespace LisnicaTest
 
 		TEST_METHOD(LisnicaFromStream)
 		{
-			istringstream in = istringstream("2\ndionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n");
+			std::istringstream in = std::istringstream("2\ndionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n");
 			LisnicaClass* lisnica = new LisnicaClass(in);
 			Assert::AreEqual(lisnica->sveDionice(), 487.5);
 			Assert::AreEqual(lisnica->sveObveznice(), 126.0);
@@ -195,20 +195,20 @@ namespace LisnicaTest
 		TEST_METHOD(DionicatoStream)
 		{
 			Dionica d("Dawg", 95, 13.60);
-			ostringstream out;
+			std::ostringstream out;
 			d.toStream(out);
-			string rez = out.str();
-			string expected = "dionica Dawg 13.60 95";
+			std::string rez = out.str();
+			std::string expected = "dionica Dawg 13.60 95";
 			Assert::AreEqual(expected, rez);
 		}
 
 		TEST_METHOD(DionicaFromStream)
 		{
-			istringstream stream = istringstream("Dawg 13.60 95");
+			std::istringstream stream = std::istringstream("Dawg 13.60 95");
 			Dionica d(stream);
 			Assert::AreEqual(d.kolicina, 95);
 			Assert::AreEqual(d.cijena, 13.60);
-			string expected = "Dawg";
+			std::string expected = "Dawg";
 			Assert::AreEqual(d.oznaka, expected);
 		}
 
@@ -264,13 +264,13 @@ namespace LisnicaTest
 			// usporedi da li su podaci u pocetnoj i novoj dionici isti (oznaka, kolicina, cijena)
 
 			Dionica d("Stup", 20, 15.20);
-			ostringstream out;
+			std::ostringstream out;
 			d.toStream(out);
-			string rez = out.str();
-			istringstream in = istringstream(rez);
-			string vrsta;
+			std::string rez = out.str();
+			std::istringstream in = std::istringstream(rez);
+			std::string vrsta;
 			in >> vrsta;
-			string vrstaDionica = "dionica";
+			std::string vrstaDionica = "dionica";
 			Assert::AreEqual(vrsta, vrstaDionica);
 			Dionica nova(in);
 			Assert::AreEqual(d.oznaka, nova.oznaka);
@@ -348,10 +348,10 @@ namespace LisnicaTest
 		TEST_METHOD(ObveznicatoStream)
 		{
 			Obveznica d("Fatman", 73.18, 100, 53.12);
-			ostringstream out;
+			std::ostringstream out;
 			d.toStream(out);
-			string rez = out.str();
-			string expected = "obveznica Fatman 73.18 100 53.12";
+			std::string rez = out.str();
+			std::string expected = "obveznica Fatman 73.18 100 53.12";
 			Assert::AreEqual(expected, rez);
 		}
 
@@ -380,12 +380,12 @@ namespace LisnicaTest
 		}
 
 		TEST_METHOD(ObveznicaFromStream) {
-			istringstream stream = istringstream("Binch 15.20 20 16.00");
+			std::istringstream stream = std::istringstream("Binch 15.20 20 16.00");
 			Obveznica o(stream);
 			Assert::AreEqual(o.nominalnaCijena, 16.00);
 			Assert::AreEqual(o.kolicina, 20);
 			Assert::AreEqual(o.cijena, 15.20);
-			string expected = "Binch";
+			std::string expected = "Binch";
 			Assert::AreEqual(o.oznaka, expected);
 		}
 
@@ -395,13 +395,13 @@ namespace LisnicaTest
 			// iz tog streama procitaj novu obveznicu
 			// usporedi da li su podaci u pocetnoj i novoj obveznici isti (oznaka, cijena, kolicina, nominala)
 			Obveznica o("World", 12.00, 24, 17.00);
-			ostringstream out;
+			std::ostringstream out;
 			o.toStream(out);
-			string rez = out.str();
-			istringstream in = istringstream(rez);
-			string vrsta;
+			std::string rez = out.str();
+			std::istringstream in = std::istringstream(rez);
+			std::string vrsta;
 			in >> vrsta;
-			string vrstaObveznica = "obveznica";
+			std::string vrstaObveznica = "obveznica";
 			Assert::AreEqual(vrsta, vrstaObveznica);
 			Obveznica nova(in);
 			Assert::AreEqual(o.oznaka, nova.oznaka);
@@ -619,10 +619,10 @@ namespace LisnicaTest
 			bool o2 = l.dodajObveznicu("KompKit", 22.00, 11, 13.00);
 			const char* argv[] = {"lisnica", "vrijednost"};
 			LisnicaCommand lc(2, argv, &l);
-			ostringstream out;
+			std::ostringstream out;
 			lc.vrijednostLisniceToStream(out);
-			string rez = out.str();
-			Assert::AreEqual(rez, string("Ukupna vrijednost lisnice je 811.46 Eur"));
+			std::string rez = out.str();
+			Assert::AreEqual(rez, std::string("Ukupna vrijednost lisnice je 811.46 Eur"));
 		}
 
 		TEST_METHOD(PromjenaCijeneStream)
@@ -636,8 +636,8 @@ namespace LisnicaTest
 			bool d2 = l.dodajDionicu(20.00, 30, "Sanantana");
 			bool o1 = l.dodajObveznicu("LirnBiz", 25.00, 10, 12.00);
 			bool o2 = l.dodajObveznicu("KompKit", 22.00, 11, 13.00);
-			string promjene = "Sanantana 21.00\nKompKit 23.00\n";
-			istringstream promjeneStream(promjene);
+			std::string promjene = "Sanantana 21.00\nKompKit 23.00\n";
+			std::istringstream promjeneStream(promjene);
 			l.promjenaCijene(promjeneStream);
 			double vrijednost = l.vrijednostCijeleLisnice();
 			Assert::AreEqual(vrijednost, 842.89);
@@ -650,10 +650,10 @@ namespace LisnicaTest
 			bool o = l.dodajDionicu(20.00, 25, "PLIVA");
 			const char* argv[] = { "lisnica", "vrijednost", "PLIVA"};
 			LisnicaCommand lc(3, argv, &l);
-			ostringstream out;
+			std::ostringstream out;
 			lc.vrijednostPapiraToStream(out);
-			string rez = out.str();
-			Assert::AreEqual(rez, string("Vrijednost PLIVA je 500.00 Eur"));
+			std::string rez = out.str();
+			Assert::AreEqual(rez, std::string("Vrijednost PLIVA je 500.00 Eur"));
 		}
 		
 		TEST_METHOD(IspisUkupneVrijednostiDionica)
@@ -664,10 +664,10 @@ namespace LisnicaTest
 			bool o1 = l.dodajObveznicu("Meridianus", 10.00, 15, 12.00);
 			const char* argv[] = { "lisnica", "vrijednost", "dionice"};
 			LisnicaCommand lc(3, argv, &l);
-			ostringstream out;
+			std::ostringstream out;
 			lc.vrijednostDionicaToStream(out);
-			string rez = out.str();
-			Assert::AreEqual(rez, string("Ukupna vrijednost svih dionica u lisnici je 400.00 Eur"));
+			std::string rez = out.str();
+			Assert::AreEqual(rez, std::string("Ukupna vrijednost svih dionica u lisnici je 400.00 Eur"));
 			
 		}
 
@@ -679,7 +679,7 @@ namespace LisnicaTest
 			bool o1 = l.dodajObveznicu("Meridianus", 10.00, 15, 12.00);
 			const char* argv[] = { "lisnica", "vrijednost", "dionice", "15.00"};
 			LisnicaCommand lc(4, argv, &l);
-			ostringstream out;
+			std::ostringstream out;
 			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.vrijednostDionicaToStream(out);
 			});
@@ -693,10 +693,10 @@ namespace LisnicaTest
 			bool d1 = l.dodajDionicu(0.00, 10, "Warcraft 4");
 			const char* argv[] = { "lisnica", "vrijednost", "obveznice" };
 			LisnicaCommand lc(3, argv, &l);
-			ostringstream out;
+			std::ostringstream out;
 			lc.vrijednostObveznicaToStream(out);
-			string rez = out.str();
-			Assert::AreEqual(rez, string("Ukupna vrijednost svih obveznica u lisnici je 49.92 Eur"));
+			std::string rez = out.str();
+			Assert::AreEqual(rez, std::string("Ukupna vrijednost svih obveznica u lisnici je 49.92 Eur"));
 
 		}
 
@@ -708,7 +708,7 @@ namespace LisnicaTest
 			bool d1 = l.dodajDionicu(0.00, 10, "Warcraft 4");
 			const char* argv[] = { "lisnica", "vrijednost", "obveznice", "16.00"};
 			LisnicaCommand lc(4, argv, &l);
-			ostringstream out;
+			std::ostringstream out;
 			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.vrijednostObveznicaToStream(out);
 			});
@@ -724,10 +724,10 @@ namespace LisnicaTest
 			bool d2 = l.dodajDionicu(6.00, 2, "ThrOg");
 			const char* argv[] = { "lisnica", "sadrzaj"};
 			LisnicaCommand lc(2, argv, &l);
-			ostringstream out;
+			std::ostringstream out;
 			lc.papiriToStream(out);
-			string rez = out.str();
-			Assert::AreEqual(rez, string("Sadrzaj lisnice\nWanky 15.00 10 14.00\nKilE 12.00 11 13.00\nPaySt 5.00 1\nThrOg 6.00 2\n"));
+			std::string rez = out.str();
+			Assert::AreEqual(rez, std::string("Sadrzaj lisnice\nWanky 15.00 10 14.00\nKilE 12.00 11 13.00\nPaySt 5.00 1\nThrOg 6.00 2\n"));
 		}
 	};
 
