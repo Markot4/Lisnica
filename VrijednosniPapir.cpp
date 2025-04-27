@@ -33,6 +33,10 @@ namespace markot4 {
 		return new Obveznica(from);
 	}
 
+	std::string& VrijednosniPapir::getOznaka()  {
+		return this->oznaka;
+	}
+
 	void VrijednosniPapir::postaviCijenu(double novaCijena) {
 		this->cijena = novaCijena;
 	}

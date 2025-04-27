@@ -8,10 +8,14 @@ namespace markot4 {
 	// vrijednosni papir moze biti dionica ili obveznica
 	// vrijednosni papir je roditeljska klasa tim dviju klasama
 	class VrijednosniPapir {
-	public:
-		double cijena; 
-		int kolicina;
+
+	private:
 		std::string oznaka;
+
+	public:
+
+		double cijena;
+		int kolicina;
 
 		VrijednosniPapir();
 		VrijednosniPapir(std::string oznaka);
@@ -24,6 +28,7 @@ namespace markot4 {
 
 		static VrijednosniPapir* fromStream(std::istream& from);
 
+		std::string& getOznaka();
 		void postaviCijenu(double novaCijena); 
 		double dohvatiCijenu() const;
 		virtual double izracunajVrijednost() = 0;

@@ -16,7 +16,7 @@ namespace markot4 {
 		int ix = -1;
 		for (int i = 0; i < papiri.size();i++) {
 			VrijednosniPapir *vp = papiri[i];
-			if (vp->oznaka == oznaka) {
+			if (vp->getOznaka() == oznaka) {
 				ix = i;
 			}
 		}
@@ -30,7 +30,7 @@ namespace markot4 {
 	int LisnicaClass::promjenaKolicine(int promjena, std::string oznaka) {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
-			if (vp->oznaka == oznaka) {
+			if (vp->getOznaka() == oznaka) {
 				vp->kolicina += promjena;
 				if (vp->kolicina <= 0) {
 					izbaciVrijednosniPapir(oznaka);
@@ -46,7 +46,7 @@ namespace markot4 {
 	void LisnicaClass::promjenaCijene(double cijena, std::string oznaka) {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
-			if (vp->oznaka == oznaka) {
+			if (vp->getOznaka() == oznaka) {
 				vp->cijena = cijena;
 				return;
 			}
@@ -58,7 +58,7 @@ namespace markot4 {
 		// provjerimo na koji se papir odnosi oznaka te vratimo kolicinu pomnozenu sa cijenom
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
-			if (vp->oznaka == oznaka) {
+			if (vp->getOznaka() == oznaka) {
 
 				//todo razlicito za dionicu i za obveznicu
 				return vp->izracunajVrijednost();
@@ -100,7 +100,7 @@ namespace markot4 {
 		std::cout << "Sadrzaj lisnice:" << std::endl;
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
-			std::cout << "Oznaka: " << vp->oznaka << ", Kolicina: " << vp->kolicina
+			std::cout << "Oznaka: " << vp->getOznaka() << ", Kolicina: " << vp->kolicina
 				<< ", Cijena: " << vp->cijena << std::endl;
 		}
 	}
@@ -111,7 +111,7 @@ namespace markot4 {
 	bool LisnicaClass::dodajDionicu(double cijena, int kolicina, std::string oznaka) {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir* vp = papiri[i];
-			if (vp->oznaka == oznaka) {
+			if (vp->getOznaka() == oznaka) {
 				return false; //Dionica vec postoji. Vracamo false
 			}
 		}
@@ -124,7 +124,7 @@ namespace markot4 {
 	bool LisnicaClass::dodajObveznicu(std::string oznaka, double cijena, int kolicina, double nominalnaCijena) {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir* vp = papiri[i];
-			if (vp->oznaka == oznaka) {
+			if (vp->getOznaka() == oznaka) {
 				return false; //Obveznica vec postoji. Vracamo false
 			}
 		}
