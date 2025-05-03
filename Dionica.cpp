@@ -9,8 +9,10 @@ namespace markot4 {
     Dionica::Dionica(std::istream& from) {
         std::string line;
         double cijena;
+        int kolicina;
         from >> this->getOznaka() >> cijena >> kolicina;
         postaviCijenu(cijena);
+        postaviKolicinu(kolicina);
         getline(from, line);
     }
 
@@ -23,7 +25,7 @@ namespace markot4 {
     }
 
     double Dionica::izracunajVrijednost() {
-        return dohvatiCijenu() * kolicina;
+        return dohvatiCijenu() * dohvatiKolicinu();
     }
 
     void Dionica::toStream(std::ostream& to) {
@@ -31,7 +33,7 @@ namespace markot4 {
         oss << std::fixed << std::setprecision(2) << dohvatiCijenu();
         std::string formatirana_cijena = oss.str();
 
-        to << "dionica " << getOznaka() << " " << formatirana_cijena << " " << kolicina;
+        to << "dionica " << getOznaka() << " " << formatirana_cijena << " " << dohvatiKolicinu();
     }
 
     bool Dionica::isObveznica() {
@@ -48,7 +50,7 @@ namespace markot4 {
         oss << std::fixed << std::setprecision(2) << dohvatiCijenu();
         std::string formatirana_cijena = oss.str();
 
-        to << getOznaka() << " " << formatirana_cijena << " " << kolicina;
+        to << getOznaka() << " " << formatirana_cijena << " " << dohvatiKolicinu();
     }
 
     Dionica::~Dionica() {

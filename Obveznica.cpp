@@ -8,15 +8,18 @@ namespace markot4 {
     Obveznica::Obveznica(std::istream& from) {
         std::string line;
         double cijena;
+        int kolicina;
         from >> getOznaka() >> cijena >> kolicina >> nominalnaCijena;
         postaviCijenu(cijena);
+        postaviKolicinu(kolicina);
         getline(from, line);
     }
 
 
     double Obveznica::izracunajVrijednost() {
         double cijena;
-        return dohvatiCijenu() * nominalnaCijena * kolicina / 100;
+        int kolicina;
+        return dohvatiCijenu() * nominalnaCijena * dohvatiKolicinu() / 100;
     }
 
     void Obveznica::toStream(std::ostream& to) {
@@ -29,7 +32,7 @@ namespace markot4 {
         nominala_stream << std::fixed << std::setprecision(2) << nominalnaCijena;
         std::string formatirana_nominala = nominala_stream.str();
 
-        to << "obveznica " << getOznaka() << " " << formatirana_cijena << " " << kolicina << " " << formatirana_nominala;
+        to << "obveznica " << getOznaka() << " " << formatirana_cijena << " " << dohvatiKolicinu() << " " << formatirana_nominala;
     }
 
     bool Obveznica::isObveznica() {
@@ -48,7 +51,7 @@ namespace markot4 {
         nominala_stream << std::fixed << std::setprecision(2) << nominalnaCijena;
         std::string formatirana_nominala = nominala_stream.str();
 
-        to << getOznaka() << " " << formatirana_cijena << " " << kolicina << " " << formatirana_nominala;
+        to << getOznaka() << " " << formatirana_cijena << " " << dohvatiKolicinu() << " " << formatirana_nominala;
     }
     Obveznica::~Obveznica() {
 

@@ -140,7 +140,7 @@ namespace LisnicaTest
 			Assert::IsFalse(vp->isObveznica());
 			Assert::AreEqual(vp->getOznaka(), std::string("Dawg"));
 			Assert::AreEqual(vp->dohvatiCijenu(), 13.60);
-			Assert::AreEqual(vp->kolicina, 95);
+			Assert::AreEqual(vp->dohvatiKolicinu(), 95);
 		}
 
 		TEST_METHOD(VrijednosniPapirFromStream2)
@@ -154,7 +154,7 @@ namespace LisnicaTest
 			Assert::IsFalse(vp->isDionica());
 			Assert::AreEqual(vp->getOznaka(), std::string("Birdy"));
 			Assert::AreEqual(vp->dohvatiCijenu(), 15.00);
-			Assert::AreEqual(vp->kolicina, 75);
+			Assert::AreEqual(vp->dohvatiKolicinu(), 75);
 			Assert::AreEqual(((Obveznica*)vp)->nominalnaCijena, 20.00);
 		}
 
@@ -183,7 +183,7 @@ namespace LisnicaTest
 		TEST_METHOD(TestDionicaKolicina)
 		{
 			Dionica d("PL-V-A", 107, 12.1);
-			Assert::AreEqual(107, d.kolicina);
+			Assert::AreEqual(107, d.dohvatiKolicinu());
 		}
 
 		TEST_METHOD(TestDionicaVrijednost)
@@ -206,7 +206,7 @@ namespace LisnicaTest
 		{
 			std::istringstream stream = std::istringstream("Dawg 13.60 95");
 			Dionica d(stream);
-			Assert::AreEqual(d.kolicina, 95);
+			Assert::AreEqual(d.dohvatiKolicinu(), 95);
 			Assert::AreEqual(d.dohvatiCijenu(), 13.60);
 			std::string expected = "Dawg";
 			Assert::AreEqual(d.getOznaka(), expected);
@@ -274,7 +274,7 @@ namespace LisnicaTest
 			Assert::AreEqual(vrsta, vrstaDionica);
 			Dionica nova(in);
 			Assert::AreEqual(d.getOznaka(), nova.getOznaka());
-			Assert::AreEqual(d.kolicina, nova.kolicina);
+			Assert::AreEqual(d.dohvatiKolicinu(), nova.dohvatiKolicinu());
 			Assert::AreEqual(d.dohvatiCijenu(), nova.dohvatiCijenu());
 		}
 		TEST_METHOD(TestObveznicaIme)
@@ -293,7 +293,7 @@ namespace LisnicaTest
 		TEST_METHOD(TestObveznicaKolicina)
 		{
 			Obveznica o("PL-A", 94, 5, 12.5);
-			Assert::AreEqual(5, o.kolicina);
+			Assert::AreEqual(5, o.dohvatiKolicinu());
 		}
 
 		TEST_METHOD(TestObveznicaNominalnaCijena)
@@ -383,7 +383,7 @@ namespace LisnicaTest
 			std::istringstream stream = std::istringstream("Binch 15.20 20 16.00");
 			Obveznica o(stream);
 			Assert::AreEqual(o.nominalnaCijena, 16.00);
-			Assert::AreEqual(o.kolicina, 20);
+			Assert::AreEqual(o.dohvatiKolicinu(), 20);
 			Assert::AreEqual(o.dohvatiCijenu(), 15.20);
 			std::string expected = "Binch";
 			Assert::AreEqual(o.getOznaka(), expected);
@@ -405,7 +405,7 @@ namespace LisnicaTest
 			Assert::AreEqual(vrsta, vrstaObveznica);
 			Obveznica nova(in);
 			Assert::AreEqual(o.getOznaka(), nova.getOznaka());
-			Assert::AreEqual(o.kolicina, nova.kolicina);
+			Assert::AreEqual(o.dohvatiKolicinu(), nova.dohvatiKolicinu());
 			Assert::AreEqual(o.dohvatiCijenu(), nova.dohvatiCijenu());
 			Assert::AreEqual(o.nominalnaCijena, nova.nominalnaCijena);
 		}

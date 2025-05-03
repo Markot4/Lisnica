@@ -12,9 +12,9 @@ namespace markot4 {
 	private:
 		std::string oznaka;
 		double cijena;
+		int kolicina;
 	public:
 
-		int kolicina;
 
 		VrijednosniPapir();
 		VrijednosniPapir(std::string oznaka);
@@ -30,6 +30,8 @@ namespace markot4 {
 		std::string& getOznaka();
 		void postaviCijenu(double novaCijena); 
 		double dohvatiCijenu() const;
+		void postaviKolicinu(int novaKolicina);
+		int dohvatiKolicinu() const;
 		virtual double izracunajVrijednost() = 0;
 		virtual bool isDionica() = 0;
 		virtual bool isObveznica() = 0;

@@ -44,7 +44,12 @@ namespace markot4 {
 	double VrijednosniPapir::dohvatiCijenu() const {
 		return cijena;
 	}
-
+	void VrijednosniPapir::postaviKolicinu(int novaKolicina) {
+		this->kolicina = novaKolicina;
+	}
+	int VrijednosniPapir::dohvatiKolicinu() const {
+		return kolicina;
+	}
 	VrijednosniPapir::~VrijednosniPapir() {
 
 	}

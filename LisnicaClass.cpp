@@ -31,12 +31,14 @@ namespace markot4 {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
 			if (vp->getOznaka() == oznaka) {
-				vp->kolicina += promjena;
-				if (vp->kolicina <= 0) {
+				//vp->kolicina += promjena;
+				int novaKolicina = vp->dohvatiKolicinu() + promjena;
+				vp->postaviKolicinu(novaKolicina);
+				if (vp->dohvatiKolicinu() <= 0) {
 					izbaciVrijednosniPapir(oznaka);
 					return 0;
 				}
-				return vp->kolicina;
+				return vp->dohvatiKolicinu();
 			}
 		}
 		throw std::invalid_argument("Ne postoji vrijednosni papir"); //relativno
@@ -100,7 +102,7 @@ namespace markot4 {
 		std::cout << "Sadrzaj lisnice:" << std::endl;
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
-			std::cout << "Oznaka: " << vp->getOznaka() << ", Kolicina: " << vp->kolicina
+			std::cout << "Oznaka: " << vp->getOznaka() << ", Kolicina: " << vp->dohvatiKolicinu()
 				<< ", Cijena: " << vp->dohvatiCijenu() << std::endl;
 		}
 	}
