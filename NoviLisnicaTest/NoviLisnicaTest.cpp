@@ -149,22 +149,23 @@ namespace LisnicaTest
 			//trebam pozvati staticku metodu fromStream na klasi VrijednosniPapir sa podacima za obveznicu
 			//nakon toga provjeriti da je VrijednosniPapir dobro kreiran
 			std::istringstream in = std::istringstream("obveznica Birdy 15.00 75 20.00");
-			VrijednosniPapir* vp = VrijednosniPapir::fromStream(in);
+			VrijednosniPapir *vp = VrijednosniPapir::fromStream(in);
 			Assert::IsTrue(vp->isObveznica());
 			Assert::IsFalse(vp->isDionica());
 			Assert::AreEqual(vp->getOznaka(), std::string("Birdy"));
 			Assert::AreEqual(vp->dohvatiCijenu(), 15.00);
 			Assert::AreEqual(vp->dohvatiKolicinu(), 75);
 			Assert::AreEqual(((Obveznica*)vp)->dohvatiNominalnuCijenu(), 20.00);
+			delete vp;
 		}
 
 		TEST_METHOD(LisnicaFromStream)
 		{
 			std::istringstream in = std::istringstream("2\ndionica Veku 19.50 25\nobveznica Gogeta 20.00 30 21.00\n");
-			LisnicaClass* lisnica = new LisnicaClass(in);
-			Assert::AreEqual(lisnica->sveDionice(), 487.5);
-			Assert::AreEqual(lisnica->sveObveznice(), 126.0);
-			Assert::AreEqual(lisnica->vrijednostCijeleLisnice(), 613.5);
+			LisnicaClass lisnica(in);
+			Assert::AreEqual(lisnica.sveDionice(), 487.5);
+			Assert::AreEqual(lisnica.sveObveznice(), 126.0);
+			Assert::AreEqual(lisnica.vrijednostCijeleLisnice(), 613.5);
 		}
 
 		TEST_METHOD(TestDionicaIme)
