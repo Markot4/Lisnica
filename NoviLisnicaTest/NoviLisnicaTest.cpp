@@ -155,7 +155,7 @@ namespace LisnicaTest
 			Assert::AreEqual(vp->getOznaka(), std::string("Birdy"));
 			Assert::AreEqual(vp->dohvatiCijenu(), 15.00);
 			Assert::AreEqual(vp->dohvatiKolicinu(), 75);
-			Assert::AreEqual(((Obveznica*)vp)->nominalnaCijena, 20.00);
+			Assert::AreEqual(((Obveznica*)vp)->dohvatiNominalnuCijenu(), 20.00);
 		}
 
 		TEST_METHOD(LisnicaFromStream)
@@ -299,7 +299,7 @@ namespace LisnicaTest
 		TEST_METHOD(TestObveznicaNominalnaCijena)
 		{
 			Obveznica o("PL-A", 94, 5, 12.5);
-			Assert::AreEqual(12.5, o.nominalnaCijena);
+			Assert::AreEqual(12.5, o.dohvatiNominalnuCijenu());
 		}
 
 		TEST_METHOD(TestObveznicaVrijednost)
@@ -382,7 +382,7 @@ namespace LisnicaTest
 		TEST_METHOD(ObveznicaFromStream) {
 			std::istringstream stream = std::istringstream("Binch 15.20 20 16.00");
 			Obveznica o(stream);
-			Assert::AreEqual(o.nominalnaCijena, 16.00);
+			Assert::AreEqual(o.dohvatiNominalnuCijenu(), 16.00);
 			Assert::AreEqual(o.dohvatiKolicinu(), 20);
 			Assert::AreEqual(o.dohvatiCijenu(), 15.20);
 			std::string expected = "Binch";
@@ -407,7 +407,7 @@ namespace LisnicaTest
 			Assert::AreEqual(o.getOznaka(), nova.getOznaka());
 			Assert::AreEqual(o.dohvatiKolicinu(), nova.dohvatiKolicinu());
 			Assert::AreEqual(o.dohvatiCijenu(), nova.dohvatiCijenu());
-			Assert::AreEqual(o.nominalnaCijena, nova.nominalnaCijena);
+			Assert::AreEqual(o.dohvatiNominalnuCijenu(), nova.dohvatiNominalnuCijenu());
 		}
 
 		TEST_METHOD(lisnicaCommandConstructor)

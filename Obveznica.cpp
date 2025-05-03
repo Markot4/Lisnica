@@ -17,8 +17,6 @@ namespace markot4 {
 
 
     double Obveznica::izracunajVrijednost() {
-        double cijena;
-        int kolicina;
         return dohvatiCijenu() * nominalnaCijena * dohvatiKolicinu() / 100;
     }
 
@@ -53,6 +51,15 @@ namespace markot4 {
 
         to << getOznaka() << " " << formatirana_cijena << " " << dohvatiKolicinu() << " " << formatirana_nominala;
     }
+    
+    void Obveznica::postaviNominalnuCijenu(double novaNominalnaCijena) {
+        this->nominalnaCijena = novaNominalnaCijena;
+    }
+
+    double Obveznica::dohvatiNominalnuCijenu() const{
+        return nominalnaCijena;
+    }
+
     Obveznica::~Obveznica() {
 
     }
