@@ -11,10 +11,9 @@ namespace markot4 {
 
 	private:
 		std::string oznaka;
-
+		double cijena;
 	public:
 
-		double cijena;
 		int kolicina;
 
 		VrijednosniPapir();

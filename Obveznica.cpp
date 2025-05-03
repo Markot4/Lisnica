@@ -7,25 +7,22 @@ namespace markot4 {
     Obveznica::Obveznica(std::string oznaka, double cijena, int kolicina, double nominalnaCijena) : VrijednosniPapir(oznaka, kolicina, cijena), nominalnaCijena(nominalnaCijena) {}
     Obveznica::Obveznica(std::istream& from) {
         std::string line;
+        double cijena;
         from >> getOznaka() >> cijena >> kolicina >> nominalnaCijena;
+        postaviCijenu(cijena);
         getline(from, line);
     }
-    void Obveznica::postaviCijenu(double novaCijena) {
-        VrijednosniPapir::postaviCijenu(novaCijena);
-    }
 
-    double Obveznica::dohvatiCijenu() const {
-        return VrijednosniPapir::dohvatiCijenu();
-    }
 
     double Obveznica::izracunajVrijednost() {
-        return cijena * nominalnaCijena * kolicina / 100;
+        double cijena;
+        return dohvatiCijenu() * nominalnaCijena * kolicina / 100;
     }
 
     void Obveznica::toStream(std::ostream& to) {
 
         std::ostringstream oss;
-        oss << std::fixed << std::setprecision(2) << cijena;
+        oss << std::fixed << std::setprecision(2) << dohvatiCijenu();
         std::string formatirana_cijena = oss.str();
 
         std::ostringstream nominala_stream;
@@ -44,7 +41,7 @@ namespace markot4 {
     }
     void Obveznica::ispisToStream(std::ostream& to) {
         std::ostringstream oss;
-        oss << std::fixed << std::setprecision(2) << cijena;
+        oss << std::fixed << std::setprecision(2) << dohvatiCijenu();
         std::string formatirana_cijena = oss.str();
 
         std::ostringstream nominala_stream;

@@ -47,7 +47,7 @@ namespace markot4 {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
 			if (vp->getOznaka() == oznaka) {
-				vp->cijena = cijena;
+				vp->postaviCijenu(cijena);
 				return;
 			}
 		}
@@ -101,7 +101,7 @@ namespace markot4 {
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
 			std::cout << "Oznaka: " << vp->getOznaka() << ", Kolicina: " << vp->kolicina
-				<< ", Cijena: " << vp->cijena << std::endl;
+				<< ", Cijena: " << vp->dohvatiCijenu() << std::endl;
 		}
 	}
 	LisnicaClass::LisnicaClass() {
