@@ -140,11 +140,18 @@ namespace markot4 {
 	}
 
 	bool LisnicaClass::dodajObveznicu(std::string oznaka, double cijena, int kolicina, double nominalnaCijena) {
-		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir* vp = papiri[i];
-			if (vp->getOznaka() == oznaka) {
-				return false; //Obveznica vec postoji. Vracamo false
-			}
+		//for (int i = 0; i < papiri.size(); i++) {
+		//	VrijednosniPapir* vp = papiri[i];
+		//	if (vp->getOznaka() == oznaka) {
+		//		return false; //Obveznica vec postoji. Vracamo false
+		//	}
+		//}
+		// #algoritam koristim algoritam umjesto petlje!
+		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir* p) {
+			return p->getOznaka() == oznaka;
+			});
+		if (it != papiri.end()) {
+			return false;
 		}
 		//vrijednosni papir s tom oznakom ne postoji
 		Obveznica* o = new Obveznica(oznaka, cijena, kolicina, nominalnaCijena);
