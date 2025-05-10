@@ -28,20 +28,35 @@ namespace markot4 {
 	}
 
 	int LisnicaClass::promjenaKolicine(int promjena, std::string oznaka) {
-		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir *vp = papiri[i];
-			if (vp->getOznaka() == oznaka) {
-				//vp->kolicina += promjena;
-				int novaKolicina = vp->dohvatiKolicinu() + promjena;
-				vp->postaviKolicinu(novaKolicina);
-				if (vp->dohvatiKolicinu() <= 0) {
-					izbaciVrijednosniPapir(oznaka);
-					return 0;
-				}
-				return vp->dohvatiKolicinu();
-			}
+			//for (int i = 0; i < papiri.size(); i++) {
+			//	VrijednosniPapir *vp = papiri[i];
+			//	if (vp->getOznaka() == oznaka) {
+			//		//vp->kolicina += promjena;
+			//		int novaKolicina = vp->dohvatiKolicinu() + promjena;
+			//		vp->postaviKolicinu(novaKolicina);
+			//		if (vp->dohvatiKolicinu() <= 0) {
+			//			izbaciVrijednosniPapir(oznaka);
+			//			return 0;
+			//		}
+			//		return vp->dohvatiKolicinu();
+			//	}
+			//}
+			//}
+		// #algoritam koristim algoritam umjesto petlje!
+		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir* p) {
+				return p->getOznaka() == oznaka;
+				});
+		if (it == papiri.end()) {
+			throw std::invalid_argument("Ne postoji vrijednosni papir");
 		}
-		throw std::invalid_argument("Ne postoji vrijednosni papir"); //relativno
+		int novaKolicina = (*it)->dohvatiKolicinu() + promjena;
+		if (novaKolicina > 0) {
+			(*it)->postaviKolicinu(novaKolicina);
+			return novaKolicina;
+		}
+		delete *it;
+		papiri.erase(it);
+		return 0;
 	}
 
 	// promijena cijene vrijednosnim papirima sa oznakom u varijabli "oznaka"
