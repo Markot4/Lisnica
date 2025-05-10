@@ -92,15 +92,24 @@ namespace markot4 {
 
 	double LisnicaClass::vrijPoVrijPapir(std::string oznaka) {
 		// provjerimo na koji se papir odnosi oznaka te vratimo kolicinu pomnozenu sa cijenom
-		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir *vp = papiri[i];
-			if (vp->getOznaka() == oznaka) {
+		//for (int i = 0; i < papiri.size(); i++) {
+		//	VrijednosniPapir *vp = papiri[i];
+		//	if (vp->getOznaka() == oznaka) {
 
 				//todo razlicito za dionicu i za obveznicu
-				return vp->izracunajVrijednost();
-			}
+		//		return vp->izracunajVrijednost();
+		//	}
+		//}
+		//return 0;
+
+		// #algoritam koristim algoritam umjesto petlje!
+		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir* p) {
+			return p->getOznaka() == oznaka;
+			});
+		if (it == papiri.end()) {
+			return 0;
 		}
-		return 0;
+		return (*it)->izracunajVrijednost();
 	}
 
 	// izracun vrijednosti svih dionica u listi papira
