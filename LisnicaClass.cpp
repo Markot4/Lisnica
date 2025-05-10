@@ -111,11 +111,19 @@ namespace markot4 {
 	}
 
 	bool LisnicaClass::dodajDionicu(double cijena, int kolicina, std::string oznaka) {
-		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir* vp = papiri[i];
-			if (vp->getOznaka() == oznaka) {
-				return false; //Dionica vec postoji. Vracamo false
-			}
+		//for (int i = 0; i < papiri.size(); i++) {
+		//	VrijednosniPapir* vp = papiri[i];
+		//	if (vp->getOznaka() == oznaka) {
+		//		return false; //Dionica vec postoji. Vracamo false
+		//	}
+		//}
+
+		// #algoritam koristim algoritam umjesto petlje!
+		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir *p) {
+			return p->getOznaka() == oznaka;
+			});
+		if (it != papiri.end()) {
+			return false;
 		}
 		// vrijednosni papir s tom oznakom ne postoji
 		Dionica *d = new Dionica(oznaka, kolicina, cijena);
