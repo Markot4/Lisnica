@@ -46,14 +46,22 @@ namespace markot4 {
 
 	// promijena cijene vrijednosnim papirima sa oznakom u varijabli "oznaka"
 	void LisnicaClass::promjenaCijene(double cijena, std::string oznaka) {
-		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir *vp = papiri[i];
-			if (vp->getOznaka() == oznaka) {
-				vp->postaviCijenu(cijena);
-				return;
-			}
+		//for (int i = 0; i < papiri.size(); i++) {
+		//	VrijednosniPapir *vp = papiri[i];
+		//	if (vp->getOznaka() == oznaka) {
+		//		vp->postaviCijenu(cijena);
+		//		return;
+		//	}
+		//}
+
+		// #algoritam koristim algoritam umjesto petlje!
+		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir* p) {
+			return p->getOznaka() == oznaka;
+			});
+		if (it == papiri.end()) {
+			throw std::invalid_argument("Ne postoji vrijednosni papir");
 		}
-		throw std::invalid_argument("Ne postoji vrijednosni papir");
+		(*it)->postaviCijenu(cijena);
 	}
 
 	double LisnicaClass::vrijPoVrijPapir(std::string oznaka) {
