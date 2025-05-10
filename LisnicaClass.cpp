@@ -13,18 +13,29 @@ namespace markot4 {
 	}
 
 	bool LisnicaClass::izbaciVrijednosniPapir(std::string oznaka) {
-		int ix = -1;
-		for (int i = 0; i < papiri.size();i++) {
-			VrijednosniPapir *vp = papiri[i];
-			if (vp->getOznaka() == oznaka) {
-				ix = i;
-			}
+		//int ix = -1;
+		//for (int i = 0; i < papiri.size();i++) {
+		//	VrijednosniPapir *vp = papiri[i];
+		//	if (vp->getOznaka() == oznaka) {
+		//		ix = i;
+		//	}
+		//}
+		//if (ix >= 0) {
+		//	papiri.erase(papiri.begin() + ix);
+		//	return true;
+		//}
+		//return false;
+		// #algoritam koristim algoritam umjesto petlje!
+
+		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir* p) {
+			return p->getOznaka() == oznaka;
+			});
+		if (it == papiri.end()) {
+			return false;
 		}
-		if (ix >= 0) {
-			papiri.erase(papiri.begin() + ix);
-			return true;
-		}
-		return false;
+		delete* it;
+		papiri.erase(it);
+		return true;
 	}
 
 	int LisnicaClass::promjenaKolicine(int promjena, std::string oznaka) {
