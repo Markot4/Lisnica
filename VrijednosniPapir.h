@@ -5,7 +5,7 @@
 
 namespace markot4 {
 
-	// vrijednosni papir moze biti dionica ili obveznica
+	// vrijednosni papir može biti dionica ili obveznica
 	// vrijednosni papir je roditeljska klasa tim dviju klasama
 	class VrijednosniPapir {
 

@@ -17,9 +17,9 @@ namespace LisnicaTest
 		TEST_METHOD(izbacivanjeVrijednosnogpapira)
 		{
 			// 1. moram imati lisnicu
-			// 2. moram potrpati, vise vrijednosnih papira u tu lisnicu (3,4)
+			// 2. moram potrpati, više vrijednosnih papira u tu lisnicu (3,4)
 			// 3. izbacim jedan od tihg vrijednosnih papira
-			// 4. provjerim da li je dobro izbacen taj vrijednosni papir (recimo mogu provjeriti novu vrijednost lisnice)
+			// 4. provjerim da li je dobro izbačen taj vrijednosni papir (recimo mogu provjeriti novu vrijednost lisnice)
 			LisnicaClass l;
 			l.dodajDionicu(13.00, 24, "Yolo");
 			l.dodajDionicu(26.00, 12, "Imbecil");
@@ -32,7 +32,7 @@ namespace LisnicaTest
 
 		TEST_METHOD(promjenaCijene)
 		{
-			//moram imati lisnicu u kojoj ce biti vise vrijednosnih papira. 
+			//moram imati lisnicu u kojoj će biti više vrijednosnih papira. 
 			//moram promijeniti cijenu u jednom od tih vrijednosnih papira i provjeriti
 			//da li je cijena dobro promijenjena
 			LisnicaClass l;
@@ -46,21 +46,21 @@ namespace LisnicaTest
 
 		TEST_METHOD(promjenaKolicine)
 		{
-			//moram imati lisnicu u kojoj ce biti vise vrijednosnih papira. 
+			//moram imati lisnicu u kojoj će biti vise vrijednosnih papira. 
 			//moram promijeniti cijenu u jednom od tih vrijednosnih papira i provjeriti
-			//da li je kolicina dobro promijenjena
+			//da li je količina dobro promijenjena
 			LisnicaClass l;
 			l.dodajDionicu(10.00, 25, "Wazap");
 			l.dodajDionicu(20.00, 60, "Yo");
 			l.promjenaKolicine(15, "Wazap");
-			// provjeriti da li je vrijednoist svih dionica u lisnici jednaka 1600
+			// provjeriti da li je vrijednost svih dionica u lisnici jednaka 1600
 			double rez = l.sveDionice();
 			Assert::AreEqual(rez, 1600.0);
 		}
 
 		TEST_METHOD(smanjenjeKolicine)
 		{
-			//otkad promjenaKolicine povecava broj kolicina dionice, ova test metoda smanjuje
+			//otkad promjenaKolicine povećava broj kolicina dionice, ova test metoda smanjuje
 			LisnicaClass l;
 			l.dodajDionicu(12.00, 12, "Ula");
 			l.dodajDionicu(10.00, 10, "Eli");
@@ -71,7 +71,7 @@ namespace LisnicaTest
 
 		TEST_METHOD(smanjenjeKolicine2)
 		{
-			//otkad promjenaKolicine povecava broj kolicina dionice, ova test metoda smanjuje
+			//otkad promjenaKolicine povećava broj kolicina dionice, ova test metoda smanjuje
 			LisnicaClass l;
 			l.dodajDionicu(12.00, 12, "Ula");
 			l.dodajDionicu(10.00, 10, "Eli");
@@ -100,7 +100,7 @@ namespace LisnicaTest
 
 		TEST_METHOD(LeesnicatoStrum)
 		{
-			//trebam stream u kojem cu pisati
+			//trebam stream u kojem ću pisati
 			//trebam lisnicu
 			//u lisnicu moram barem staviti jednu dionicu i jednu obveznicu
 			//pozvati toStream na lisnici
@@ -132,7 +132,7 @@ namespace LisnicaTest
 		TEST_METHOD(VrijednosniPapirFromStream)
 		{
 			//trebam varijablu tipa pointer na vrijednosnipapir
-			//trebam pozvati staticku metodu fromStream na klasi VrijednosniPapir sa podacima za dionicu
+			//trebam pozvati statičku metodu fromStream na klasi VrijednosniPapir sa podacima za dionicu
 			//nakon toga provjeriti da je VrijednosniPapir dobro kreiran
 			std::istringstream in = std::istringstream("dionica Dawg 13.60 95");
 			VrijednosniPapir* vp = VrijednosniPapir::fromStream(in);
@@ -261,8 +261,8 @@ namespace LisnicaTest
 		{
 			// napravi dionicu
 			// spremi dionicu u stream
-			// iz tog streama procitaj novu dionicu
-			// usporedi da li su podaci u pocetnoj i novoj dionici isti (oznaka, kolicina, cijena)
+			// iz tog streama pročitaj novu dionicu
+			// usporedi da li su podaci u početnoj i novoj dionici isti (oznaka, kolicina, cijena)
 
 			Dionica d("Stup", 20, 15.20);
 			std::ostringstream out;
@@ -393,8 +393,8 @@ namespace LisnicaTest
 		TEST_METHOD(ObveznicaToFromStream) {
 			// napravi obveznicu
 			// spremi obveznicu u stream
-			// iz tog streama procitaj novu obveznicu
-			// usporedi da li su podaci u pocetnoj i novoj obveznici isti (oznaka, cijena, kolicina, nominala)
+			// iz tog streama pročitaj novu obveznicu
+			// usporedi da li su podaci u početnoj i novoj obveznici isti (oznaka, cijena, kolicina, nominala)
 			Obveznica o("World", 12.00, 24, 17.00);
 			std::ostringstream out;
 			o.toStream(out);
@@ -432,7 +432,7 @@ namespace LisnicaTest
 
 		TEST_METHOD(lisnicaCommanddodajDionica2)
 		{
-			// testiranje pogresnog broja parametara
+			// testiranje pogrešnog broja parametara
 			LisnicaClass l;
 			const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92" };
 			LisnicaCommand lc(5, argv, &l);
@@ -443,7 +443,7 @@ namespace LisnicaTest
 
 		TEST_METHOD(lisnicaCommanddodajDionica3)
 		{
-		// testiranje pogresnog broja parametara
+		// testiranje pogrešnog broja parametara
 			LisnicaClass l;
 			const char* argv[] = { "Lisnica", "dodaj", "dionica", "RIMAC", "100", "16.92", "siljispiljis" };
 			LisnicaCommand lc(7, argv, &l);
@@ -491,7 +491,7 @@ namespace LisnicaTest
 		{
 			// napraviti lisnicu, dodati dva vrijednsna papira
 			// napraviti lisnica command s argv za brisanje
-			// provjeriti da li je vp izbacen - vrijednost lisnice vise ga ne smije ukljucivati
+			// provjeriti da li je vp izbačen - vrijednost lisnice više ga ne smije uključivati
 			LisnicaClass l;
 			bool o = l.dodajObveznicu("Thin", 20.00, 24, 19.00);
 			bool d = l.dodajDionicu(42.00, 60, "Muscular");
@@ -631,7 +631,7 @@ namespace LisnicaTest
 			// napraviti lisnicu s nekoliko vrijednosnih papira
 			// napraviti stream sa promjenama cijena nekolilo papira
 			// na lisnici pozvati promjena cijene
-			// provjeriti da se vrijednost lisnice odgovarajuce promjenila 
+			// provjeriti da se vrijednost lisnice odgovarajuće promjenila 
 			LisnicaClass l;
 			bool d1 = l.dodajDionicu(10.00, 15, "Nirva");
 			bool d2 = l.dodajDionicu(20.00, 30, "Sanantana");

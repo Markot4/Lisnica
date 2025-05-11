@@ -7,13 +7,13 @@ namespace markot4 {
 
 	/*
 	IDEJA:
-		napraviti klasu VrijednosniPapir abstraktnom postavljajuci joj metode kao virtualne
-		omoguciti polimorfizam i dinamicko castanje tipova
+		napraviti klasu VrijednosniPapir abstraktnom postavljajući joj metode kao virtualne
+		omogućiti polimorfizam i dinamicko castanje tipova
 	
 	ILI:
 		izbrisati klase Dionica i Obveznica jer nemaju nikakvu dodatnu funkcionalnost u odnosu na roditeljsku
 		klasu VrijednosniPapir
-		dodatni dodatnu privatnu varijablu u klasu VrijednosniPapir koja oznacava o kojem tipu vrijednosnog
+		dodatni dodatnu privatnu varijablu u klasu VrijednosniPapir koja označava o kojem tipu vrijednosnog
 		papira se radi (obveznica ili dionica)
 	*/
 

@@ -113,7 +113,7 @@ namespace markot4 {
 		return (*it)->izracunajVrijednost();
 	}
 
-	// izracun vrijednosti svih dionica u listi papira
+	// izračun vrijednosti svih dionica u listi papira
 	double LisnicaClass::sveDionice() {
 		//double ukupno = 0.0;
 		//
@@ -180,7 +180,7 @@ namespace markot4 {
 		//for (int i = 0; i < papiri.size(); i++) {
 		//	VrijednosniPapir* vp = papiri[i];
 		//	if (vp->getOznaka() == oznaka) {
-		//		return false; //Dionica vec postoji. Vracamo false
+		//		return false; //Dionica već postoji. Vracamo false
 		//	}
 		//}
 
@@ -201,7 +201,7 @@ namespace markot4 {
 		//for (int i = 0; i < papiri.size(); i++) {
 		//	VrijednosniPapir* vp = papiri[i];
 		//	if (vp->getOznaka() == oznaka) {
-		//		return false; //Obveznica vec postoji. Vracamo false
+		//		return false; //Obveznica već postoji. Vracamo false
 		//	}
 		//}
 		// #algoritam koristim algoritam umjesto petlje!

@@ -12,14 +12,14 @@ namespace markot4 {
 		
 		void dodajVrijednosniPapir(VrijednosniPapir *vp);
 		bool izbaciVrijednosniPapir(std::string oznaka);
-		int promjenaKolicine(int promjena, std::string oznaka); // vrati novu kolicinu
+		int promjenaKolicine(int promjena, std::string oznaka); // vrati novu količinu
 		void promjenaCijene(double cijena, std::string oznaka);
-		int promjenaCijene(std::istream& from); // ucitava nove cijene iz streama
-		double vrijPoVrijPapir(std::string oznaka); // vraca ukupnu vrijednost nekog papira u lisnici
-		double sveDionice(); // vraca ukupnu vrijednost svih dionica u lisnici
-		double sveObveznice(); // vraca ukupnu vrijednost svih obveznica u lisnici
-		double vrijednostCijeleLisnice();  // vraca ukupnu vrijednost cijele lisnice
-		void sadrzajCijeleLisnice(); // ispisuje sadrzaj cijele lisnice
+		int promjenaCijene(std::istream& from); // učitava nove cijene iz streama
+		double vrijPoVrijPapir(std::string oznaka); // vraća ukupnu vrijednost nekog papira u lisnici
+		double sveDionice(); // vraća ukupnu vrijednost svih dionica u lisnici
+		double sveObveznice(); // vraća ukupnu vrijednost svih obveznica u lisnici
+		double vrijednostCijeleLisnice();  // vraća ukupnu vrijednost cijele lisnice
+		void sadrzajCijeleLisnice(); // ispisuje sadržaj cijele lisnice
 		LisnicaClass();
 		LisnicaClass(std::istream& from);
 		bool dodajDionicu(double cijena, int kolicina, std::string oznaka);

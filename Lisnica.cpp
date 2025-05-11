@@ -1,4 +1,4 @@
-﻿// Lisnica.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// Lisnica.cpp : Ovaj fajl sadržava 'main' funkciju. Izvršavanje programa počinje i završava tamo.
 //
 
 #include <windows.h>
@@ -18,7 +18,7 @@ int main(int argc, const char* argv[]) {
 
     if (!SetConsoleOutputCP(CP_UTF8)) {
         std::cerr << "Error setting console output code page: " << GetLastError() << std::endl;
-        // return 1; // Opcionalno: exit ako postavka neuspije, ionak output mozda dalje parcionalno radi
+        // return 1; // Opcionalno: exit ako postavka neuspije, ionak output možda dalje parcionalno radi
     }
 
     std::string filename = "lisnica.dat";
