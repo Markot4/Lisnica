@@ -5,7 +5,8 @@
 #include <fstream>
 #include <sstream>
 #include <unordered_map>
-//ovo je samo test za pull request. sve ovdje za sad radi
+#include <numeric> // za accumulate
+
 namespace markot4 {
 	void LisnicaClass::dodajVrijednosniPapir(VrijednosniPapir *vp){
 		papiri.push_back(vp);
@@ -114,14 +115,25 @@ namespace markot4 {
 
 	// izracun vrijednosti svih dionica u listi papira
 	double LisnicaClass::sveDionice() {
-		double ukupno = 0.0;
+		//double ukupno = 0.0;
+		//
+		//for (int i = 0; i < papiri.size(); i++) {
+		//	VrijednosniPapir *vp = papiri[i];
+		//	if (vp->isDionica()) {
+		//		ukupno += vp->izracunajVrijednost();
+		//	}
+		//}
+		//return ukupno;
+		// #algoritam koristim algoritam umjesto petlje!
 
-		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir *vp = papiri[i];
-			if (vp->isDionica()) {
-				ukupno += vp->izracunajVrijednost();
+		double ukupno = std::accumulate(papiri.begin(), papiri.end(), 0.0,
+			[](double current_sum, VrijednosniPapir* vp) {
+				if (vp->isDionica()) {
+					return current_sum + vp->izracunajVrijednost();
+				}
+				return current_sum;
 			}
-		}
+		);
 		return ukupno;
 	}
 
