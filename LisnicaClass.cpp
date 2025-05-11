@@ -138,13 +138,24 @@ namespace markot4 {
 	}
 
 	double LisnicaClass::sveObveznice() {
-		double ukupno = 0.0;
-		for (int i = 0; i < papiri.size(); i++) {
-			VrijednosniPapir *vp = papiri[i];
-			if (vp->isObveznica()) {
-				ukupno += vp->izracunajVrijednost();
+		//double ukupno = 0.0;
+		//for (int i = 0; i < papiri.size(); i++) {
+		//	VrijednosniPapir *vp = papiri[i];
+		//	if (vp->isObveznica()) {
+		//		ukupno += vp->izracunajVrijednost();
+		//	}
+		//}
+		//return ukupno;
+		// #algoritam koristim algoritam umjesto petlje!
+
+		double ukupno = std::accumulate(papiri.begin(), papiri.end(), 0.0,
+			[](double current_sum, VrijednosniPapir* vp) {
+				if (vp->isObveznica()) {
+					return current_sum + vp->izracunajVrijednost();
+				}
+				return current_sum;
 			}
-		}
+		);
 		return ukupno;
 	}
 
