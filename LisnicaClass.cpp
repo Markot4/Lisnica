@@ -14,18 +14,7 @@ namespace markot4 {
 	}
 
 	bool LisnicaClass::izbaciVrijednosniPapir(std::string oznaka) {
-		//int ix = -1;
-		//for (int i = 0; i < papiri.size();i++) {
-		//	VrijednosniPapir *vp = papiri[i];
-		//	if (vp->getOznaka() == oznaka) {
-		//		ix = i;
-		//	}
-		//}
-		//if (ix >= 0) {
-		//	papiri.erase(papiri.begin() + ix);
-		//	return true;
-		//}
-		//return false;
+
 		// #algoritam koristim algoritam umjesto petlje!
 
 		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir* p) {
@@ -40,20 +29,7 @@ namespace markot4 {
 	}
 
 	int LisnicaClass::promjenaKolicine(int promjena, std::string oznaka) {
-			//for (int i = 0; i < papiri.size(); i++) {
-			//	VrijednosniPapir *vp = papiri[i];
-			//	if (vp->getOznaka() == oznaka) {
-			//		//vp->kolicina += promjena;
-			//		int novaKolicina = vp->dohvatiKolicinu() + promjena;
-			//		vp->postaviKolicinu(novaKolicina);
-			//		if (vp->dohvatiKolicinu() <= 0) {
-			//			izbaciVrijednosniPapir(oznaka);
-			//			return 0;
-			//		}
-			//		return vp->dohvatiKolicinu();
-			//	}
-			//}
-			//}
+
 		// #algoritam koristim algoritam umjesto petlje!
 		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir* p) {
 				return p->getOznaka() == oznaka;
@@ -73,13 +49,6 @@ namespace markot4 {
 
 	// promijena cijene vrijednosnim papirima sa oznakom u varijabli "oznaka"
 	void LisnicaClass::promjenaCijene(double cijena, std::string oznaka) {
-		//for (int i = 0; i < papiri.size(); i++) {
-		//	VrijednosniPapir *vp = papiri[i];
-		//	if (vp->getOznaka() == oznaka) {
-		//		vp->postaviCijenu(cijena);
-		//		return;
-		//	}
-		//}
 
 		// #algoritam koristim algoritam umjesto petlje!
 		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir* p) {
@@ -92,16 +61,6 @@ namespace markot4 {
 	}
 
 	double LisnicaClass::vrijPoVrijPapir(std::string oznaka) {
-		// provjerimo na koji se papir odnosi oznaka te vratimo kolicinu pomnozenu sa cijenom
-		//for (int i = 0; i < papiri.size(); i++) {
-		//	VrijednosniPapir *vp = papiri[i];
-		//	if (vp->getOznaka() == oznaka) {
-
-				//todo razlicito za dionicu i za obveznicu
-		//		return vp->izracunajVrijednost();
-		//	}
-		//}
-		//return 0;
 
 		// #algoritam koristim algoritam umjesto petlje!
 		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir* p) {
@@ -115,15 +74,7 @@ namespace markot4 {
 
 	// izračun vrijednosti svih dionica u listi papira
 	double LisnicaClass::sveDionice() {
-		//double ukupno = 0.0;
-		//
-		//for (int i = 0; i < papiri.size(); i++) {
-		//	VrijednosniPapir *vp = papiri[i];
-		//	if (vp->isDionica()) {
-		//		ukupno += vp->izracunajVrijednost();
-		//	}
-		//}
-		//return ukupno;
+
 		// #algoritam koristim algoritam umjesto petlje!
 
 		double ukupno = std::accumulate(papiri.begin(), papiri.end(), 0.0,
@@ -138,14 +89,7 @@ namespace markot4 {
 	}
 
 	double LisnicaClass::sveObveznice() {
-		//double ukupno = 0.0;
-		//for (int i = 0; i < papiri.size(); i++) {
-		//	VrijednosniPapir *vp = papiri[i];
-		//	if (vp->isObveznica()) {
-		//		ukupno += vp->izracunajVrijednost();
-		//	}
-		//}
-		//return ukupno;
+
 		// #algoritam koristim algoritam umjesto petlje!
 
 		double ukupno = std::accumulate(papiri.begin(), papiri.end(), 0.0,
@@ -173,16 +117,10 @@ namespace markot4 {
 		}
 	}
 	LisnicaClass::LisnicaClass() {
-		// NEDOVRSENO
 	}
 
 	bool LisnicaClass::dodajDionicu(double cijena, int kolicina, std::string oznaka) {
-		//for (int i = 0; i < papiri.size(); i++) {
-		//	VrijednosniPapir* vp = papiri[i];
-		//	if (vp->getOznaka() == oznaka) {
-		//		return false; //Dionica već postoji. Vracamo false
-		//	}
-		//}
+
 
 		// #algoritam koristim algoritam umjesto petlje!
 		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir *p) {
@@ -198,12 +136,7 @@ namespace markot4 {
 	}
 
 	bool LisnicaClass::dodajObveznicu(std::string oznaka, double cijena, int kolicina, double nominalnaCijena) {
-		//for (int i = 0; i < papiri.size(); i++) {
-		//	VrijednosniPapir* vp = papiri[i];
-		//	if (vp->getOznaka() == oznaka) {
-		//		return false; //Obveznica već postoji. Vracamo false
-		//	}
-		//}
+
 		// #algoritam koristim algoritam umjesto petlje!
 		auto it = std::find_if(papiri.begin(), papiri.end(), [oznaka](VrijednosniPapir* p) {
 			return p->getOznaka() == oznaka;

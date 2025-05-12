@@ -32,5 +32,3 @@ namespace markot4 {
 
 	};
 }
-
-//double vr = sveDionioce()

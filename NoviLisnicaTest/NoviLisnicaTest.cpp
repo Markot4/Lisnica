@@ -89,15 +89,6 @@ namespace LisnicaTest
 			Assert::AreEqual(rez, 539.7, 0.1);
 		}
 
-		/*TEST_METHOD(sadrzajCijeleLisnice)
-		{
-			LisnicaClass* l = new LisnicaClass();
-			l->dodajDionicu(15.50, 14, "Hobit");
-			string rez = l->sadrzajCijeleLisnice();
-			string ocekivano = "Oznaka Hobit Kolicina 14 Cijena 15.50";
-			Assert::AreEqual(ocekivano, rez);
-		}*/
-
 		TEST_METHOD(LeesnicatoStrum)
 		{
 			//trebam stream u kojem ću pisati
