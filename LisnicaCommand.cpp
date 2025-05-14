@@ -145,7 +145,7 @@ namespace markot4 {
             return;
         }
 
-        if (naredba == "količina" && argc == 4) {
+        if (naredba == "kolicina" && argc == 4) {
             std::string oznaka = this->argv[2];
             int promjena = stoi(this->argv[3]);
             this->lisnica->promjenaKolicine(promjena, oznaka);
