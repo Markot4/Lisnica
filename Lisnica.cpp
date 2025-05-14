@@ -17,7 +17,7 @@ using namespace markot4;
 int main(int argc, const char* argv[]) {
 
     if (!SetConsoleOutputCP(CP_UTF8)) {
-        std::cerr << "Error setting console output code page: " << GetLastError() << std::endl;
+        std::cerr << "Pogreška pri postavljanju kodne stranice izlaza konzole: " << GetLastError() << std::endl;
         // return 1; // Opcionalno: exit ako postavka neuspije, ionak output možda dalje parcionalno radi
     }
 

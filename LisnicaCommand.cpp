@@ -84,7 +84,7 @@ namespace markot4 {
         }
         std::ifstream from(imeDatoteke);
         if (!from.is_open()) { 
-            throw std::invalid_argument("Ne mogu citati iz datoteke");
+            throw std::invalid_argument("Ne mogu čitati iz datoteke");
         }
         int kulike = this->lisnica->promjenaCijene(from);
         std::cout << "Promijenjena cijena " << kulike << " vrijednosnih papira" << std::endl;
@@ -121,14 +121,14 @@ namespace markot4 {
                 double cijena = stod(this->argv[5]);
                 bool uspio = this->lisnica->dodajDionicu(cijena, kolicina, oznaka);
                 if (!uspio) {
-                    throw std::invalid_argument("Dionica vec postoji");
+                    throw std::invalid_argument("Dionica već postoji");
                 }
             }
             else if (tip == "obveznica" && argc == 7) {
                 double nominala = stod(this->argv[6]);
                 bool uspio = this->lisnica->dodajObveznicu(oznaka, cijena, kolicina, nominala);
                 if (!uspio) {
-                    throw std::invalid_argument("Obveznica vec postoji");
+                    throw std::invalid_argument("Obveznica već postoji");
                 }
             }
             else {
@@ -145,7 +145,7 @@ namespace markot4 {
             return;
         }
 
-        if (naredba == "kolicina" && argc == 4) {
+        if (naredba == "količina" && argc == 4) {
             std::string oznaka = this->argv[2];
             int promjena = stoi(this->argv[3]);
             this->lisnica->promjenaKolicine(promjena, oznaka);
@@ -155,7 +155,7 @@ namespace markot4 {
         if (naredba == "cijena" && argc == 4) {
             std::string oznaka = this->argv[2];
             if (oznaka == std::string("--datoteka")) {
-                std::cout << "Citanje cijena iz datoteke: " << this->argv[3] << std::endl;
+                std::cout << "Čitanje cijena iz datoteke: " << this->argv[3] << std::endl;
                 this->promjenaCijena(this->argv[3]);
                 return;
             }

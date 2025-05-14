@@ -719,7 +719,7 @@ namespace LisnicaTest
 			std::ostringstream out;
 			lc.papiriToStream(out);
 			std::string rez = out.str();
-			Assert::AreEqual(rez, std::string("Sadrzaj lisnice\nWanky 15.00 10 14.00\nKilE 12.00 11 13.00\nPaySt 5.00 1\nThrOg 6.00 2\n"));
+			Assert::AreEqual(rez, std::string("Sadržaj lisnice\nWanky 15.00 10 14.00\nKilE 12.00 11 13.00\nPaySt 5.00 1\nThrOg 6.00 2\n"));
 		}
 	};
 

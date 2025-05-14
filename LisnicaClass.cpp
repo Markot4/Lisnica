@@ -109,7 +109,7 @@ namespace markot4 {
 	}
 
 	void LisnicaClass::sadrzajCijeleLisnice() {
-		std::cout << "Sadrzaj lisnice:" << std::endl;
+		std::cout << "Sadržaj lisnice:" << std::endl;
 		for (int i = 0; i < papiri.size(); i++) {
 			VrijednosniPapir *vp = papiri[i];
 			std::cout << "Oznaka: " << vp->getOznaka() << ", Kolicina: " << vp->dohvatiKolicinu()
@@ -162,7 +162,7 @@ namespace markot4 {
 
 	void LisnicaClass::ispisToStream(std::ostream& to) {
 		size_t kulike = papiri.size();
-		to << "Sadrzaj lisnice" << std::endl;
+		to << "Sadržaj lisnice" << std::endl;
 		for (int i = 0; i < kulike; i++) {
 			VrijednosniPapir* vp = papiri[i];
 			vp->ispisToStream(to);
