@@ -15,40 +15,43 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lisnica.cpp">
+    <ClCompile Include="NoviLisnicaTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LisnicaClass.cpp">
+    <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VrijednosniPapir.cpp">
+    <ClCompile Include="..\Dionica.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Dionica.cpp">
+    <ClCompile Include="..\VrijednosniPapir.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Obveznica.cpp">
+    <ClCompile Include="..\Obveznica.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LisnicaCommand.cpp">
+    <ClCompile Include="..\LisnicaClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LisnicaCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LisnicaClass.h">
+    <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VrijednosniPapir.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Dionica.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Obveznica.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\LisnicaClass.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dionica.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Obveznica.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="LisnicaCommand.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\VrijednosniPapir.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

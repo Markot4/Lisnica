@@ -1,29 +1,34 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include "VrijednosniPapir.h"
 #include <vector>
-using namespace std;
 namespace markot4 {
 	class LisnicaClass
 	{
 	private:
-		vector<VrijednosniPapir> papiri;
+		std::vector<VrijednosniPapir*> papiri;
 		
 	public:
 		
-		void dodajVrijednosniPapir(VrijednosniPapir vp);
-		void izbaciVrijednosniPapir(string oznaka);
-		int promjenaKolicine(int promjena, string oznaka); // vrati novu kolicinu
-		void promjenaCijene(double cijena, string oznaka);
-		int promjenaCijene(string paragraf); // parametar paragraf predstavlja ime datoteke iz koje se citaju cijene
-		//funkcija vraca broj vrijednosnih papira cija se cijena promijenila
-		double vrijPoVrijPapir(string oznaka); // vraca ukupnu vrijednost nekog papira u lisnici
-		double sveDionice(); // vraca ukupnu vrijednost svih dionica u lisnici
-		double sveObveznice(); // vraca ukupnu vrijednost svih obveznica u lisnici
-		double vrijednostCijeleLisnice();  // vraca ukupnu vrijednost cijele lisnice
-		void sadrzajCijeleLisnice(); // ispisuje sadrzaj cijele lisnice
+		void dodajVrijednosniPapir(VrijednosniPapir *vp);
+		bool izbaciVrijednosniPapir(std::string oznaka);
+		int promjenaKolicine(int promjena, std::string oznaka); // vrati novu količinu
+		void promjenaCijene(double cijena, std::string oznaka);
+		int promjenaCijene(std::istream& from); // učitava nove cijene iz streama
+		double vrijPoVrijPapir(std::string oznaka); // vraća ukupnu vrijednost nekog papira u lisnici
+		double sveDionice(); // vraća ukupnu vrijednost svih dionica u lisnici
+		double sveObveznice(); // vraća ukupnu vrijednost svih obveznica u lisnici
+		double vrijednostCijeleLisnice();  // vraća ukupnu vrijednost cijele lisnice
+		void sadrzajCijeleLisnice(); // ispisuje sadržaj cijele lisnice
 		LisnicaClass();
+		LisnicaClass(std::istream& from);
+		bool dodajDionicu(double cijena, int kolicina, std::string oznaka);
+		bool dodajObveznicu(std::string oznaka, double cijena, int kolicina, double nominalnaCijena);
+		void toStream(std::ostream& to);
+		void ispisToStream(std::ostream& to);
+
+		~LisnicaClass();
+
+
 	};
 }
-
-//double vr = sveDionioce()
