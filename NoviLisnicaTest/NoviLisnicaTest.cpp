@@ -540,7 +540,7 @@ namespace LisnicaTest
 		{
 			LisnicaClass l;
 			bool d = l.dodajDionicu(24.00, 12, "Binch");
-			const char* argv[] = {"lisnica", "kolicina", "Binch", "20"};
+			const char* argv[] = {"lisnica", "količina", "Binch", "20"};
 			LisnicaCommand lc(4, argv, &l);
 			lc.process();
 			double vrijednost = l.vrijednostCijeleLisnice();
@@ -551,7 +551,7 @@ namespace LisnicaTest
 		{
 			LisnicaClass l;
 			bool d = l.dodajDionicu(24.00, 12, "Binch");
-			const char* argv[] = { "lisnica", "kolicina", "Banch", "20" };
+			const char* argv[] = { "lisnica", "količina", "Banch", "20" };
 			LisnicaCommand lc(4, argv, &l);
 			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
@@ -562,7 +562,7 @@ namespace LisnicaTest
 		{
 			LisnicaClass l;
 			bool d = l.dodajDionicu(24.00, 12, "Binch");
-			const char* argv[] = { "lisnica", "kolicina", "Binch", "20", "12"};
+			const char* argv[] = { "lisnica", "količina", "Binch", "20", "12"};
 			LisnicaCommand lc(5, argv, &l);
 			Assert::ExpectException<std::invalid_argument>([&]() {
 				lc.process();
